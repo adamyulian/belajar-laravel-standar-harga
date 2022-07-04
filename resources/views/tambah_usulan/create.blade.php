@@ -4,9 +4,8 @@
     <h1 class="m-0 text-dark">Tambah Usulan Standar Harga</h1>
 @stop
 @section('content')
-    <form action="{{route('tambah_usulan.store')}}" method="post">
+    <form action="{{route('tambah_usulan.store')}}" enctype="multipart/form-data" method="post">
         @csrf
-            <div class="container-fluid">
                 <div class="card border-primary mb-3">
                     <div class="card-header text-white fs-3 bg-primary mb-3">FORM USULAN SHS</div>
                         <div class="card-body">
@@ -38,45 +37,47 @@
                                         @error('file_excel_dukungan') <span class="text-danger">{{$message}}</span> @enderror
                                     </div>
                                 </div>
+                            </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="exampleInputTanggalUsulan">Tanggal Pengusulan</label>
+                                        <input type="date" class="form-control @error('tanggal_usulan') is-invalid @enderror" id="exampleTanggalUsulan" name="tanggal_usulan">
+                                        @error('tanggal_usulan') <span class="text-danger">{{$message}}</span> @enderror
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputJenisUsulan">Jenis Usulan</label>
+                                        <select class="form-control @error('jenis_usulan') is-invalid @enderror" aria-label="default select example" id="exampleInputJenisUsulan" name="jenis_usulan">
+                                                <option selected>Pilih Jenis Usulan</option>
+                                                <option value="BARU">BARU</option>
+                                                <option value="UPDATE">UPDATE HARGA</option>
+                                        </select>
+                                        @error('jenis_usulan')
+                                        <span class="text-danger">{{$message}}</span> 
+                                        @enderror
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputJumlahDukunganPenyedia">Jumlah Dukungan Informasi Harga</label>
+                                        <input type="text" class="form-control @error('jumlah_dukungan_penyedia') is-invalid @enderror" id="exampleInputJumlahDukunganPenyedia" placeholder="Tuliskan Jumlah Dukungan Informasi Harga" name="jumlah_dukungan_penyedia" value="{{old('jumlah_dukungan_penyedia')}}">
+                                        @error('jumlah_dukungan_penyedia') <span class="text-danger">{{$message}}</span> @enderror
+                                    </div>
+                                        <div class="form-group">
+                                        <label for="exampleInputPenjelasanKomponen">Penjelasan Komponen</label>
+                                        <input type="text" class="form-control @error('name') is-invalid @enderror" id="exampleInputPenjelasanKomponen" placeholder="Penjelasan Peruntukan Komponen" name="penjelasan_komponen" value="{{old('penjelasan_komponen')}}">
+                                        @error('penjelasan_komponen') <span class="text-danger">{{$message}}</span> @enderror
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputFileRarDukungan">Upload File Rar</label>
+                                        <input type="file" class="form-control" id="exampleInputFileRarDukungan"name="file_rar_dukungan"
+                                        @error('file_rar_dukungan') <span class="text-danger">{{$message}}</span> @enderror
+                                    </div>
+                                </div>
+                            </div>        
                         </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="exampleInputTanggalUsulan">Tanggal Pengusulan</label>
-                                <input type="date" class="form-control @error('tanggal_usulan') is-invalid @enderror" id="exampleTanggalUsulan" name="tanggal_usulan">
-                                @error('tanggal_usulan') <span class="text-danger">{{$message}}</span> @enderror
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputJenisUsulan">Jenis Usulan</label>
-                                <select class="form-control @error('jenis_usulan') is-invalid @enderror" aria-label="default select example" id="exampleInputJenisUsulan" name="jenis_usulan">
-                                        <option selected>Pilih Jenis Usulan</option>
-                                        <option value="BARU">BARU</option>
-                                        <option value="UPDATE">UPDATE HARGA</option>
-                                </select>
-                                @error('jenis_usulan')
-                                <span class="text-danger">{{$message}}</span> 
-                                @enderror
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputJumlahDukunganPenyedia">Jumlah Dukungan Informasi Harga</label>
-                                <input type="text" class="form-control @error('jumlah_dukungan_penyedia') is-invalid @enderror" id="exampleInputJumlahDukunganPenyedia" placeholder="Tuliskan Jumlah Dukungan Informasi Harga" name="jumlah_dukungan_penyedia" value="{{old('jumlah_dukungan_penyedia')}}">
-                                @error('jumlah_dukungan_penyedia') <span class="text-danger">{{$message}}</span> @enderror
-                            </div>
-                                <div class="form-group">
-                                <label for="exampleInputPenjelasanKomponen">Penjelasan Komponen</label>
-                                <input type="text" class="form-control @error('name') is-invalid @enderror" id="exampleInputPenjelasanKomponen" placeholder="Penjelasan Peruntukan Komponen" name="penjelasan_komponen" value="{{old('penjelasan_komponen')}}">
-                                @error('penjelasan_komponen') <span class="text-danger">{{$message}}</span> @enderror
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputFileRarDukungan">Upload File Rar</label>
-                                <input type="file" class="form-control" id="exampleInputFileRarDukungan"name="file_rar_dukungan"
-                                @error('file_rar_dukungan') <span class="text-danger">{{$message}}</span> @enderror
-                            </div>
-                        </div>        
                     </div>
                 </div>
                 <div class="card-footer text-right">
                     <button type="submit" class="btn btn-primary">Simpan</button>
-                    <a href="{{route('shs.index')}}" class="btn btn-default">
+                    <a href="{{route('tambah_usulan.index')}}" class="btn btn-default">
                         Batal
                     </a>
                     <span> 

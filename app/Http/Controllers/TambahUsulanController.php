@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
 use App\Models\tambah_usulan;
-use App\Http\Requests\Storetambah_usulanRequest;
-use App\Http\Requests\Updatetambah_usulanRequest;
+use App\Models\User;
 
 class TambahUsulanController extends Controller
 {
@@ -15,7 +15,10 @@ class TambahUsulanController extends Controller
      */
     public function index()
     {
-        return view('tambah_usulan.create');
+        $tambah_usulan = tambah_usulan::all();
+        return view('tambah_usulan.index', [
+            'tambah_usulan' => $tambah_usulan
+        ]);
     }
 
     /**
@@ -34,21 +37,23 @@ class TambahUsulanController extends Controller
      * @param  \App\Http\Requests\Storetambah_usulanRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Storetambah_usulanRequest $request)
+    public function store(Request $request)
     {
         $request->validate([
-            'username' => 'required',
-            'file_excel_dukungan' => 'required|file|mimes:xls,xlsx',
-            'file_rar_dukungan' => 'required|file|mimes:rar,zip'
+           
         ]);
         $array = $request->only([
             'tanggal_usulan','perangkat_daerah','jenis_usulan','jumlah_komponen'
             ,'jumlah_dukungan_penyedia','nomor_surat','penjelasan_komponen'
             ,'file_excel_dukungan','file_rar_dukungan'
         ]);
+        $file_excel_dukungan = $request->file('file_excel_dukungan');$file_excel_dukungan->storeAs('public/posts', $file_excel_dukungan->hashName());
+
+        $file_rar_dukungan = $request->file('file_excel_dukungan');$file_rar_dukungan->storeAs('public/posts', $file_rar_dukungan->hashName());
+
         tambah_usulan::create($array);
         return redirect()->route('tambah_usulan.index')
-            ->with('success_message', 'Berhasil menambah user baru');
+            ->with('success_message', 'Berhasil menambah usulan baru');
     }
 
     /**
@@ -80,7 +85,7 @@ class TambahUsulanController extends Controller
      * @param  \App\Models\tambah_usulan  $tambah_usulan
      * @return \Illuminate\Http\Response
      */
-    public function update(Updatetambah_usulanRequest $request, tambah_usulan $tambah_usulan)
+    public function update(Request $request, tambah_usulan $tambah_usulan)
     {
         //
     }
