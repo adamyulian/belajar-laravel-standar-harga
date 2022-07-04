@@ -22,6 +22,11 @@
                         @error('username') <span class="text-danger">{{$message}}</span> @enderror
                     </div>
                     <div class="form-group">
+                        <label for="exampleInputUsername">Perangkat Daerah</label>
+                        <input type="text" class="form-control @error('perangkat_daerah') is-invalid @enderror" id="exampleInputPerangkatDaerah" placeholder="perangkat_daerah" name="perangkat_daerah" value="{{$user->perangkat_daerah ?? old('perangkat_daerah')}}">
+                        @error('perangkat_daerah') <span class="text-danger">{{$message}}</span> @enderror
+                    </div>
+                    <div class="form-group">
                         <label for="exampleInputEmail">Email address</label>
                         <input type="email" class="form-control @error('email') is-invalid @enderror" id="exampleInputEmail" placeholder="Masukkan Email" name="email" value="{{$user->email ?? old('email')}}">
                         @error('email') <span class="text-danger">{{$message}}</span> @enderror

@@ -77,13 +77,14 @@ public function update(Request $request, $id)
 {
     $request->validate([
         'name' => 'required',
-        'username' => 'required|username|unique:users,username,'.$id,
+        'username' => 'required',
         'email' => 'required|email|unique:users,email,'.$id,
         'password' => 'sometimes|nullable|confirmed'
     ]);
     $user = User::find($id);
     $user->name = $request->name;
     $user->username = $request->username;
+    $user->perangkat_Daerah = $request->perangkat_daerah;
     $user->email = $request->email;
     $user->is_admin = $request->is_admin;
     if ($request->password) $user->password = bcrypt($request->password);

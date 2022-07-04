@@ -25,4 +25,6 @@ return [
     'verify_if_not_recieved'      => 'Jika Anda tidak menerima email',
     'verify_request_another'      => 'klik disini untuk meminta ulang',
     'confirm_password_message'    => 'Konfirmasi kata sandi Anda untuk melanjutkan',
+    'username'                    => 'Username',
+    'perangkat_daerah'            => 'Perangkat Daerah'
 ];
