@@ -39,6 +39,8 @@ class TambahUsulanController extends Controller
      */
     public function store(Request $request)
     {
+        
+        ddd($request);
         $request->validate([
            
         ]);
