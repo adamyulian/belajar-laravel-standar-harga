@@ -13,13 +13,11 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="exampleInputUsername">Username</label>
-                                        <input type="text" class="form-control @error('kode_komp') is-invalid @enderror" id="exampleInputUsername" name="username" value="{{auth()->user()->username ?? old('username')}}" disabled>
-                                        @error('username') <span class="text-danger">{{$message}}</span> @enderror
+                                        <input type="text" value="{{auth()->user()->username}}" class="form-control" disabled>
                                     </div>
                                     <div class="form-group">
                                         <label for="exampleInputPerangkatDaerah">Perangkat Daerah</label>
-                                        <input type="text" class="form-control @error('kode_komp') is-invalid @enderror" id="exampleInputPerangkatDaerah" name="perangkat_daerah" value="{{auth()->user()->perangkat_daerah ?? old('perangkat_daerah')}}" disabled>
-                                        @error('perangkat_daerah') <span class="text-danger">{{$message}}</span> @enderror
+                                        <input type="text" value="{{auth()->user()->perangkat_daerah}}" class="form-control" disabled>
                                     </div>
                                     <div class="form-group">
                                         <label for="exampleInputJumlahKomponen">Jumlah Komponen (dalam 1 SPTJM)</label>

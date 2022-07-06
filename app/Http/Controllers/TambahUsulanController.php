@@ -15,9 +15,9 @@ class TambahUsulanController extends Controller
      */
     public function index()
     {
-        $tambah_usulan = tambah_usulan::all();
+        $tambah_usulans = tambah_usulan::all();
         return view('tambah_usulan.index', [
-            'tambah_usulan' => $tambah_usulan
+            'tambah_usulan' => $tambah_usulans
         ]);
     }
 
@@ -40,18 +40,25 @@ class TambahUsulanController extends Controller
     public function store(Request $request)
     {
         
-        ddd($request);
         $request->validate([
-           
+            //'tanggal_usulan'=> 'required',
+            //'jenis_usulan' => 'required',
+            //'jumlah_komponen' => 'required',
+            //'jumlah_dukungan_penyedia' => 'required',
+            //'nomor_surat' => 'required',
+            //'penjelasan_komponen' => 'required',
+            //'file_excel_dukungan'=>'required|file|mimes:xls,xlxs',
+            //'file_rar_dukungan' =>'required|file|mimes:rar,zip',
         ]);
         $array = $request->only([
-            'tanggal_usulan','perangkat_daerah','jenis_usulan','jumlah_komponen'
+            'username','tanggal_usulan','perangkat_daerah','jenis_usulan','jumlah_komponen'
             ,'jumlah_dukungan_penyedia','nomor_surat','penjelasan_komponen'
             ,'file_excel_dukungan','file_rar_dukungan'
         ]);
-        $file_excel_dukungan = $request->file('file_excel_dukungan');$file_excel_dukungan->storeAs('public/posts', $file_excel_dukungan->hashName());
-
-        $file_rar_dukungan = $request->file('file_excel_dukungan');$file_rar_dukungan->storeAs('public/posts', $file_rar_dukungan->hashName());
+        $array['username'] = $request->input('$users->username}}');
+        $array['perangkat_daerah'] = $request->input('$users->perangkat_daerah');
+        $array['file_excel_dukungan'] = $request->file('file_excel_dukungan')->store('public/posts');
+        $array['file_rar_dukungan'] = $request->file('file_excel_dukungan')->store('public/posts');
 
         tambah_usulan::create($array);
         return redirect()->route('tambah_usulan.index')
@@ -75,9 +82,14 @@ class TambahUsulanController extends Controller
      * @param  \App\Models\tambah_usulan  $tambah_usulan
      * @return \Illuminate\Http\Response
      */
-    public function edit(tambah_usulan $tambah_usulan)
+    public function edit($id)
     {
-        //
+        $tambah_usulans = tambah_usulan::find($id);
+        if (!$tambah_usulans) return redirect()->route('tambah_usulan.index')
+            ->with('error_message', 'SHS '.$id.' tidak ditemukan');
+        return view('tambah_usulan.edit', [
+            'tammbah_usulan' => $tambah_usulans
+        ]);
     }
 
     /**
@@ -87,19 +99,31 @@ class TambahUsulanController extends Controller
      * @param  \App\Models\tambah_usulan  $tambah_usulan
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, tambah_usulan $tambah_usulan)
+    public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            
+        ]);
+        $tambah_usulans = tambah_usulan::find($id);
+        $tambah_usulans->kode_komp = $request->kode_komp;
+        $tambah_usulans->nama_komp = $request->nama_komp;
+        $tambah_usulans->save();
+        return redirect()->route('tambah_usulan.index')
+            ->with('success_message', 'Berhasil mengubah SHS');
     }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\tambah_usulan  $tambah_usulan
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(tambah_usulan $tambah_usulan)
+        /**
+         * Remove the specified resource from storage.
+         *
+         * @param  int  $id
+         * @return \Illuminate\Http\Response
+         */
+        public function destroy(Request $request, $id)
     {
-        //
+        $tambah_usulans = tambah_usulan::find($id);
+        if ($id == $request->user()->id) return redirect()->route('tambah_usulan.index')
+            ->with('error_message', 'Anda tidak dapat menghapus diri sendiri.');
+        if ($tambah_usulans) $tambah_usulans->delete();
+        return redirect()->route('tambah_usulan.index')
+            ->with('success_message', 'Berhasil menghapus SHS');
     }
 }

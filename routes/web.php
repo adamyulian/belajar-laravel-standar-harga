@@ -31,14 +31,11 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::resource('users', \App\Http\Controllers\UserController::class)
-    ->middleware('auth');
+Route::resource('users', \App\Http\Controllers\UserController::class)->middleware('auth');
 
-Route::resource('shs', \App\Http\Controllers\ShsController::class)
-    ->middleware('auth');
+Route::resource('shs', \App\Http\Controllers\ShsController::class)->middleware('auth');
 
-Route::resource('tambah_usulan', \App\Http\Controllers\TambahUsulanController::class)
-    ->middleware('auth');
+Route::resource('tambah_usulan', \App\Http\Controllers\TambahUsulanController::class)->middleware('auth');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 

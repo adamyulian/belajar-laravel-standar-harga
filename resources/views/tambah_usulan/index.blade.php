@@ -24,19 +24,19 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($tambah_usulan as $key => $tambah_usulans)
+                        @foreach($tambah_usulan as $key => $usulan)
                             <tr>
                                 <td>{{$key+1}}</td>
-                                <td>{{$tambah_usulan->perangkat_daerah}}</td>
-                                <td>{{$tambah_usulan->tanggal_usulan}}</td>
-                                <td>{{$tambah_usulan->nomor_surat}}</td>
-                                <td>{{$tambah_usulan->penjelasan_komponen}}</td>
-                                <td>{{$tambah_usulan->jenis_usulan}}</td>
+                                <td>{{$usulan->perangkat_daerah}}</td>
+                                <td>{{$usulan->tanggal_usulan}}</td>
+                                <td>{{$usulan->nomor_surat}}</td>
+                                <td>{{$usulan->penjelasan_komponen}}</td>
+                                <td>{{$usulan->jenis_usulan}}</td>
                                 <td>
-                                    <a href="{{route('tambah_usulan.edit', $tambah_usulan)}}" class="btn btn-primary btn-xs">
+                                    <a href="{{route('tambah_usulan.edit', $usulan)}}" class="btn btn-primary btn-xs">
                                         Edit
                                     </a>
-                                    <a href="{{route('tambah_usulan.destroy', $tambah_usulan)}}" onclick="notificationBeforeDelete(event, this)" class="btn btn-danger btn-xs">
+                                    <a href="{{route('tambah_usulan.destroy', $usulan)}}" onclick="notificationBeforeDelete(event, this)" class="btn btn-danger btn-xs">
                                         Delete
                                     </a>
                                 </td>
