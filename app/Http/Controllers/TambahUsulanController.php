@@ -56,7 +56,7 @@ class TambahUsulanController extends Controller
             ,'file_excel_dukungan','file_rar_dukungan'
         ]);
         $array['username'] = $request->input('username');
-        $array['perangkat_daerah'] = $request->input('$users->perangkat_daerah');
+        $array['perangkat_daerah'] = $request->input('perangkat_daerah');
         $array['file_excel_dukungan'] = $request->file('file_excel_dukungan')->store('public/posts');
         $array['file_rar_dukungan'] = $request->file('file_excel_dukungan')->store('public/posts');
 
