@@ -6,13 +6,18 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class tambah_usulan extends Model
-{
+    
+    {
+        public function User()
+    {
+        return $this->belongsTo(User::class,'user_id');
+    }
+
     use HasFactory;
 
     protected $fillable = [
         'username',
         'tanggal_usulan',
-        'perangkat_daerah',
         'jenis_usulan',
         'jumlah_komponen',
         'jumlah_dukungan_penyedia',
@@ -21,3 +26,4 @@ class tambah_usulan extends Model
         'file_excel_dukungan',
         'file_rar_dukungan'];
     }
+    

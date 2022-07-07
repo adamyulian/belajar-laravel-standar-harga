@@ -51,12 +51,10 @@ class TambahUsulanController extends Controller
             //'file_rar_dukungan' =>'required|file|mimes:rar,zip',
         ]);
         $array = $request->only([
-            'username','tanggal_usulan','perangkat_daerah','jenis_usulan','jumlah_komponen'
+            'tanggal_usulan','jenis_usulan','jumlah_komponen'
             ,'jumlah_dukungan_penyedia','nomor_surat','penjelasan_komponen'
             ,'file_excel_dukungan','file_rar_dukungan'
         ]);
-        $array['username'] = $request->input('username');
-        $array['perangkat_daerah'] = $request->input('$users->perangkat_daerah');
         $array['file_excel_dukungan'] = $request->file('file_excel_dukungan')->store('public/posts');
         $array['file_rar_dukungan'] = $request->file('file_excel_dukungan')->store('public/posts');
 
