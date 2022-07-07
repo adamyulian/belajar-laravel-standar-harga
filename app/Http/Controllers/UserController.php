@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\tambah_usulan;
 
 class UserController extends Controller
 {
@@ -107,4 +108,8 @@ public function update(Request $request, $id)
     return redirect()->route('users.index')
         ->with('success_message', 'Berhasil menghapus user');
 }
+    public function tambah_usulan()
+    {
+        return $this->hasMany(tambah_usulan::class);
+    }
 }

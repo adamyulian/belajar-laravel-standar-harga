@@ -124,4 +124,22 @@ class TambahUsulanController extends Controller
         return redirect()->route('tambah_usulan.index')
             ->with('success_message', 'Berhasil menghapus SHS');
     }
+    public function User()
+    {
+        return $this->belongsTo(User::class,'user_id','id');
+    }
+    public function download_file_excel_dukungan()
+    {
+    	$myFile = public_path("dummy_pdf.pdf");
+    	$headers = ['Content-Type: application/pdf'];
+    	$newName = 'itsolutionstuff-pdf-file-'.time().'.pdf';
+    	return response()->download($myFile, $newName, $headers);
+    }
+    public function download_rar_excel_dukungan()
+    {
+    	$myFile = public_path("dummy_pdf.pdf");
+    	$headers = ['Content-Type: application/pdf'];
+    	$newName = 'itsolutionstuff-pdf-file-'.time().'.pdf';
+    	return response()->download($myFile, $newName, $headers);
+    }
 }

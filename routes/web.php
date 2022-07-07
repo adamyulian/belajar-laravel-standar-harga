@@ -1,7 +1,10 @@
 <?php
 
+use App\Models\User;
+
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -37,8 +40,17 @@ Route::resource('shs', \App\Http\Controllers\ShsController::class)->middleware('
 
 Route::resource('tambah_usulan', \App\Http\Controllers\TambahUsulanController::class)->middleware('auth');
 
+Route::get('users/{users:perangkat_daerah}', function (user $user) {return view('user',[
+    'username'=> $user->username,
+    'perangkat_daerah' => $user->perangkat_daerah
+    ]);
+});
+
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('tambah_usulan/download_file_excel_dukungan',[\App\Http\Controllers\TambahUsulanController::class,'index']);
+Route::get('tambah_usulan/download_file_rar_dukungan',[\App\Http\Controllers\TambahUsulanController::class,'index']);
