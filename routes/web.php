@@ -52,5 +52,3 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('tambah_usulan/download_file_excel_dukungan',[\App\Http\Controllers\TambahUsulanController::class,'index']);
-Route::get('tambah_usulan/download_file_rar_dukungan',[\App\Http\Controllers\TambahUsulanController::class,'index']);
