@@ -27,7 +27,7 @@
                         @foreach($tambah_usulan as $key => $usulan)
                             <tr>
                                 <td>{{$key+1}}</td>
-                                <td>{{$usulan->user->perangkat_daerah}}</td>
+                                <td>@foreach($user as $key => $usulan){{$usulan->user->perangkat_daerah}}</td>
                                 <td>{{$usulan->tanggal_usulan}}</td>
                                 <td>{{$usulan->nomor_surat}}</td>
                                 <td>{{$usulan->penjelasan_komponen}}</td>
