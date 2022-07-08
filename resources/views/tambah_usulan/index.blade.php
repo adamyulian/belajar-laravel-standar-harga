@@ -1,7 +1,7 @@
 @extends('adminlte::page')
 @section('title', 'Daftar Usulan')
 @section('content_header')
-    <h1 class="m-0 text-dark">List User</h1>
+    <h1 class="m-0 text-dark">Daftar Usulan Perangkat Daerah</h1>
 @stop
 @section('content')
     <div class="row">
@@ -11,8 +11,8 @@
                     <a href="{{route('tambah_usulan.create')}}" class="btn btn-primary mb-2">
                         Tambah
                     </a>
-                    <table class="table table-hover table-bordered table-stripped" id="example2">
-                        <thead>
+                    <table class="table table-hover table-bordered table-stripped " id="example2">
+                        <thead class="table-primary text-center">
                         <tr>
                             <th>No.</th>
                             <th>Username</th>
@@ -21,6 +21,7 @@
                             <th>Nomor SPTJM</th>
                             <th>Penjelasan Komponen</th>
                             <th>Jenis Usulan</th>
+                            <th>Perubahan</th>
                             <th>File Dukungan</th>
                             <th>Opsi</th>
                         </tr>
@@ -29,21 +30,21 @@
                         @foreach($tambah_usulan as $key => $usulan)
                             <tr>
                                 <td>{{$key+1}}</td>
-
-                                <td>@foreach($user as $key => $usulan)</td>
-
                                 <td>{{auth()->user()->username}}</td>
                                 <td>{{auth()->user()->perangkat_daerah}}</td>
-
                                 <td>{{$usulan->tanggal_usulan}}</td>
                                 <td>{{$usulan->nomor_surat}}</td>
                                 <td>{{$usulan->penjelasan_komponen}}</td>
                                 <td>{{$usulan->jenis_usulan}}</td>
+                                <td>created : {{$usulan->created_at}}
+                                    <br>
+                                    updated : {{$usulan->updated_at}}
+                                    </td>
                                 <td>
-                                    <a href="{{$usulan->file_excel_dukungan}}" class="btn btn-success btn-xs">
+                                    <a class="btn btn-success btn-xs" href="{{$usulan->file_excel_dukungan}}" download>
                                         Excel
                                     </a>
-                                    <a href="{{$usulan->download('file_rar_dukungan','file_rar_dukungan'.time().'.xls')}}" class="btn btn-warning btn-xs">
+                                    <a class="btn btn-warning btn-xs" href="{{$usulan->file_rar_dukungan}}" download>
                                         Rar
                                     </a>
                                 </td>

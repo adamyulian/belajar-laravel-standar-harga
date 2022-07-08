@@ -4,15 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
+
 
 class tambah_usulan extends Model
     
 {
-    public function download()
-    {
-    	$myFile = storage_path("app\public\posts");
-    	return response()->download($myFile);
-    }
     use HasFactory;
 
     protected $fillable = [
@@ -26,4 +23,14 @@ class tambah_usulan extends Model
         'file_excel_dukungan',
         'file_rar_dukungan'];
     }
+    class download extends Storage
+    {
+        public function index()
+        {
+            $filePath = public_path("dummy.pdf");
+            $headers = ['Content-Type: application/pdf'];
+            $fileName = time().'.pdf';
     
+            return response()->download($filePath, $fileName, $headers);
+        }
+    }

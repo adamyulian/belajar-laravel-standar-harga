@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\tambah_usulan;
 use App\Models\User;
+use Illuminate\Auth\Access\Response;
+use Illuminate\Support\Facades\Storage;
+
 
 class TambahUsulanController extends Controller
 {
@@ -55,8 +58,8 @@ class TambahUsulanController extends Controller
             ,'jumlah_dukungan_penyedia','nomor_surat','penjelasan_komponen'
             ,'file_excel_dukungan','file_rar_dukungan'
         ]);
-        $array['file_excel_dukungan'] = $request->file('file_excel_dukungan')->store('public/posts');
-        $array['file_rar_dukungan'] = $request->file('file_excel_dukungan')->store('public/posts');
+        $array['file_excel_dukungan'] = $request->file('file_excel_dukungan')->store('public/posts/excel');
+        $array['file_rar_dukungan'] = $request->file('file_rar_dukungan')->store('public/posts/rar');
 
         tambah_usulan::create($array);
         return redirect()->route('tambah_usulan.index')
@@ -103,8 +106,6 @@ class TambahUsulanController extends Controller
             
         ]);
         $tambah_usulans = tambah_usulan::find($id);
-        $tambah_usulans->kode_komp = $request->kode_komp;
-        $tambah_usulans->nama_komp = $request->nama_komp;
         $tambah_usulans->save();
         return redirect()->route('tambah_usulan.index')
             ->with('success_message', 'Berhasil mengubah SHS');
@@ -118,8 +119,6 @@ class TambahUsulanController extends Controller
         public function destroy(Request $request, $id)
     {
         $tambah_usulans = tambah_usulan::find($id);
-        if ($id == $request->user()->id) return redirect()->route('tambah_usulan.index')
-            ->with('error_message', 'Anda tidak dapat menghapus diri sendiri.');
         if ($tambah_usulans) $tambah_usulans->delete();
         return redirect()->route('tambah_usulan.index')
             ->with('success_message', 'Berhasil menghapus SHS');
@@ -128,18 +127,16 @@ class TambahUsulanController extends Controller
     {
         return $this->belongsTo(User::class,'user_id','id');
     }
-    public function download_file_excel_dukungan()
-    {
-    	$myFile = public_path("dummy_pdf.pdf");
-    	$headers = ['Content-Type: application/pdf'];
-    	$newName = 'itsolutionstuff-pdf-file-'.time().'.pdf';
-    	return response()->download($myFile, $newName, $headers);
-    }
-    public function download_rar_excel_dukungan()
-    {
-    	$myFile = public_path("dummy_pdf.pdf");
-    	$headers = ['Content-Type: application/pdf'];
-    	$newName = 'itsolutionstuff-pdf-file-'.time().'.pdf';
-    	return response()->download($myFile, $newName, $headers);
-    }
+    public function download(Request $request)
+        {
+        $file = public_path(). "public\posts\excel\0LPnLMxE0d6zvgWUL8fM1LJaETVEBWjbunyVitNj.xlsx";
+
+        $headers = ['Content-Type: file/xlsx'];
+
+        if (file_exists($file)) {
+            return Storage::download($file, 'excel.xlsx', $headers);
+            } else {
+                echo('File not found.');
+            }
+        }
 }
