@@ -89,7 +89,7 @@ class TambahUsulanController extends Controller
         if (!$tambah_usulans) return redirect()->route('tambah_usulan.index')
             ->with('error_message', 'SHS '.$id.' tidak ditemukan');
         return view('tambah_usulan.edit', [
-            'tammbah_usulan' => $tambah_usulans
+            'tambah_usulan' => $tambah_usulans
         ]);
     }
 

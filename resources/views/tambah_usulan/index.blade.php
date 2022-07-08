@@ -40,15 +40,15 @@
                                     <br>
                                     updated : {{$usulan->updated_at}}
                                     </td>
-                                <td>
-                                    <a class="btn btn-success btn-xs" href="{{$usulan->file_excel_dukungan}}" download>
+                                <td class = "text-center"> 
+                                    <a class= "btn btn-success btn-xs" href="{{$usulan->file_excel_dukungan}}" download>
                                         Excel
                                     </a>
                                     <a class="btn btn-warning btn-xs" href="{{$usulan->file_rar_dukungan}}" download>
                                         Rar
                                     </a>
                                 </td>
-                                <td>
+                                <td class = "text-center">
                                     <a href="{{route('tambah_usulan.edit', $usulan)}}" class="btn btn-primary btn-xs">
                                         Edit
                                     </a>

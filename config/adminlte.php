@@ -317,7 +317,7 @@ return [
                 ],
                 [
                     'text' => 'Daftar Usulan',
-                    'url'  => 'admin/daftar_usulan',
+                    'url'  => '/daftar_usulan',
                     'icon' => 'fa fa-regular fa-file',
                 ],
                 [

@@ -4,7 +4,7 @@
     <h1 class="m-0 text-dark">Edit SHS</h1>
 @stop
 @section('content')
-    <form action="{{route('shs.update', $standar_harga)}}" method="post">
+    <form action="{{route('tambah_usulan.update', $tambah_usulan)}}" method="post">
         @method('PUT')
         @csrf
     <div class="row">
