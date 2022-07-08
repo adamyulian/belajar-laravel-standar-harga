@@ -11,9 +11,9 @@
                     <a href="{{route('shs.create')}}" class="btn btn-primary mb-2">
                         Tambah
                     </a>
-                    <table class="table table-hover table-bordered table-stripped table-responsive" id="example2">
-                        <thead>
-                            <th>Nomor</th>
+                    <table class="table table-hover table-bordered table-stripped" id="example2">
+                        <thead class="table-info text-center">
+                            <th>No.</th>
                             <th>Kode Komponen</th>
                             <th>Nama Komponen</th>
                             <th>Spesifikasi</th>
@@ -25,7 +25,7 @@
                         </thead>
                         <tbody>
                         @foreach($shs as $key => $standar_hargas)
-                            <tr>
+                            <tr class="text-center">
                                 <td>{{$key+1}}</td>
                                 <td>{{$standar_hargas->kode_komp}}</td>
                                 <td>{{$standar_hargas->nama_komp}}</td>

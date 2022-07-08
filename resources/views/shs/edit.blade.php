@@ -1,5 +1,5 @@
 @extends('adminlte::page')
-@section('title', 'Edit User')
+@section('title', 'Edit SHS')
 @section('content_header')
     <h1 class="m-0 text-dark">Edit SHS</h1>
 @stop
@@ -28,8 +28,8 @@
                     </div>
                     <div class="form-group">
                         <label for="exampleInputName">Satuan</label>
-                        <select class="form-control @error('satuan') is-invalid @enderror" aria-label="default select example" id="exampleInputName" name="satuan">
-                                <option selected>"{{$standar_harga->satuan ?? old('satuan')}}"</option>
+                        <select class="form-control @error('satuan') is-invalid @enderror" aria-label="default select example" id="exampleInputName" name="satuan" value="{{$standar_harga->satuan}}">
+                                <option selected>{{$standar_harga->satuan}}</option>
                                 <option value="1">One</option>
                                 <option value="2">Two</option>
                                 <option value="3">Three</option>
@@ -41,13 +41,13 @@
                     <div class="form-group">
                         <label for="exampleInputName">Harga Satuan</label>
                         <input type="text" class="form-control 
-                        @error('name') is-invalid @enderror" id="exampleInputName" placeholder="Harga Per Satuan..." name="harga_satuan" value="{{old('harga_satuan')}}">
+                        @error('name') is-invalid @enderror" id="exampleInputName" name="harga_satuan" value="{{$standar_harga->harga_satuan}}">
                         @error('harga_satuan') <span class="text-danger">{{$message}}</span> @enderror
                     </div>
                     <div class="form-group">
                         <label for="exampleInputName">Pajak</label>
-                        <select class="form-control @error('pajak') is-invalid @enderror" aria-label="default select example" id="exampleInputName" name="pajak">
-                                <option selected>Pilih Besaran Pajak...</option>
+                        <select class="form-control @error('pajak') is-invalid @enderror" aria-label="default select example" id="exampleInputPajak" name="pajak" value="{{$standar_harga->pajak}}">
+                                <option selected>{{$standar_harga->pajak}}</option>
                                 <option value="1">11%</option>
                                 <option value="2">0%</option>
                         </select>
@@ -57,8 +57,8 @@
                     </div>
                     <div class="form-group">
                         <label for="exampleInputName">Rekening Belanja</label>
-                        <<select class="form-control @error('rek_belanja') is-invalid @enderror" aria-label="default select example" id="exampleInputName" name="rek_belanja">
-                                <option selected>Pilih Rekening Belanja...</option>
+                        <select class="form-control @error('rek_belanja') is-invalid @enderror" aria-label="default select example" id="exampleInputRekBelanja" name="rek_belanja" value="{{$standar_harga->rek_belanja}}">
+                                <option selected>{{$standar_harga->rek_belanja}}</option>
                                 <option value="1">11%</option>
                                 <option value="2">0%</option>
                         </select>

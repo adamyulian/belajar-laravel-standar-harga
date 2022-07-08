@@ -286,24 +286,8 @@ return [
             ],
         ],
         [
-            'text'    => 'Pengaturan Akun',
-            'icon'    => 'fa fa-users',
-            'submenu' => [
-                [
-                    'text' => 'Data Pengguna',
-                    'url'  => '/users',
-                    'icon'  => 'fa fa-fw fa-user',
-                ],
-                [
-                    'text' => 'Profil',
-                    'url'  => 'admin/settings',
-                    'icon' => 'fa fa-fw fa-user',
-                ],
-            ],
-        ],
-        [
             'text'    => 'Usulan',
-            'icon'    => 'fa fa-users',
+            'icon'    => 'fa fa-file',
             'submenu' => [
                 [
                     'text' => 'Tambah Usulan',
@@ -339,6 +323,22 @@ return [
                     'text' => 'Rekapitulasi Usulan',
                     'url'  => 'admin/rekap_verif',
                     'icon' => 'fa fa-regular fa-file',
+                ],
+            ],
+        ],
+        [
+            'text'    => 'Pengaturan Akun',
+            'icon'    => 'fa fa-users',
+            'submenu' => [
+                [
+                    'text' => 'Data Pengguna',
+                    'url'  => '/users',
+                    'icon'  => 'fa fa-fw fa-user',
+                ],
+                [
+                    'text' => 'Profil',
+                    'url'  => 'admin/settings',
+                    'icon' => 'fa fa-fw fa-user',
                 ],
             ],
         ],

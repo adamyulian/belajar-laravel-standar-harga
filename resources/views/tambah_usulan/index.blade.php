@@ -28,7 +28,7 @@
                         </thead>
                         <tbody>
                         @foreach($tambah_usulan as $key => $usulan)
-                            <tr>
+                            <tr class="text-center">
                                 <td>{{$key+1}}</td>
                                 <td>{{auth()->user()->username}}</td>
                                 <td>{{auth()->user()->perangkat_daerah}}</td>
