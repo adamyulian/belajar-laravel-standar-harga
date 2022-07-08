@@ -11,10 +11,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class User extends Authenticatable
 {
-    public function tambah_usulan()
-    {
-        return $this->hasMany(tambah_usulan::class,'id');
-    }
+    
     use HasApiTokens, HasFactory, Notifiable;
 
     /**

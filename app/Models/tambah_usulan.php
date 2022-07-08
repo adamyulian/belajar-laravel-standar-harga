@@ -7,12 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class tambah_usulan extends Model
     
+{
+    public function download()
     {
-        public function User()
-    {
-        return $this->belongsTo(User::class,'user_id');
+    	$myFile = storage_path("app\public\posts");
+    	return response()->download($myFile);
     }
-
     use HasFactory;
 
     protected $fillable = [

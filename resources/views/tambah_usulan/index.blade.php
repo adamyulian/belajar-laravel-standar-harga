@@ -15,11 +15,13 @@
                         <thead>
                         <tr>
                             <th>No.</th>
+                            <th>Username</th>
                             <th>Perangkat Daerah</th>
                             <th>Tanggal Pengusulan</th>
                             <th>Nomor SPTJM</th>
                             <th>Penjelasan Komponen</th>
                             <th>Jenis Usulan</th>
+                            <th>File Dukungan</th>
                             <th>Opsi</th>
                         </tr>
                         </thead>
@@ -27,11 +29,24 @@
                         @foreach($tambah_usulan as $key => $usulan)
                             <tr>
                                 <td>{{$key+1}}</td>
-                                <td>@foreach($user as $key => $usulan){{$usulan->user->perangkat_daerah}}</td>
+
+                                <td>@foreach($user as $key => $usulan)</td>
+
+                                <td>{{auth()->user()->username}}</td>
+                                <td>{{auth()->user()->perangkat_daerah}}</td>
+
                                 <td>{{$usulan->tanggal_usulan}}</td>
                                 <td>{{$usulan->nomor_surat}}</td>
                                 <td>{{$usulan->penjelasan_komponen}}</td>
                                 <td>{{$usulan->jenis_usulan}}</td>
+                                <td>
+                                    <a href="{{$usulan->file_excel_dukungan}}" class="btn btn-success btn-xs">
+                                        Excel
+                                    </a>
+                                    <a href="{{$usulan->download('file_rar_dukungan','file_rar_dukungan'.time().'.xls')}}" class="btn btn-warning btn-xs">
+                                        Rar
+                                    </a>
+                                </td>
                                 <td>
                                     <a href="{{route('tambah_usulan.edit', $usulan)}}" class="btn btn-primary btn-xs">
                                         Edit
