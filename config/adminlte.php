@@ -295,6 +295,11 @@ return [
                     'icon'  => 'fa fa-regular fa-file',
                 ],
                 [
+                    'text' => 'Kodefikasi Kelompok Aset',
+                    'url'  => '/kodefikasi_aset',
+                    'icon'  => 'fa fa-regular fa-file',
+                ],
+                [
                     'text' => 'Konfirmasi Usulan',
                     'url'  => 'admin/konfirm_usulan',
                     'icon' => 'fa fa-regular fa-file',

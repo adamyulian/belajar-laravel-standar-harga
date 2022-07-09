@@ -7,8 +7,8 @@
     <form action="{{route('tambah_usulan.update', $tambah_usulan)}}" method="post">
         @method('PUT')
         @csrf
-        <div class="card border-primary mb-3">
-            <div class="card-header text-white fs-3 bg-primary mb-3">FORM USULAN SHS</div>
+        <div class="card card-responsive border-primary mb-3">
+            <div class="card-header text-white fs-3 bg-primary mb-3">FORM EDIT USULAN SHS</div>
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-6">
@@ -32,11 +32,16 @@
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputFileExcelDukungan">Upload File Excel</label>
-                                <input type="file" class="form-control" id="exampleInputFileExcelDukungan" name="file_excel_dukungan" value="{{$tambah_usulan->file_excel_dukungan}}"
+                                <input type="file" class="form-control" id="exampleInputFileExcelDukungan" name="file_excel_dukungan" value="{{$tambah_usulan->file_excel_dukungan}}">
+                                <span>
+                                    <a href="{{$tambah_usulan->file_excel_dukungan}}" download>
+                                    <img src="{{$tambah_usulan->file_excel_dukungan}}" alt="dukungan_excel">
+                                    </img>
+                                    </a> 
+                                </span>
                                 @error('file_excel_dukungan') <span class="text-danger">{{$message}}</span> @enderror
                             </div>
                         </div>
-                    </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="exampleInputTanggalUsulan">Tanggal Pengusulan</label>
@@ -66,8 +71,14 @@
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputFileRarDukungan">Upload File Rar</label>
-                                <input type="file" class="form-control" id="exampleInputFileRarDukungan" name="file_rar_dukungan"
-                                @error('file_rar_dukungan') <span class="text-danger">{{$message}}</span> @enderror
+                                <input type="file" class="form-control" id="exampleInputFileRarDukungan" name="file_rar_dukungan">
+                                <span>
+                                    <a href="{{$tambah_usulan->file_rar_dukungan}}" download>
+                                    <img src="{{$tambah_usulan->file_rar_dukungan}}" alt="dukungan_rar">
+                                    </img>
+                                    </a> 
+                                </span>
+                                @error('file_rar_dukungan')<span class="text-danger">{{$message}}</span> @enderror
                             </div>
                         </div>
                     </div>
@@ -77,7 +88,8 @@
                             Batal
                         </a>
                         <span> 
-                    </div>        
+                    </div> 
+                </div>       
                 </div>
             </div>
         </div>

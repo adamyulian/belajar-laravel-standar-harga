@@ -63,7 +63,7 @@ class TambahUsulanController extends Controller
 
         tambah_usulan::create($array);
         return redirect()->route('tambah_usulan.index')
-            ->with('success_message', 'Berhasil menambah usulan baru');
+            ->with('success_message', 'Berhasil menambah Usulan Baru');
     }
 
     /**
@@ -87,7 +87,7 @@ class TambahUsulanController extends Controller
     {
         $tambah_usulans = tambah_usulan::find($id);
         if (!$tambah_usulans) return redirect()->route('tambah_usulan.index')
-            ->with('error_message', 'SHS '.$id.' tidak ditemukan');
+            ->with('error_message', 'Usulan '.$id.' tidak ditemukan');
         return view('tambah_usulan.edit', [
             'tambah_usulan' => $tambah_usulans
         ]);
@@ -108,7 +108,7 @@ class TambahUsulanController extends Controller
         $tambah_usulans = tambah_usulan::find($id);
         $tambah_usulans->save();
         return redirect()->route('tambah_usulan.index')
-            ->with('success_message', 'Berhasil mengubah SHS');
+            ->with('success_message', 'Berhasil mengubah Usulan');
     }
         /**
          * Remove the specified resource from storage.
@@ -121,7 +121,7 @@ class TambahUsulanController extends Controller
         $tambah_usulans = tambah_usulan::find($id);
         if ($tambah_usulans) $tambah_usulans->delete();
         return redirect()->route('tambah_usulan.index')
-            ->with('success_message', 'Berhasil menghapus SHS');
+            ->with('success_message', 'Berhasil menghapus Usulan');
     }
     public function User()
     {

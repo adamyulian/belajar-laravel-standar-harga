@@ -23,14 +23,3 @@ class tambah_usulan extends Model
         'file_excel_dukungan',
         'file_rar_dukungan'];
     }
-    class download extends Storage
-    {
-        public function index()
-        {
-            $filePath = public_path("dummy.pdf");
-            $headers = ['Content-Type: application/pdf'];
-            $fileName = time().'.pdf';
-    
-            return response()->download($filePath, $fileName, $headers);
-        }
-    }

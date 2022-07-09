@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\standar_harga;
 use App\Models\User;
+use App\Models\KodefikasiAset;
 
 class ShsController extends Controller
 {
@@ -28,7 +29,8 @@ class ShsController extends Controller
      */
     public function create()
 {
-    return view('shs.create');
+    $kodefikasi_asets = KodefikasiAset::all();
+    return view('shs.create', compact('kodefikasi_asets'));
 }
 public function store(Request $request)
 {

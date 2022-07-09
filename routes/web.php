@@ -36,6 +36,8 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::resource('users', \App\Http\Controllers\UserController::class)->middleware('auth');
 
+Route::resource('kodefikasi_aset', \App\Http\Controllers\KodefikasiAsetController::class)->middleware('auth');
+
 Route::resource('shs', \App\Http\Controllers\ShsController::class)->middleware('auth');
 
 Route::resource('tambah_usulan', \App\Http\Controllers\TambahUsulanController::class)->middleware('auth');
