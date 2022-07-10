@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('standar_hargas', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('kode_aset_id');
             $table->string('kode_komp');
             $table->string('nama_komp');
             $table->text('spesifikasi');

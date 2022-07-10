@@ -14,6 +14,7 @@
                     <table class="table table-hover table-bordered table-stripped" id="example2">
                         <thead class="table-info text-center">
                             <th>No.</th>
+                            <th>Kode Aset</th>
                             <th>Kode Komponen</th>
                             <th>Nama Komponen</th>
                             <th>Spesifikasi</th>
@@ -27,6 +28,7 @@
                         @foreach($shs as $key => $standar_hargas)
                             <tr class="text-center">
                                 <td>{{$key+1}}</td>
+                                <td>{{$standar_hargas->kodefikasi_aset->kode_aset}}</td>
                                 <td>{{$standar_hargas->kode_komp}}</td>
                                 <td>{{$standar_hargas->nama_komp}}</td>
                                 <td>{{$standar_hargas->spesifikasi}}</td>

@@ -9,6 +9,8 @@ class standar_harga extends Model
 {
     use HasFactory;
 
+    protected $guarded = ['id'];
+
     protected $fillable = [
     'kode_komp',
     'nama_komp',
@@ -17,4 +19,10 @@ class standar_harga extends Model
     'harga_satuan',
     'pajak',
     'rek_belanja'];
+
+    public function kodefikasi_aset()
+    {
+        return $this->belongsTo(kodefikasi_aset::class);
+    }
+
 }

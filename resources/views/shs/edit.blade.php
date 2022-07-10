@@ -12,6 +12,26 @@
             <div class="card">
                 <div class="card-body">
                     <div class="form-group">
+                        <label for="exampleInputName">Kode Aset</label>
+                        <br>
+                        <select class=" form-control @error('Kode Aset') is-invalid @enderror" aria-label="default select example" id="exampleInputKodeAset" name="KodeAset">
+                                <option value="{{$standar_harga->kodefikasi_aset->kode_aset}}">{{$standar_harga->kodefikasi_aset->kode_aset}}</option>
+                                @foreach ($standar_harga->kodefikasi_aset as $item)
+                                <option value="{{$item->id}}">{{$item->kode_aset}}|{{$item->nama_kelompok_aset}}</option>
+                                @endforeach
+                        </select>
+                        <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+                        <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+                        <script>
+                            $(document).ready(function() {
+                            $('#exampleInputKodeAset').select2();
+                            });
+                        </script>
+                        @error('kode aset')
+                        <span class="text-danger">{{$message}}</span> 
+                        @enderror
+                    </div>
+                    <div class="form-group">
                         <label for="exampleInputName">Kode Komponen</label>
                         <input type="text" class="form-control @error('kode_komp') is-invalid @enderror" id="exampleInputName" name="kode_komp" value="{{$standar_harga->kode_komp ?? old('kode_komp')}}">
                         @error('kode_komp') <span class="text-danger">{{$message}}</span> @enderror
