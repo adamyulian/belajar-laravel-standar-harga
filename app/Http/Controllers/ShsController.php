@@ -6,7 +6,6 @@ use App\Models\kodefikasi_aset;
 use Illuminate\Http\Request;
 use App\Models\standar_harga;
 use App\Models\User;
-use App\Models\KodefikasiAset;
 
 class ShsController extends Controller
 {
@@ -47,6 +46,7 @@ public function store(Request $request)
     $array = $request->only([
         'kodefikasi_aset_id',
         'kode_komp',
+        'kodefikasi_aset_id',
         'nama_komp',
         'spesifikasi',
         'satuan',

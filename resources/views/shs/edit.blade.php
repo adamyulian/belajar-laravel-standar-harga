@@ -16,7 +16,7 @@
                         <br>
                         <select class=" form-control @error('Kode Aset') is-invalid @enderror" aria-label="default select example" id="exampleInputKodeAset" name="KodeAset">
                                 <option value="{{$standar_harga->kodefikasi_aset->kode_aset}}">{{$standar_harga->kodefikasi_aset->kode_aset}}</option>
-                                @foreach ($standar_harga->kodefikasi_aset as $item)
+                                @foreach ($kodefikasi_asets as $item)
                                 <option value="{{$item->id}}">{{$item->kode_aset}}|{{$item->nama_kelompok_aset}}</option>
                                 @endforeach
                         </select>
