@@ -9,8 +9,6 @@ class standar_harga extends Model
 {
     use HasFactory;
 
-    protected $guarded = ['id'];
-
     protected $fillable = [
     'kodefikasi_aset_id',
     'kode_komp',

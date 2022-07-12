@@ -10,6 +10,12 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
+                    
+                    <div class="form-group">
+                        <label for="exampleInputKode_komp">Kode Komponen</label>
+                        <input type="text" class="form-control @error('kode_komp') is-invalid @enderror" id="exampleInputKode_komp"  name="kode_komp" value="{{old('kode_komp')}}">
+                        @error('kode_komp') <span class="text-danger">{{$message}}</span> @enderror
+                    </div>
                     <div class="form-group">
                         <label for="exampleInputkodeaset">Kode Aset</label>
                         <br>
@@ -30,12 +36,6 @@
                         <span class="text-danger">{{$message}}</span> 
                         @enderror
                     </div>
-                    <div class="form-group">
-                        <label for="exampleInputKode_komp">Kode Komponen</label>
-                        <input type="text" class="form-control @error('kode_komp') is-invalid @enderror" id="exampleInputKode_komp"  name="kode_komp" value="{{old('kode_komp')}}">
-                        @error('kode_komp') <span class="text-danger">{{$message}}</span> @enderror
-                    </div>
-                    
                     <div class="form-group">
                         <label for="exampleInputnama_komp">Nama Komponen</label>
                         <input type="text" class="form-control @error('nama_komp') is-invalid @enderror" id="exampleInputnama_komp" placeholder="Nama Komponen..." name="nama_komp" value="{{old('name')}}">

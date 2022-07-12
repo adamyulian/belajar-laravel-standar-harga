@@ -12,6 +12,7 @@
             <div class="card">
                 <div class="card-body">
                     <div class="form-group">
+<<<<<<< HEAD
                         <label for="exampleInputName">Kode Aset</label>
                         <br>
                         <select class=" form-control @error('Kode Aset') is-invalid @enderror" aria-label="default select example" id="exampleInputKodeAset" name="KodeAset">
@@ -32,6 +33,8 @@
                         @enderror
                     </div>
                     <div class="form-group">
+=======
+>>>>>>> parent of 196f2ef (Missing Parameters pada view edit, tabel sudah mulai tersambung)
                         <label for="exampleInputName">Kode Komponen</label>
                         <input type="text" class="form-control @error('kode_komp') is-invalid @enderror" id="exampleInputName" name="kode_komp" value="{{$standar_harga->kode_komp ?? old('kode_komp')}}">
                         @error('kode_komp') <span class="text-danger">{{$message}}</span> @enderror

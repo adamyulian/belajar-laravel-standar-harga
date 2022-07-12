@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\kodefikasi_aset;
 use Illuminate\Http\Request;
 use App\Models\standar_harga;
 use App\Models\User;
@@ -16,9 +15,9 @@ class ShsController extends Controller
      */
     public function index()
     {
-        $standar_harga = standar_harga::all();
+        $standar_hargas = standar_harga::all();
         return view('shs.index', [
-            'shs' => $standar_harga
+            'shs' => $standar_hargas
         ]);
     }
 
@@ -78,33 +77,31 @@ class ShsController extends Controller
      */
     public function edit($id)
 {
-    $standar_harga = standar_harga::find([$id]);
-    if (!$standar_harga) return redirect()->route('shs.index')
+    $standar_hargas = standar_harga::find($id);
+    if (!$standar_hargas) return redirect()->route('shs.index')
         ->with('error_message', 'Shs dengan id'.$id.' tidak ditemukan');
     return view('shs.edit', [
-        'standar_harga' => $standar_harga
-    
+        'standar_harga' => $standar_hargas
     ]);
-    }
-    public function update(Request $request, $id)
-    {
-        
-        $request->validate([
-            'kode_komp'=> 'required',
-            'nama_komp'=> 'required' .$id,
-            'spesifikasi'=> 'required',
-            'satuan'=> 'required',
-            'harga_satuan'=> 'required',
-            'pajak'=> 'required',
-            'rek_belanja'=> 'required',
-        ]);
-        $standar_harga = standar_harga::find($id);
-        $standar_harga->kode_komp = $request->kode_komp;
-        $standar_harga->nama_komp = $request->nama_komp;
-        $standar_harga->save();
-        return redirect()->route('shs.index')
-            ->with('success_message', 'Berhasil mengubah SHS');
-    }
+}
+public function update(Request $request, $id)
+{
+    $request->validate([
+        'kode_komp'=> 'required',
+        'nama_komp'=> 'required' .$id,
+        'spesifikasi'=> 'required',
+        'satuan'=> 'required',
+        'harga_satuan'=> 'required',
+        'pajak'=> 'required',
+        'rek_belanja'=> 'required',
+    ]);
+    $standar_hargas = standar_harga::find($id);
+    $standar_hargas->kode_komp = $request->kode_komp;
+    $standar_hargas->nama_komp = $request->nama_komp;
+    $standar_hargas->save();
+    return redirect()->route('shs.index')
+        ->with('success_message', 'Berhasil mengubah SHS');
+}
     /**
      * Remove the specified resource from storage.
      *

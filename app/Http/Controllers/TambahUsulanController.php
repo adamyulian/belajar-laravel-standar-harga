@@ -32,8 +32,6 @@ class TambahUsulanController extends Controller
     public function create()
     {
         return view('tambah_usulan.create');
-        $user = User::all();
-        return view('shs.create', compact('users'));
     }
 
     /**
