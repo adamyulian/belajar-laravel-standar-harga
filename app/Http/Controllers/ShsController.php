@@ -30,7 +30,7 @@ class ShsController extends Controller
      */
     public function create()
 {
-    $kodefikasi_asets = KodefikasiAset::all();
+    $kodefikasi_asets = kodefikasi_aset::all();
     return view('shs.create', compact('kodefikasi_asets'));
 }
 public function store(Request $request)
@@ -45,6 +45,7 @@ public function store(Request $request)
         'rek_belanja'=> 'required',
     ]);
     $array = $request->only([
+        'kodefikasi_aset_id',
         'kode_komp',
         'nama_komp',
         'spesifikasi',

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\KodefikasiAset;
 use App\Http\Requests\StoreKodefikasiAsetRequest;
 use App\Http\Requests\UpdateKodefikasiAsetRequest;
+use App\Models\kodefikasi_aset;
 
 class KodefikasiAsetController extends Controller
 {
@@ -15,7 +16,7 @@ class KodefikasiAsetController extends Controller
      */
     public function index()
     {
-        $kodefikasi_asets = KodefikasiAset::all();
+        $kodefikasi_asets = kodefikasi_aset::all();
         return view('kodefikasi_aset.index', [
             'kodefikasi_aset' => $kodefikasi_asets
         ]);
@@ -31,59 +32,4 @@ class KodefikasiAsetController extends Controller
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StoreKodefikasiAsetRequest  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(StoreKodefikasiAsetRequest $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\KodefikasiAset  $kodefikasiAset
-     * @return \Illuminate\Http\Response
-     */
-    public function show(KodefikasiAset $kodefikasiAset)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\KodefikasiAset  $kodefikasiAset
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(KodefikasiAset $kodefikasiAset)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdateKodefikasiAsetRequest  $request
-     * @param  \App\Models\KodefikasiAset  $kodefikasiAset
-     * @return \Illuminate\Http\Response
-     */
-    public function update(UpdateKodefikasiAsetRequest $request, KodefikasiAset $kodefikasiAset)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\KodefikasiAset  $kodefikasiAset
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(KodefikasiAset $kodefikasiAset)
-    {
-        //
-    }
-}
+ }
