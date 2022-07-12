@@ -10,17 +10,11 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
-                    
-                    <div class="form-group">
-                        <label for="exampleInputKode_komp">Kode Komponen</label>
-                        <input type="text" class="form-control @error('kode_komp') is-invalid @enderror" id="exampleInputKode_komp"  name="kode_komp" value="{{old('kode_komp')}}">
-                        @error('kode_komp') <span class="text-danger">{{$message}}</span> @enderror
-                    </div>
                     <div class="form-group">
                         <label for="exampleInputkodeaset">Kode Aset</label>
                         <br>
                         <select class=" form-control @error('kode aset') is-invalid @enderror" aria-label="default select example" id="exampleInputKodeAset" name="kodefikasi_aset_id">
-                                <option value="">Pilih Kode Aset</option>
+                                <option value="">Pilih Kode Aset2</option>
                                 @foreach ($kodefikasiaset as $item)
                                 <option value="{{$item->id}}">{{$item->kode_aset}}|{{$item->nama_kelompok_aset}}</option>
                                 @endforeach
@@ -35,6 +29,11 @@
                         @error('kode aswt')
                         <span class="text-danger">{{$message}}</span> 
                         @enderror
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputKode_komp">Kode Komponen</label>
+                        <input type="text" class="form-control @error('kode_komp') is-invalid @enderror" id="exampleInputKode_komp"  name="kode_komp" value="{{old('kode_komp')}}">
+                        @error('kode_komp') <span class="text-danger">{{$message}}</span> @enderror
                     </div>
                     <div class="form-group">
                         <label for="exampleInputnama_komp">Nama Komponen</label>

@@ -78,16 +78,18 @@ class ShsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-{
-    $standar_hargas = standar_harga::find($id);
-    if (!$standar_hargas) return redirect()->route('shs.index')
-        ->with('error_message', 'Shs dengan id'.$id.' tidak ditemukan');
-    return view('shs.edit', [
-        'standar_harga' => $standar_hargas
-    ]);
-}
-public function update(Request $request, $id)
-{
+    {
+        $standar_hargas = standar_harga::find($id);
+        $kodefikasiaset = kodefikasi_aset::all();
+        if (!$standar_hargas) return redirect()->route('shs.index')
+            ->with('error_message', 'Shs dengan id'.$id.' tidak ditemukan');
+        return view('shs.edit', compact('kodefikasiaset'),[
+            'standar_harga' => $standar_hargas
+        ]);
+    }
+    public function update(Request $request, $id)
+    {
+    
     $request->validate([
         'kode_komp'=> 'required',
         'nama_komp'=> 'required' .$id,
@@ -98,6 +100,7 @@ public function update(Request $request, $id)
         'rek_belanja'=> 'required',
     ]);
     $standar_hargas = standar_harga::find($id);
+    $kodefikasiaset = kodefikasi_aset::all();
     $standar_hargas->kode_komp = $request->kode_komp;
     $standar_hargas->nama_komp = $request->nama_komp;
     $standar_hargas->save();

@@ -1,22 +1,22 @@
 @extends('adminlte::page')
 @section('title', 'Edit SHS')
 @section('content_header')
-    <h1 class="m-0 text-dark">Edit SHS</h1>
+    <h1 class="m-0 text-dark">Ubah Data SHS</h1>
 @stop
 @section('content')
     <form action="{{route('shs.update', $standar_harga)}}" method="post">
         @method('PUT')
         @csrf
     <div class="row">
-        <div class="col-12">
+        <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
                     <div class="form-group">
-                        <label for="exampleInputName">Kode Aset</label>
+                        <label for="exampleInputkodeaset">Kode Aset</label>
                         <br>
-                        <select class=" form-control @error('Kode Aset') is-invalid @enderror" aria-label="default select example" id="exampleInputKodeAset" name="KodeAset">
-                                <option value="{{$standar_harga->kodefikasi_aset->kode_aset}}">{{$standar_harga->kodefikasi_aset->kode_aset}}</option>
-                                @foreach ($kodefikasi_asets as $item)
+                        <select class=" form-control @error('kode aset') is-invalid @enderror" aria-label="default select example" id="exampleInputKodeAset" name="kodefikasi_aset_id">
+                                <option selected>Pilih Kode Aset2</option>
+                                @foreach ($kodefikasiaset as $item)
                                 <option value="{{$item->id}}">{{$item->kode_aset}}|{{$item->nama_kelompok_aset}}</option>
                                 @endforeach
                         </select>
@@ -27,29 +27,29 @@
                             $('#exampleInputKodeAset').select2();
                             });
                         </script>
-                        @error('kode aset')
+                        @error('kode aswt')
                         <span class="text-danger">{{$message}}</span> 
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label for="exampleInputName">Kode Komponen</label>
-                        <input type="text" class="form-control @error('kode_komp') is-invalid @enderror" id="exampleInputName" name="kode_komp" value="{{$standar_harga->kode_komp ?? old('kode_komp')}}">
+                        <label for="exampleInputKode_komp">Kode Komponen</label>
+                        <input type="text" class="form-control @error('kode_komp') is-invalid @enderror" id="exampleInputKode_komp"  name="kode_komp" value="{{old('kode_komp')}}">
                         @error('kode_komp') <span class="text-danger">{{$message}}</span> @enderror
                     </div>
                     <div class="form-group">
-                        <label for="exampleInputName">Nama Komponen</label>
-                        <input type="text" class="form-control @error('nama_komp') is-invalid @enderror" id="exampleInputName" name="nama_komp" value="{{$standar_harga->nama_komp ?? old('nama_komp')}}">
+                        <label for="exampleInputnama_komp">Nama Komponen</label>
+                        <input type="text" class="form-control @error('nama_komp') is-invalid @enderror" id="exampleInputnama_komp" placeholder="Nama Komponen..." name="nama_komp" value="{{old('name')}}">
                         @error('nama_komp') <span class="text-danger">{{$message}}</span> @enderror
                     </div>
                     <div class="form-group">
-                        <label for="exampleInputName">Spesifikasi</label>
-                        <input type="text" class="form-control @error('name') is-invalid @enderror" id="exampleInputName" name="spesifikasi" value="{{$standar_harga->spesifikasi ?? old('spesifikasi')}}">
+                        <label for="exampleInputspesifikasi">Spesifikasi</label>
+                        <input type="text" class="form-control @error('name') is-invalid @enderror" id="exampleInputspesifikasi" placeholder="Spesifikasi Komponen..." name="spesifikasi" value="{{old('spesifikasi')}}">
                         @error('spesifikasi') <span class="text-danger">{{$message}}</span> @enderror
                     </div>
                     <div class="form-group">
                         <label for="exampleInputName">Satuan</label>
-                        <select class="form-control @error('satuan') is-invalid @enderror" aria-label="default select example" id="exampleInputName" name="satuan" value="{{$standar_harga->satuan}}">
-                                <option selected>{{$standar_harga->satuan}}</option>
+                        <select class="form-control @error('satuan') is-invalid @enderror" aria-label="default select example" id="exampleInputName" name="satuan">
+                                <option selected>Pilih Satuan Komponen..</option>
                                 <option value="1">One</option>
                                 <option value="2">Two</option>
                                 <option value="3">Three</option>
@@ -61,13 +61,13 @@
                     <div class="form-group">
                         <label for="exampleInputName">Harga Satuan</label>
                         <input type="text" class="form-control 
-                        @error('name') is-invalid @enderror" id="exampleInputName" name="harga_satuan" value="{{$standar_harga->harga_satuan}}">
+                        @error('name') is-invalid @enderror" id="exampleInputName" placeholder="Harga Per Satuan..." name="harga_satuan" value="{{old('harga_satuan')}}">
                         @error('harga_satuan') <span class="text-danger">{{$message}}</span> @enderror
                     </div>
                     <div class="form-group">
                         <label for="exampleInputName">Pajak</label>
-                        <select class="form-control @error('pajak') is-invalid @enderror" aria-label="default select example" id="exampleInputPajak" name="pajak" value="{{$standar_harga->pajak}}">
-                                <option selected>{{$standar_harga->pajak}}</option>
+                        <select class="form-control @error('pajak') is-invalid @enderror" aria-label="default select example" id="exampleInputName" name="pajak">
+                                <option selected>Pilih Besaran Pajak...</option>
                                 <option value="1">11%</option>
                                 <option value="2">0%</option>
                         </select>
@@ -77,8 +77,8 @@
                     </div>
                     <div class="form-group">
                         <label for="exampleInputName">Rekening Belanja</label>
-                        <select class="form-control @error('rek_belanja') is-invalid @enderror" aria-label="default select example" id="exampleInputRekBelanja" name="rek_belanja" value="{{$standar_harga->rek_belanja}}">
-                                <option selected>{{$standar_harga->rek_belanja}}</option>
+                        <<select class="form-control @error('rek_belanja') is-invalid @enderror" aria-label="default select example" id="exampleInputName" name="rek_belanja">
+                                <option selected>Pilih Rekening Belanja...</option>
                                 <option value="1">11%</option>
                                 <option value="2">0%</option>
                         </select>

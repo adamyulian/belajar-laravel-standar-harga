@@ -14,6 +14,7 @@
                     <table class="table table-hover table-bordered table-stripped" id="example2">
                         <thead class="table-info text-center">
                             <th>No.</th>
+                            <th>Kode Aset</th>
                             <th>Kode Komponen</th>
                             <th>Nama Komponen</th>
                             <th>Spesifikasi</th>
@@ -36,10 +37,10 @@
                                 <td>{{$standar_hargas->pajak}}</td>
                                 <td>{{$standar_hargas->rek_belanja}}</td>
                                 <td>
-                                    <a href="{{route('shs.edit', $standar_hargas)}}" class="btn btn-primary btn-xs">
+                                    <a href="{{route('shs.edit', $standar_harga)}}" class="btn btn-primary btn-xs">
                                         Edit
                                     </a>
-                                    <a href="{{route('shs.destroy', $standar_hargas)}}" onclick="notificationBeforeDelete(event, this)" class="btn btn-danger btn-xs">
+                                    <a href="{{route('shs.destroy', $standar_harga)}}" onclick="notificationBeforeDelete(event, this)" class="btn btn-danger btn-xs">
                                         Delete
                                     </a>
                                 </td>
