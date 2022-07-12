@@ -28,7 +28,7 @@
                         @foreach($shs as $key => $standar_hargas)
                             <tr class="text-center">
                                 <td>{{$key+1}}</td>
-                                <td>{{$standar_hargas->kodefikasi_aset_id}}</td>
+                                <td>{{$standar_hargas->kodefikasi_aset_id->kode_aset}}</td>
                                 <td>{{$standar_hargas->kode_komp}}</td>
                                 <td>{{$standar_hargas->nama_komp}}</td>
                                 <td>{{$standar_hargas->spesifikasi}}</td>

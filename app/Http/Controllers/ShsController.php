@@ -28,36 +28,36 @@ class ShsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-{
-    $kodefikasi_asets = kodefikasi_aset::all();
-    return view('shs.create', compact('kodefikasi_asets'));
-}
-public function store(Request $request)
-{
-    $request->validate([
-        'kode_komp'=> 'required',
-        'nama_komp'=> 'required',
-        'spesifikasi'=> 'required',
-        'satuan'=> 'required',
-        'harga_satuan'=> 'required',
-        'pajak'=> 'required',
-        'rek_belanja'=> 'required',
-    ]);
-    $array = $request->only([
-        'kodefikasi_aset_id',
-        'kode_komp',
-        'kodefikasi_aset_id',
-        'nama_komp',
-        'spesifikasi',
-        'satuan',
-        'harga_satuan',
-        'pajak',
-        'rek_belanja'
-    ]);
-    standar_harga::create($array);
-    return redirect()->route('shs.index')
-        ->with('success_message', 'Berhasil menambah SHS baru');
-}
+    {
+        $kodefikasi_asets = kodefikasi_aset::all();
+        return view('shs.create', compact('kodefikasi_asets'));
+    }
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'kode_komp'=> 'required',
+            'nama_komp'=> 'required',
+            'spesifikasi'=> 'required',
+            'satuan'=> 'required',
+            'harga_satuan'=> 'required',
+            'pajak'=> 'required',
+            'rek_belanja'=> 'required',
+        ]);
+        $array = $request->only([
+            'kodefikasi_aset_id',
+            'kode_komp',
+            'nama_komp',
+            'spesifikasi',
+            'satuan',
+            'harga_satuan',
+            'pajak',
+            'rek_belanja'
+        ]);
+        standar_harga::create($array);
+        return redirect()->route('shs.index')
+            ->with('success_message', 'Berhasil menambah SHS baru');
+    }
 
     /**
      * Display the specified resource.
