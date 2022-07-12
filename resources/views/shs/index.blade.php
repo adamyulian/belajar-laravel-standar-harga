@@ -27,10 +27,7 @@
                         @foreach($shs as $key => $standar_hargas)
                             <tr class="text-center">
                                 <td>{{$key+1}}</td>
-<<<<<<< HEAD
                                 <td>{{$standar_hargas->kodefikasi_aset_id->kode_aset}}</td>
-=======
->>>>>>> parent of 196f2ef (Missing Parameters pada view edit, tabel sudah mulai tersambung)
                                 <td>{{$standar_hargas->kode_komp}}</td>
                                 <td>{{$standar_hargas->nama_komp}}</td>
                                 <td>{{$standar_hargas->spesifikasi}}</td>

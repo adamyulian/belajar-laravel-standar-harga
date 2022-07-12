@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\standar_harga;
 use App\Models\User;
+use App\Models\kodefikasi_aset;
 
 class ShsController extends Controller
 {
