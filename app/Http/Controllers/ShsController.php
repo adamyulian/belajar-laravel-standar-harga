@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\standar_harga;
 use App\Models\User;
 use App\Models\kodefikasi_aset;
+use App\Models\KodefikasiAset;
 
 class ShsController extends Controller
 {
@@ -29,8 +30,8 @@ class ShsController extends Controller
      */
     public function create()
     {
-        $kodefikasi_asets = kodefikasi_aset::all();
-        return view('shs.create', compact('kodefikasi_asets'));
+        $kodefikasiaset = kodefikasi_aset::all();
+        return view('shs.create', compact('kodefikasiaset'));
     }
 
     public function store(Request $request)

@@ -19,9 +19,9 @@ class standar_harga extends Model
     'pajak',
     'rek_belanja'];
 
-    public function kodefikasi_asets()
+    public function kodefikasi_aset()
     {
-        return $this->belongsTo(kodefikasi_aset::class,'kodefikasi_aset_id');
+        return $this->belongsTo(kodefikasi_aset::class);
     }
 
 }
