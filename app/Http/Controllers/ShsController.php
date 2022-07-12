@@ -45,6 +45,7 @@ public function store(Request $request)
     ]);
     $array = $request->only([
         'kode_komp',
+        'kodefikasi_aset_id',
         'nama_komp',
         'spesifikasi',
         'satuan',

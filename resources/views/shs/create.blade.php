@@ -11,9 +11,9 @@
             <div class="card">
                 <div class="card-body">
                     <div class="form-group">
-                        <label for="exampleInputName">Kode Aset</label>
+                        <label for="exampleInputkodeaset">Kode Aset</label>
                         <br>
-                        <select class=" form-control @error('pajak') is-invalid @enderror" aria-label="default select example" id="exampleInputKodeAset" name="KodeAset">
+                        <select class=" form-control @error('kode aset') is-invalid @enderror" aria-label="default select example" id="exampleInputKodeAset" name="kodefikasi_aset_id">
                                 <option value="">Pilih Kode Aset</option>
                                 @foreach ($kodefikasi_asets as $item)
                                 <option value="{{$item->id}}">{{$item->kode_aset}}|{{$item->nama_kelompok_aset}}</option>
@@ -26,7 +26,7 @@
                             $('#exampleInputKodeAset').select2();
                             });
                         </script>
-                        @error('pajak')
+                        @error('kode aswt')
                         <span class="text-danger">{{$message}}</span> 
                         @enderror
                     </div>
