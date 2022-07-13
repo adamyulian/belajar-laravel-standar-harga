@@ -40,6 +40,8 @@ Route::resource('kodefikasi_aset', \App\Http\Controllers\KodefikasiAsetControlle
 
 Route::resource('kodefikasi_rekening_belanja', \App\Http\Controllers\KodefikasiRekeningBelanjaController::class)->middleware('auth');
 
+Route::resource('satuan', \App\Http\Controllers\SatuanController::class)->middleware('auth');
+
 Route::resource('shs', \App\Http\Controllers\ShsController::class)->middleware('auth');
 
 Route::resource('tambah_usulan', \App\Http\Controllers\TambahUsulanController::class)->middleware('auth');

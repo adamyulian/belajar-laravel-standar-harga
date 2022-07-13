@@ -61,16 +61,23 @@
                     <div class="form-group">
                         <label for="exampleInputName">Harga Satuan</label>
                         <input type="text" class="form-control 
-                        @error('name') is-invalid @enderror" id="exampleInputName" placeholder="Harga Per Satuan..." name="harga_satuan" value="{{old('harga_satuan')}}">
+                        @error('name') is-invalid @enderror" id="exampleInputName" placeholder="Harga Per Satuan..." name="harga_satuan" value="{{$standar_harga->harga_satuan ?? old('harga_satuan')}}">
                         @error('harga_satuan') <span class="text-danger">{{$message}}</span> @enderror
                     </div>
                     <div class="form-group">
-                        <label for="exampleInputName">Pajak</label>
-                        <select class="form-control @error('pajak') is-invalid @enderror" aria-label="default select example" id="exampleInputName" name="pajak">
-                                <option selected>Pilih Besaran Pajak...</option>
-                                <option value="1">11%</option>
-                                <option value="2">0%</option>
+                        <label for="exampleInputName">Pajak PPn</label>
+                        <select class="form-control @error('pajak') is-invalid @enderror" aria-label="default select example" id="exampleInputPajak" name="pajak_ppn">
+                                <option selected>{{$standar_harga->pajak}}</option>
+                                <option value="11%">11%</option>
+                                <option value="0%">0%</option>
                         </select>
+                        <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+                        <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+                        <script>
+                            $(document).ready(function() {
+                            $('#exampleInputPajak').select2();
+                            });
+                        </script>
                         @error('pajak')
                         <span class="text-danger">{{$message}}</span> 
                         @enderror
@@ -79,7 +86,7 @@
                         <label for="exampleInputkodeRekeningBelanja">Rekening Belanja</label>
                         <br>
                         <select class=" form-control @error('Rekening Belanja') is-invalid @enderror" aria-label="default select example" id="exampleInputRekeningBelanja" name="kodefikasi_rekening_belanja">
-                                <option selected="">{{$item->kode_rekening_belanja}}|{{$item->nama_rekening_belanja}}</option>
+                                <option selected="">{{$standar_harga->kodefikasi_rekening_belanja->kode_rekening_belanja}}|{{$standar_harga->kodefikasi_rekening_belanja->nama_rekening_belanja}}</option>
                                 @foreach ($kodefikasi_rekening_belanja as $item)
                                 <option value="{{$item->id}}">{{$item->kode_rekening_belanja}}|{{$item->nama_rekening_belanja}}</option>
                                 @endforeach

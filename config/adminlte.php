@@ -340,6 +340,11 @@ return [
                     'url'  => '/kodefikasi_aset',
                     'icon'  => 'fa fa-regular fa-book',
                 ],
+                [
+                    'text' => 'Satuan Harga',
+                    'url'  => '/satuan',
+                    'icon'  => 'fa fa-regular fa-book',
+                ],
             ],
         ],
         [
