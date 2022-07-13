@@ -27,5 +27,9 @@ class standar_harga extends Model
     {
         return $this->belongsTo(KodefikasiRekeningBelanja::class);
     }
+    public function satuan()
+    {
+        return $this->belongsTo(satuan::class);
+    }
 
 }
