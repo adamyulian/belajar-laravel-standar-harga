@@ -38,6 +38,8 @@ Route::resource('users', \App\Http\Controllers\UserController::class)->middlewar
 
 Route::resource('kodefikasi_aset', \App\Http\Controllers\KodefikasiAsetController::class)->middleware('auth');
 
+Route::resource('kodefikasi_rekening_belanja', \App\Http\Controllers\KodefikasiRekeningBelanjaController::class)->middleware('auth');
+
 Route::resource('shs', \App\Http\Controllers\ShsController::class)->middleware('auth');
 
 Route::resource('tambah_usulan', \App\Http\Controllers\TambahUsulanController::class)->middleware('auth');

@@ -14,7 +14,7 @@
                         <label for="exampleInputkodeaset">Kode Aset</label>
                         <br>
                         <select class=" form-control @error('kode aset') is-invalid @enderror" aria-label="default select example" id="exampleInputKodeAset" name="kodefikasi_aset_id">
-                                <option value="">Pilih Kode Aset2</option>
+                                <option value="">Pilih Kode Aset</option>
                                 @foreach ($kodefikasiaset as $item)
                                 <option value="{{$item->id}}">{{$item->kode_aset}}|{{$item->nama_kelompok_aset}}</option>
                                 @endforeach
@@ -26,7 +26,7 @@
                             $('#exampleInputKodeAset').select2();
                             });
                         </script>
-                        @error('kode aswt')
+                        @error('Kode Aset')
                         <span class="text-danger">{{$message}}</span> 
                         @enderror
                     </div>
@@ -64,24 +64,40 @@
                         @error('harga_satuan') <span class="text-danger">{{$message}}</span> @enderror
                     </div>
                     <div class="form-group">
-                        <label for="exampleInputName">Pajak</label>
-                        <select class="form-control @error('pajak') is-invalid @enderror" aria-label="default select example" id="exampleInputName" name="pajak">
-                                <option selected>Pilih Besaran Pajak...</option>
+                        <label for="exampleInputName">Pajak PPn</label>
+                        <select class="form-control @error('pajak') is-invalid @enderror" aria-label="default select example" id="exampleInputPajak" name="pajak_ppn">
+                                <option selected>Pilih Besaran PPn</option>
                                 <option value="1">11%</option>
-                                <option value="2">0%</option>
+                                <option value="0">0%</option>
                         </select>
+                        <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+                        <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+                        <script>
+                            $(document).ready(function() {
+                            $('#exampleInputPajak').select2();
+                            });
+                        </script>
                         @error('pajak')
                         <span class="text-danger">{{$message}}</span> 
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label for="exampleInputName">Rekening Belanja</label>
-                        <<select class="form-control @error('rek_belanja') is-invalid @enderror" aria-label="default select example" id="exampleInputName" name="rek_belanja">
-                                <option selected>Pilih Rekening Belanja...</option>
-                                <option value="1">11%</option>
-                                <option value="2">0%</option>
+                        <label for="exampleInputkodeRekeningBelanja">Rekening Belanja</label>
+                        <br>
+                        <select class=" form-control @error('Rekening Belanja') is-invalid @enderror" aria-label="default select example" id="exampleInputRekeningBelanja" name="kodefikasi_rekening_belanja">
+                                <option value="">Pilih Rekening Belanja</option>
+                                @foreach ($kodefikasi_rekening_belanja as $item)
+                                <option value="{{$item->id}}">{{$item->kode_rekening_belanja}}|{{$item->nama_rekening_belanja}}</option>
+                                @endforeach
                         </select>
-                        @error('rek_belanja')
+                        <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+                        <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+                        <script>
+                            $(document).ready(function() {
+                            $('#exampleInputRekeningBelanja').select2();
+                            });
+                        </script>
+                        @error('Kode Rekening Belanja')
                         <span class="text-danger">{{$message}}</span> 
                         @enderror
                     </div>

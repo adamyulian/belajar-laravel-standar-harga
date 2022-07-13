@@ -25,9 +25,9 @@
                         @foreach($kodefikasi_rekening_belanja as $key => $rekening_belanja)
                             <tr>
                                 <td class="text-center">{{$key+1}}</td>
-                                <td class="text-center">{{$rekening_belanja->kode_rekening_belanja}}</td>
+                                <td>{{$rekening_belanja->kode_rekening_belanja}}</td>
                                 <td>{{$rekening_belanja->nama_rekening_belanja}}</td>
-                                <td>{{$rekening_belanja->penjelasan_rekening_belanja}}</td>
+                                <td class="text-justify">{{$rekening_belanja->penjelasan_rekening_belanja}}</td>
                                 <td>
                                     
                                 </td>

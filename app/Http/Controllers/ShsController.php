@@ -7,6 +7,7 @@ use App\Models\standar_harga;
 use App\Models\User;
 use App\Models\kodefikasi_aset;
 use App\Models\KodefikasiAset;
+use App\Models\KodefikasiRekeningBelanja;
 
 class ShsController extends Controller
 {
@@ -31,7 +32,8 @@ class ShsController extends Controller
     public function create()
     {
         $kodefikasiaset = kodefikasi_aset::all();
-        return view('shs.create', compact('kodefikasiaset'));
+        $kodefikasi_rekening_belanja = KodefikasiRekeningBelanja::all();
+        return view('shs.create', compact('kodefikasiaset','kodefikasi_rekening_belanja'));
     }
 
     public function store(Request $request)
