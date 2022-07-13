@@ -35,7 +35,7 @@
                                 <td>{{$standar_hargas->satuan}}</td>
                                 <td>{{$standar_hargas->harga_satuan}}</td>
                                 <td>{{$standar_hargas->pajak}}</td>
-                                <td>{{$standar_hargas->KodefikasiRekeningBelanja->kode_rekening_belanja}}</td>
+                                <td>{{$standar_hargas->kodefikasi_rekening_belanja->kode_rekening_belanja}}</td>
                                 <td>
                                     <a href="{{route('shs.edit', $standar_hargas)}}" class="btn btn-primary btn-xs">
                                         Edit

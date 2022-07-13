@@ -55,7 +55,7 @@ class ShsController extends Controller
             'satuan',
             'harga_satuan',
             'pajak',
-            'rek_belanja'
+            'kodefikasi_rekening_belanja_id'
         ]);
         standar_harga::create($array);
         return redirect()->route('shs.index')
@@ -83,9 +83,10 @@ class ShsController extends Controller
     {
         $standar_hargas = standar_harga::find($id);
         $kodefikasiaset = kodefikasi_aset::all();
+        $kodefikasi_rekening_belanja = KodefikasiRekeningBelanja::all();
         if (!$standar_hargas) return redirect()->route('shs.index')
             ->with('error_message', 'Shs dengan id'.$id.' tidak ditemukan');
-        return view('shs.edit', compact('kodefikasiaset'),[
+        return view('shs.edit', compact('kodefikasiaset','kodefikasi_rekening_belanja'),[
             'standar_harga' => $standar_hargas
         ]);
     }
@@ -99,7 +100,6 @@ class ShsController extends Controller
         'satuan'=> 'required',
         'harga_satuan'=> 'required',
         'pajak'=> 'required',
-        'rek_belanja'=> 'required',
     ]);
     $standar_hargas = standar_harga::find($id);
     $kodefikasiaset = kodefikasi_aset::all();
