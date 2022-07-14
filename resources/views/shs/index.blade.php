@@ -32,8 +32,8 @@
                                 <td>{{$standar_hargas->kode_komp}}</td>
                                 <td>{{$standar_hargas->nama_komp}}</td>
                                 <td>{{$standar_hargas->spesifikasi}}</td>
-                                <td>{{$standar_hargas->satuan}}</td>
-                                <td>{{$standar_hargas->harga_satuan}}</td>
+                                <td>{{$standar_hargas->satuan->satuan}}</td>
+                                <td class="text-right">{{$standar_hargas->harga_satuan}}</td>
                                 <td>{{$standar_hargas->pajak}}</td>
                                 <td>{{$standar_hargas->kodefikasi_rekening_belanja->kode_rekening_belanja}}</td>
                                 <td>

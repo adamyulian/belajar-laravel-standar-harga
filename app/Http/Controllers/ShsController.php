@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\kodefikasi_aset;
 use App\Models\KodefikasiAset;
 use App\Models\KodefikasiRekeningBelanja;
+use App\Models\satuan;
 
 class ShsController extends Controller
 {
@@ -33,7 +34,8 @@ class ShsController extends Controller
     {
         $kodefikasiaset = kodefikasi_aset::all();
         $kodefikasi_rekening_belanja = KodefikasiRekeningBelanja::all();
-        return view('shs.create', compact('kodefikasiaset','kodefikasi_rekening_belanja'));
+        $satuan = satuan::all();
+        return view('shs.create', compact('kodefikasiaset','kodefikasi_rekening_belanja', 'satuan'));
     }
 
     public function store(Request $request)
@@ -42,17 +44,15 @@ class ShsController extends Controller
             'kode_komp'=> 'required',
             'nama_komp'=> 'required',
             'spesifikasi'=> 'required',
-            'satuan'=> 'required',
             'harga_satuan'=> 'required',
             'pajak'=> 'required',
-            'rek_belanja'=> 'required',
         ]);
         $array = $request->only([
             'kodefikasi_aset_id',
             'kode_komp',
             'nama_komp',
             'spesifikasi',
-            'satuan',
+            'satuan_id',
             'harga_satuan',
             'pajak',
             'kodefikasi_rekening_belanja_id'
@@ -92,7 +92,7 @@ class ShsController extends Controller
     }
     public function update(Request $request, $id)
     {
-    
+
     $request->validate([
         'kode_komp'=> 'required',
         'nama_komp'=> 'required' .$id,

@@ -13,14 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('standar_hargas', function (Blueprint $table) {
-            $table->id();
-            $table->string('kode_komp');
-            $table->string('nama_komp');
-            $table->text('spesifikasi');
-            $table->string('harga_satuan');
-            $table->string('pajak');
-            $table->timestamps();
+        Schema::table('standar_hargas', function (Blueprint $table) {
+            $table->foreignId('satuan_id');
         });
     }
 
@@ -31,6 +25,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('standar_hargas');
+        Schema::table('standar_hargas', function (Blueprint $table) {
+            $table->foreignId('satuan_id');
+        });
     }
 };

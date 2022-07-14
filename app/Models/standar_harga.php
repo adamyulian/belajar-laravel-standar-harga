@@ -14,10 +14,11 @@ class standar_harga extends Model
     'kode_komp',
     'nama_komp',
     'spesifikasi',
-    'satuan',
+    'satuan_id',
     'harga_satuan',
+    'kodefikasi_rekening_belanja_id',
     'pajak',
-    'rek_belanja'];
+    ];
 
     public function kodefikasi_aset()
     {
