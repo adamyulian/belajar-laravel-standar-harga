@@ -8,12 +8,12 @@ use Illuminate\Support\Facades\Storage;
 
 
 class tambah_usulan extends Model
-    
+
 {
     use HasFactory;
 
     protected $fillable = [
-        'username',
+        'user_id',
         'tanggal_usulan',
         'jenis_usulan',
         'jumlah_komponen',
@@ -22,4 +22,9 @@ class tambah_usulan extends Model
         'penjelasan_komponen',
         'file_excel_dukungan',
         'file_rar_dukungan'];
+
+        public function user()
+        {
+            return $this->belongsTo(user::class);
     }
+}

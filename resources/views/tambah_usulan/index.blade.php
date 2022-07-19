@@ -30,8 +30,8 @@
                         @foreach($tambah_usulan as $key => $usulan)
                             <tr class="text-center">
                                 <td>{{$key+1}}</td>
-                                <td>{{auth()->user()->username}}</td>
-                                <td>{{auth()->user()->perangkat_daerah}}</td>
+                                <td>{{$usulan->user->username}}</td>
+                                <td>{{$usulan->user->perangkat_daerah}}</td>
                                 <td>{{$usulan->tanggal_usulan}}</td>
                                 <td>{{$usulan->nomor_surat}}</td>
                                 <td>{{$usulan->penjelasan_komponen}}</td>
@@ -40,7 +40,7 @@
                                     <br>
                                     updated : {{$usulan->updated_at}}
                                     </td>
-                                <td class = "text-center"> 
+                                <td class = "text-center">
                                     <a class= "btn btn-success btn-xs" href="{{$usulan->file_excel_dukungan}}" download>
                                         Excel
                                     </a>

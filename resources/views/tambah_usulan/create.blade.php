@@ -13,11 +13,11 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="exampleInputUsername">Username</label>
-                                        <input type="text" value="{{auth()->user()->username}}" class="form-control" disabled>
+                                        <input type="text" name= "user_id" placeholder="{{auth()->user()->username}}" value="{{auth()->user()->id}}" class="form-control" disabled>
                                     </div>
                                     <div class="form-group">
                                         <label for="exampleInputPerangkatDaerah">Perangkat Daerah</label>
-                                        <input type="text" value="{{auth()->user()->perangkat_daerah}}" class="form-control" disabled>
+                                        <input type="text" name="perangkat_daerah" value="{{auth()->user()->perangkat_daerah}}" class="form-control" disabled>
                                     </div>
                                     <div class="form-group">
                                         <label for="exampleInputJumlahKomponen">Jumlah Komponen (dalam 1 SPTJM)</label>
@@ -50,7 +50,7 @@
                                                 <option value="UPDATE">UPDATE HARGA</option>
                                         </select>
                                         @error('jenis_usulan')
-                                        <span class="text-danger">{{$message}}</span> 
+                                        <span class="text-danger">{{$message}}</span>
                                         @enderror
                                     </div>
                                     <div class="form-group">
@@ -69,7 +69,7 @@
                                         @error('file_rar_dukungan') <span class="text-danger">{{$message}}</span> @enderror
                                     </div>
                                 </div>
-                            </div>        
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -78,7 +78,7 @@
                     <a href="{{route('tambah_usulan.index')}}" class="btn btn-default">
                         Batal
                     </a>
-                    <span> 
+                    <span>
                 </div>
                 <div class="card-footer">
                      <strong>Catatan Penting :</strong>

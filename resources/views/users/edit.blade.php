@@ -23,7 +23,7 @@
                     </div>
                     <div class="form-group">
                         <label for="exampleInputUsername">Perangkat Daerah</label>
-                        <input type="text" class="form-control @error('perangkat_daerah') is-invalid @enderror" id="exampleInputPerangkatDaerah" placeholder="perangkat_daerah" name="perangkat_daerah" value="{{$user->perangkat_daerah ?? old('perangkat_daerah')}}">
+                        <input type="text" class="form-control @error('perangkat_daerah') is-invalid @enderror" id="exampleInputPerangkatDaerah" name="perangkat_daerah" value="{{$user->perangkat_daerah ?? old('perangkat_daerah')}}">
                         @error('perangkat_daerah') <span class="text-danger">{{$message}}</span> @enderror
                     </div>
                     <div class="form-group">
@@ -51,7 +51,7 @@
                                 <option value="User">User</option>
                         </select>
                         @error('is_admin')
-                        <span class="text-danger">{{$message}}</span> 
+                        <span class="text-danger">{{$message}}</span>
                         @enderror
                     </div>
                 </div>

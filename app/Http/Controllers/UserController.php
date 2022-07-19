@@ -35,7 +35,7 @@ public function store(Request $request)
     $request->validate([
         'name' => 'required',
         'username' => 'required',
-        'email' => 'required|email|unique:users,email',
+        'email' => 'required',
         'password' => 'required|confirmed',
         'is_admin'=> 'required',
     ]);

@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class User extends Authenticatable
 {
-    
+
     use HasApiTokens, HasFactory, Notifiable;
 
     /**
@@ -27,6 +27,9 @@ class User extends Authenticatable
         'password',
         'is_admin',
     ];
+    public function tambah_usulan(){
+        return $this->hasMany(tambah_usulan::class, "user_id");
+     }
 
     /**
      * The attributes that should be hidden for serialization.

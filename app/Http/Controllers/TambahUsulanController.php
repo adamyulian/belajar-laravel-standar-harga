@@ -31,7 +31,8 @@ class TambahUsulanController extends Controller
      */
     public function create()
     {
-        return view('tambah_usulan.create');
+        $user = user::all();
+        return view('tambah_usulan.create', compact('user'));
     }
 
     /**
@@ -42,7 +43,7 @@ class TambahUsulanController extends Controller
      */
     public function store(Request $request)
     {
-        
+
         $request->validate([
             //'tanggal_usulan'=> 'required',
             //'jenis_usulan' => 'required',
@@ -54,14 +55,21 @@ class TambahUsulanController extends Controller
             //'file_rar_dukungan' =>'required|file|mimes:rar,zip',
         ]);
         $array = $request->only([
-            'tanggal_usulan','jenis_usulan','jumlah_komponen'
-            ,'jumlah_dukungan_penyedia','nomor_surat','penjelasan_komponen'
-            ,'file_excel_dukungan','file_rar_dukungan'
+            'tanggal_usulan',
+            'jenis_usulan',
+            'jumlah_komponen',
+            'user_id',
+            'jumlah_dukungan_penyedia',
+            'nomor_surat',
+            'penjelasan_komponen',
+            'file_excel_dukungan',
+            'file_rar_dukungan'
         ]);
         $array['file_excel_dukungan'] = $request->file('file_excel_dukungan')->store('public/posts/excel');
         $array['file_rar_dukungan'] = $request->file('file_rar_dukungan')->store('public/posts/rar');
 
         tambah_usulan::create($array);
+
         return redirect()->route('tambah_usulan.index')
             ->with('success_message', 'Berhasil menambah Usulan Baru');
     }
@@ -103,7 +111,7 @@ class TambahUsulanController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            
+
         ]);
         $tambah_usulans = tambah_usulan::find($id);
         $tambah_usulans->save();
@@ -122,10 +130,6 @@ class TambahUsulanController extends Controller
         if ($tambah_usulans) $tambah_usulans->delete();
         return redirect()->route('tambah_usulan.index')
             ->with('success_message', 'Berhasil menghapus Usulan');
-    }
-    public function User()
-    {
-        return $this->belongsTo(User::class,'user_id','id');
     }
     public function download(Request $request)
         {
