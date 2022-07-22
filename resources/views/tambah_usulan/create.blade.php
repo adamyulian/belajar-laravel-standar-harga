@@ -12,13 +12,14 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="exampleInputUsername">Username</label>
-                                        <input type="text" name= "user_id" placeholder="{{auth()->user()->username}}" value="{{auth()->user()->id}}" class="form-control" disabled>
+                                        <label for="exampleInputUsername">UserID</label>
+                                        <input type="text" name= "username" value="{{auth()->user()->username}}" class="form-control" disabled>
                                     </div>
                                     <div class="form-group">
                                         <label for="exampleInputPerangkatDaerah">Perangkat Daerah</label>
                                         <input type="text" name="perangkat_daerah" value="{{auth()->user()->perangkat_daerah}}" class="form-control" disabled>
                                     </div>
+                                    <input name= "user_id" value="{{auth()->user()->id}}" hidden>
                                     <div class="form-group">
                                         <label for="exampleInputJumlahKomponen">Jumlah Komponen (dalam 1 SPTJM)</label>
                                         <input type="text" class="form-control @error('name') is-invalid @enderror" id="exampleInputJumlahKomponen" placeholder="Tuliskan Jumlah Komponen yang Diusulkan" name="jumlah_komponen" value="{{old('jumlah_komponen')}}">

@@ -55,10 +55,10 @@ class TambahUsulanController extends Controller
             //'file_rar_dukungan' =>'required|file|mimes:rar,zip',
         ]);
         $array = $request->only([
+            'user_id',
             'tanggal_usulan',
             'jenis_usulan',
             'jumlah_komponen',
-            'user_id',
             'jumlah_dukungan_penyedia',
             'nomor_surat',
             'penjelasan_komponen',
