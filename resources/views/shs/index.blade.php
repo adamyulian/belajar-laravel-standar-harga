@@ -33,7 +33,7 @@
                                 <td>{{$standar_hargas->nama_komp}}</td>
                                 <td>{{$standar_hargas->spesifikasi}}</td>
                                 <td>{{$standar_hargas->satuan->id}}</td>
-                                <td class="text-right">{{$standar_hargas->harga_satuan}}</td>
+                                <td class="text-right">@currency($standar_hargas->harga_satuan)</td>
                                 <td>{{$standar_hargas->pajak}}</td>
                                 <td>{{$standar_hargas->kodefikasi_rekening_belanja->kode_rekening_belanja}}</td>
                                 <td>

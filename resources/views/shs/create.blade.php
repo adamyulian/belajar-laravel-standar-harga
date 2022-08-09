@@ -32,7 +32,7 @@
                     </div>
                     <div class="form-group">
                         <label for="exampleInputKode_komp">Kode Komponen</label>
-                        <input type="text" class="form-control @error('kode_komp') is-invalid @enderror" id="exampleInputKode_komp"  name="kode_komp" value="{{old('kode_komp')}}">
+                        <input type="text" class="form-control @error('kode_komp') is-invalid @enderror" id="exampleInputKode_komp"  placeholder="Kode Komponen"name="kode_komp" value="{{old('kode_komp')}}">
                         @error('kode_komp') <span class="text-danger">{{$message}}</span> @enderror
                     </div>
                     <div class="form-group">

@@ -73,13 +73,13 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="card-footer text-right">
-                    <button type="submit" class="btn btn-primary">Simpan</button>
-                    <a href="{{route('tambah_usulan.index')}}" class="btn btn-default">
-                        Batal
-                    </a>
-                    <span>
+                    <div class="card-footer text-right">
+                        <button type="submit" class="btn btn-primary">Simpan</button>
+                        <a href="{{route('tambah_usulan.index')}}" class="btn btn-default">
+                            Batal
+                        </a>
+                        <span>
+                    </div>
                 </div>
                 <div class="card-footer">
                      <strong>Catatan Penting :</strong>
