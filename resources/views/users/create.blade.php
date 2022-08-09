@@ -15,16 +15,13 @@
                         <input type="text" class="form-control @error('name') is-invalid @enderror" placeholder="Nama lengkap" id="exampleInputName" name="name" value="{{old('name')}}">
                         @error('name') <span class="text-danger">{{$message}}</span> @enderror
                     </div>
+
                     <div class="form-group">
-                        <label for="exampleInputUsername">Username</label>
-                        <input type="text" class="form-control @error('username') is-invalid @enderror" placeholder="username" id="exampleInputUsername" name="username" value="{{old('username')}}">
+                        <label for="Username">Username</label>
+                        <input type="text" class="form-control @error('username') is-invalid @enderror" placeholder="Username" id="Username" name="username" value="{{old('name')}}">
                         @error('username') <span class="text-danger">{{$message}}</span> @enderror
                     </div>
-                    <div class="form-group">
-                        <label for="exampleInputEmail">Email address</label>
-                        <input type="email" class="form-control @error('email') is-invalid @enderror" id="exampleInputEmail" placeholder="Masukkan Email" name="email" value="{{old('email')}}">
-                        @error('email') <span class="text-danger">{{$message}}</span> @enderror
-                    </div>
+
                     <div class="form-group">
                         <label for="exampleInputPerangkatDaerah">Perangkat Daerah</label>
                         <input type="perangkat_daerah" class="form-control @error('Perangkat Daerah') is-invalid @enderror" id="exampleInputEmail" placeholder="Masukkan Perangkat Daerah" name="perangkat_daerah" value="{{old('Perangkat Daerah')}}">

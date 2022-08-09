@@ -28,7 +28,7 @@
                             });
                         </script>
                         @error('kode aswt')
-                        <span class="text-danger">{{$message}}</span> 
+                        <span class="text-danger">{{$message}}</span>
                         @enderror
                     </div>
                     <div class="form-group">
@@ -47,25 +47,33 @@
                         @error('spesifikasi') <span class="text-danger">{{$message}}</span> @enderror
                     </div>
                     <div class="form-group">
-                        <label for="exampleInputName">Satuan</label>
-                        <select class="form-control @error('satuan') is-invalid @enderror" aria-label="default select example" id="exampleInputName" name="satuan">
-                                <option selected>Pilih Satuan Komponen..</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
+                        <label for="exampleInputkodeSatuanHarga">Satuan Harga</label>
+                        <br>
+                        <select class=" form-control @error('Satuan Harga') is-invalid @enderror" aria-label="default select example" id="exampleInputSatuanHarga" name="satuan">
+                                <option selected="">{{$standar_harga->satuan->satuan}}</option>
+                                @foreach ($satuan as $item)
+                                <option value="{{$item->id}}">{{$item->satuan}}</option>
+                                @endforeach
                         </select>
-                        @error('satuan')
-                        <span class="text-danger">{{$message}}</span> 
+                        <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+                        <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+                        <script>
+                            $(document).ready(function() {
+                            $('#exampleInputSatuanHarga').select2();
+                            });
+                        </script>
+                        @error('Satuan Harga')
+                        <span class="text-danger">{{$message}}</span>
                         @enderror
                     </div>
                     <div class="form-group">
                         <label for="exampleInputName">Harga Satuan</label>
-                        <input type="text" class="form-control 
+                        <input type="text" class="form-control
                         @error('name') is-invalid @enderror" id="exampleInputName" placeholder="Harga Per Satuan..." name="harga_satuan" value="{{$standar_harga->harga_satuan ?? old('harga_satuan')}}">
                         @error('harga_satuan') <span class="text-danger">{{$message}}</span> @enderror
                     </div>
                     <div class="form-group">
-                        <label for="exampleInputName">Pajak PPn</label>
+                        <label for="pajak">Pajak PPn</label>
                         <select class="form-control @error('pajak') is-invalid @enderror" aria-label="default select example" id="exampleInputPajak" name="pajak_ppn">
                                 <option selected>{{$standar_harga->pajak}}</option>
                                 <option value="11%">11%</option>
@@ -79,7 +87,7 @@
                             });
                         </script>
                         @error('pajak')
-                        <span class="text-danger">{{$message}}</span> 
+                        <span class="text-danger">{{$message}}</span>
                         @enderror
                     </div>
                     <div class="form-group">
@@ -99,7 +107,7 @@
                             });
                         </script>
                         @error('Kode Rekening Belanja')
-                        <span class="text-danger">{{$message}}</span> 
+                        <span class="text-danger">{{$message}}</span>
                         @enderror
                     </div>
                 </div>

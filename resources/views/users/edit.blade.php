@@ -22,8 +22,8 @@
                         @error('username') <span class="text-danger">{{$message}}</span> @enderror
                     </div>
                     <div class="form-group">
-                        <label for="exampleInputUsername">Perangkat Daerah</label>
-                        <input type="text" class="form-control @error('perangkat_daerah') is-invalid @enderror" id="exampleInputPerangkatDaerah" name="perangkat_daerah" value="{{$user->perangkat_daerah ?? old('perangkat_daerah')}}">
+                        <label for="perangkat_daerah">Perangkat Daerah</label>
+                        <input type="text" class="form-control @error('Perangkat Daerah') is-invalid @enderror" id="perangkat_daerah" name="perangkat_daerah" value="{{$user->perangkat_daerah ?? old('perangkat_daerah')}}">
                         @error('perangkat_daerah') <span class="text-danger">{{$message}}</span> @enderror
                     </div>
                     <div class="form-group">
