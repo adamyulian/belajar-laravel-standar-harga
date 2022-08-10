@@ -120,8 +120,6 @@ class ShsController extends Controller
     public function destroy(Request $request, $id)
 {
     $standar_hargas = standar_harga::find($id);
-    if ($id == $request->user()->id) return redirect()->route('shs.index')
-        ->with('error_message', 'Anda tidak dapat menghapus diri sendiri.');
     if ($standar_hargas) $standar_hargas->delete();
     return redirect()->route('shs.index')
         ->with('success_message', 'Berhasil menghapus SHS');
