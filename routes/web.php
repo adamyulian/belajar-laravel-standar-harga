@@ -16,21 +16,13 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', function () {return view('welcome');});
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Auth::routes();
-
-Route::get('/home', function() {
-    return view('home');
-})->name('home')->middleware('auth');
-
-Auth::routes();
+Route::get('/home', function() { return view('home');})->name('home')->middleware('auth');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
@@ -46,15 +38,11 @@ Route::resource('shs', \App\Http\Controllers\ShsController::class)->middleware('
 
 Route::resource('tambah_usulan', \App\Http\Controllers\TambahUsulanController::class)->middleware('auth');
 
-Route::get('users/{users:perangkat_daerah}', function (user $user) {return view('user',[
-    'username'=> $user->username,
-    'perangkat_daerah' => $user->perangkat_daerah
-    ]);
-});
+Route::resource('usulan_hspk', \App\Http\Controllers\UsulanHspkController::class)->middleware('auth');
+
+Route::get('users/{users:perangkat_daerah}', function (user $user) {return view('user',['username'=> $user->username,'perangkat_daerah' => $user->perangkat_daerah]);});
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 

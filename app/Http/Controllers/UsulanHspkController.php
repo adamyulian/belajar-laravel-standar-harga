@@ -15,7 +15,10 @@ class UsulanHspkController extends Controller
      */
     public function index()
     {
-        //
+        $usulan_hspks = usulan_hspk::all();
+        return view('usulan_hspk.index', [
+            'usulan_hspk' => $usulan_hspks
+        ]);
     }
 
     /**
