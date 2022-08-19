@@ -27,7 +27,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($tambah_usulan as $key => $usulan)
+                        @foreach($u as $key => $usulan)
                             <tr class="text-center">
                                 <td>{{$key+1}}</td>
                                 <td>{{$usulan->user->username}}</td>
@@ -57,7 +57,7 @@
                                     </a>
                                 </td>
                             </tr>
-                        @endforeach
+                        //@endforeach
                         </tbody>
                     </table>
                 </div>
