@@ -28,7 +28,8 @@ class UsulanHspkController extends Controller
      */
     public function create()
     {
-        //
+        $user = user::all();
+        return view('usulan_hspk.create', compact('user'));
     }
 
     /**
@@ -39,7 +40,34 @@ class UsulanHspkController extends Controller
      */
     public function store(Storeusulan_hspkRequest $request)
     {
-        //
+        $request->validate([
+            //'tanggal_usulan'=> 'required',
+            //'jenis_usulan' => 'required',
+            //'jumlah_komponen' => 'required',
+            //'jumlah_dukungan_penyedia' => 'required',
+            //'nomor_surat' => 'required',
+            //'penjelasan_komponen' => 'required',
+            //'file_excel_dukungan'=>'required|file|mimes:xls,xlxs',
+            //'file_rar_dukungan' =>'required|file|mimes:rar,zip',
+        ]);
+        $array = $request->only([
+            'user_id',
+            'tanggal_usulan',
+            'jenis_usulan',
+            'jumlah_komponen',
+            'jumlah_dukungan_penyedia',
+            'nomor_surat',
+            'penjelasan_komponen',
+            'file_excel_dukungan',
+            'file_rar_dukungan'
+        ]);
+        $array['file_excel_dukungan'] = $request->file('file_excel_dukungan')->store('public/posts/excel');
+        $array['file_rar_dukungan'] = $request->file('file_rar_dukungan')->store('public/posts/rar');
+
+        tambah_usulan::create($array);
+
+        return redirect()->route('tambah_usulan.index')
+            ->with('success_message', 'Berhasil menambah Usulan Baru');
     }
 
     /**
