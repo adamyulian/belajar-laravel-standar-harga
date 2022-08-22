@@ -1,93 +1,75 @@
 @extends('adminlte::page')
 @section('title', 'Tambah Usulan HSPK')
 @section('content_header')
-    <h1 class="m-0 text-dark">Tambah Usulan HSPK</h1>
+    <h1 class="m-0 text-dark">Tambah Usulan Standar Harga</h1>
 @stop
 @section('content')
-    <form action="{{route('usulan_hspk.store')}}" enctype="multipart/form-data" method="post">
-        @csrf
-                <div class="card-success border-primary mb-3">
-                    <div class="card-header text-white fs-3 bg-primary mb-3">FORM USULAN HSPK</div>
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-6">
+        <div class= "container-fluid">
+            <div class="card card-warning">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                        Detail Usulan HSPK
+                        </h3>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <form action="{{route('usulan_hspk.store')}}" enctype="multipart/form-data" method="post">
+                                @csrf
+                                <div class="card-body p-3 mb-3">
                                     <div class="form-group">
-                                        <label for="exampleInputUsername">UserID</label>
+                                        <label for="perangkat_daerah">Perangkat Daerah</label>
+                                        <input type="text" name="perangkat_daerah" value="{{auth()->user()->perangkat_daerah}}" class="form-control" disabled>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="username">UserID</label>
                                         <input type="text" name= "username" value="{{auth()->user()->username}}" class="form-control" disabled>
                                     </div>
                                     <div class="form-group">
-                                        <label for="exampleInputPerangkatDaerah">Perangkat Daerah</label>
-                                        <input type="text" name="perangkat_daerah" value="{{auth()->user()->perangkat_daerah}}" class="form-control" disabled>
-                                    </div>
-                                    <input name= "user_id" value="{{auth()->user()->id}}" hidden>
-                                    <div class="form-group">
-                                        <label for="exampleInputJumlahKomponen">Jumlah Komponen (dalam 1 SPTJM)</label>
-                                        <input type="text" class="form-control @error('name') is-invalid @enderror" id="exampleInputJumlahKomponen" placeholder="Tuliskan Jumlah Komponen yang Diusulkan" name="jumlah_komponen" value="{{old('jumlah_komponen')}}">
-                                        @error('jumlah_komponen') <span class="text-danger">{{$message}}</span> @enderror
+                                        <label for="nama_hspk">Nama Harga Satuan Pokok Kegiatan (HSPK)</label>
+                                        <input type="text" class="form-control @error('Nama HSPK') is-invalid @enderror" id="nama_hspk" placeholder="Nama HSPK" name="nama_hspk" value="{{old('nama_hspk')}}">
+                                        @error('nama_hspk') <span class="text-danger">{{$message}}</span> @enderror
                                     </div>
                                     <div class="form-group">
-                                        <label for="exampleInputNomorSurat">Nomor Surat Pernyataan Tanggung Jawab Mutlak</label>
-                                        <input type="text" class="form-control @error('name') is-invalid @enderror" id="exampleInputNomorSurat" placeholder="Nomor Surat" name="nomor_surat" value="{{old('nomor_surat')}}">
-                                        @error('nomor_surat') <span class="text-danger">{{$message}}</span> @enderror
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="exampleInputFileExcelDukungan">Upload File Excel</label>
-                                        <input type="file" class="form-control" id="exampleInputFileExcelDukungan"name="file_excel_dukungan"
-                                        @error('file_excel_dukungan') <span class="text-danger">{{$message}}</span> @enderror
-                                    </div>
-                                </div>
-                            </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="exampleInputTanggalUsulan">Tanggal Pengusulan</label>
-                                        <input type="date" class="form-control @error('tanggal_usulan') is-invalid @enderror" id="exampleTanggalUsulan" name="tanggal_usulan">
-                                        @error('tanggal_usulan') <span class="text-danger">{{$message}}</span> @enderror
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="exampleInputJenisUsulan">Jenis Usulan</label>
-                                        <select class="form-control @error('jenis_usulan') is-invalid @enderror" aria-label="default select example" id="exampleInputJenisUsulan" name="jenis_usulan">
-                                                <option selected>Pilih Jenis Usulan</option>
-                                                <option value="BARU">BARU</option>
-                                                <option value="UPDATE">UPDATE HARGA</option>
+                                        <label for="satuanharga">Satuan Harga</label>
+                                        <br>
+                                        <select class=" form-control @error('Satuan Harga') is-invalid @enderror" id="satuanharga" name="satuanharga">
+                                                <option selected="">Pilih Satuan HSPK</option>
+                                                @foreach ($satuan as $item)
+                                                <option value="{{$item->id}}">{{$item->satuan}}</option>
+                                                @endforeach
                                         </select>
-                                        @error('jenis_usulan')
+                                        <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+                                        <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+                                        <script>
+                                            $(document).ready(function() {
+                                            $('#satuanharga').select2();
+                                            });
+                                        </script>
+                                        @error('Satuan Harga')
                                         <span class="text-danger">{{$message}}</span>
                                         @enderror
                                     </div>
                                     <div class="form-group">
-                                        <label for="exampleInputJumlahDukunganPenyedia">Jumlah Dukungan Informasi Harga</label>
-                                        <input type="text" class="form-control @error('jumlah_dukungan_penyedia') is-invalid @enderror" id="exampleInputJumlahDukunganPenyedia" placeholder="Tuliskan Jumlah Dukungan Informasi Harga" name="jumlah_dukungan_penyedia" value="{{old('jumlah_dukungan_penyedia')}}">
-                                        @error('jumlah_dukungan_penyedia') <span class="text-danger">{{$message}}</span> @enderror
-                                    </div>
-                                        <div class="form-group">
-                                        <label for="exampleInputPenjelasanKomponen">Penjelasan Komponen</label>
-                                        <input type="text" class="form-control @error('name') is-invalid @enderror" id="exampleInputPenjelasanKomponen" placeholder="Penjelasan Peruntukan Komponen" name="penjelasan_komponen" value="{{old('penjelasan_komponen')}}">
-                                        @error('penjelasan_komponen') <span class="text-danger">{{$message}}</span> @enderror
+                                        <label for="tanggal_usulan">Tanggal Pengusulan</label>
+                                        <input type="date" class="form-control @error('Tanggal Usulan') is-invalid @enderror" id="tanggal_usulan" name="tanggal_usulan">
+                                        @error('tanggal_usulan') <span class="text-danger">{{$message}}</span> @enderror
                                     </div>
                                     <div class="form-group">
-                                        <label for="exampleInputFileRarDukungan">Upload File Rar</label>
-                                        <input type="file" class="form-control" id="exampleInputFileRarDukungan"name="file_rar_dukungan"
+                                        <label for="file_rar_hspk">Upload File Rar</label>
+                                        <input type="file" class="form-control" id="file_rar_hspk"name="file_rar_hspk"
                                         @error('file_rar_dukungan') <span class="text-danger">{{$message}}</span> @enderror
                                     </div>
+
                                 </div>
-                            </div>
+                                <div class="text-right">
+                                    <button type="submit" class="btn btn-primary">Submit
+                                    </button>
+                                </div>
+                            </form>
                         </div>
                     </div>
-                    <div class="card-footer text-right">
-                        <button type="submit" class="btn btn-primary">Simpan</button>
-                        <a href="{{route('tambah_usulan.index')}}" class="btn btn-default">
-                            Batal
-                        </a>
-                        <span>
-                    </div>
-                </div>
-                <div class="card-footer">
-                     <strong>Catatan Penting :</strong>
-                     <br>
-                     1. Proses Upload Usulan Komponen akan berjalan, apabila mengupload file compress Data Pendukung Usulan dan Surat Pernyataan Tanggung Jawab Mutlak (dengan ekstensi .rar atau .zip) dan file Data Usulan Komponen (dengan.xls seperti hasil download).
-                     <br>
-                     2. Jangan Lupa Untuk Mengupload Data Surat Pernyatan Tanggung Jawab Mutlak Bersama dengan Data Pendukung dengan ukuran maksimal file compress data usulan adalah tidak terhingga. Proses Upload Usulan Komponen tidak akan berjalan, apabila total data pada excel Usulan Komponen tidak sama dengan isian Jumlah Komponen dalam SPJM.
                 </div>
             </div>
         </div>
+
 @stop

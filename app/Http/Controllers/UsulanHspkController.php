@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\usulan_hspk;
+use App\Models\User;
+use App\Models\satuan;
 use App\Http\Requests\Storeusulan_hspkRequest;
 use App\Http\Requests\Updateusulan_hspkRequest;
 
@@ -29,7 +31,8 @@ class UsulanHspkController extends Controller
     public function create()
     {
         $user = user::all();
-        return view('usulan_hspk.create', compact('user'));
+        $satuan = satuan::all();
+        return view('usulan_hspk.create', compact('user','satuan'));
     }
 
     /**
@@ -40,16 +43,6 @@ class UsulanHspkController extends Controller
      */
     public function store(Storeusulan_hspkRequest $request)
     {
-        $request->validate([
-            //'tanggal_usulan'=> 'required',
-            //'jenis_usulan' => 'required',
-            //'jumlah_komponen' => 'required',
-            //'jumlah_dukungan_penyedia' => 'required',
-            //'nomor_surat' => 'required',
-            //'penjelasan_komponen' => 'required',
-            //'file_excel_dukungan'=>'required|file|mimes:xls,xlxs',
-            //'file_rar_dukungan' =>'required|file|mimes:rar,zip',
-        ]);
         $array = $request->only([
             'user_id',
             'tanggal_usulan',
@@ -64,7 +57,7 @@ class UsulanHspkController extends Controller
         $array['file_excel_dukungan'] = $request->file('file_excel_dukungan')->store('public/posts/excel');
         $array['file_rar_dukungan'] = $request->file('file_rar_dukungan')->store('public/posts/rar');
 
-        tambah_usulan::create($array);
+        usulan_hspk::create($array);
 
         return redirect()->route('tambah_usulan.index')
             ->with('success_message', 'Berhasil menambah Usulan Baru');
