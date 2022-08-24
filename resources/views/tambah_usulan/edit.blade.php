@@ -34,10 +34,9 @@
                                 <label for="exampleInputFileExcelDukungan">Upload File Excel</label>
                                 <input type="file" class="form-control" id="exampleInputFileExcelDukungan" name="file_excel_dukungan" value="{{$tambah_usulan->file_excel_dukungan}}">
                                 <span>
-                                    <a href="{{$tambah_usulan->file_excel_dukungan}}" download>
-                                    <img src="{{$tambah_usulan->file_excel_dukungan}}" alt="dukungan_excel">
-                                    </img>
-                                    </a> 
+                                    Data Dukung Terupload : <a class= "btn btn-success btn-xs" href="{{$tambah_usulan->file_excel_dukungan}}" download>
+                                        Excel
+                                    </a>
                                 </span>
                                 @error('file_excel_dukungan') <span class="text-danger">{{$message}}</span> @enderror
                             </div>
@@ -56,7 +55,7 @@
                                         <option value="UPDATE">UPDATE HARGA</option>
                                 </select>
                                 @error('jenis_usulan')
-                                <span class="text-danger">{{$message}}</span> 
+                                <span class="text-danger">{{$message}}</span>
                                 @enderror
                             </div>
                             <div class="form-group">
@@ -73,23 +72,22 @@
                                 <label for="exampleInputFileRarDukungan">Upload File Rar</label>
                                 <input type="file" class="form-control" id="exampleInputFileRarDukungan" name="file_rar_dukungan">
                                 <span>
-                                    <a href="{{$tambah_usulan->file_rar_dukungan}}" download>
-                                    <img src="{{$tambah_usulan->file_rar_dukungan}}" alt="dukungan_rar">
-                                    </img>
-                                    </a> 
+                                    Data Dukung Terupload : <a class="btn btn-warning btn-xs" href="{{$tambah_usulan->file_rar_dukungan}}" download>
+                                        Rar
+                                    </a>
                                 </span>
                                 @error('file_rar_dukungan')<span class="text-danger">{{$message}}</span> @enderror
                             </div>
                         </div>
                     </div>
-                    <div class="card-body text-center">
+                    <div class="card-body text-right">
                         <button type="submit" class="btn btn-primary">Simpan</button>
                         <a href="{{route('tambah_usulan.index')}}" class="btn btn-default">
                             Batal
                         </a>
-                        <span> 
-                    </div> 
-                </div>       
+                        <span>
+                    </div>
+                </div>
                 </div>
             </div>
         </div>
