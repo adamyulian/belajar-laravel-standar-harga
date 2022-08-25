@@ -11,7 +11,7 @@
             <div class="card">
                 <div class="card-body">
                     <div class="form-group">
-                        <label for="exampleInputkodeaset">Kode Aset</label>
+                        <label for="kodefikasi_aset_id">Kode Aset</label>
                         <br>
                         <select class=" form-control @error('kode aset') is-invalid @enderror" aria-label="default select example" id="exampleInputKodeAset" name="kodefikasi_aset_id">
                                 <option value="">Pilih Kode Aset</option>
@@ -31,24 +31,24 @@
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label for="exampleInputKode_komp">Kode Komponen</label>
-                        <input type="text" class="form-control @error('kode_komp') is-invalid @enderror" id="exampleInputKode_komp"  placeholder="Kode Komponen"name="kode_komp" value="{{old('kode_komp')}}">
+                        <label for="kode_komp">Kode Komponen</label>
+                        <input type="text" class="form-control @error('kode_komp') is-invalid @enderror" id="kode_komp"  placeholder="Kode Komponen"name="kode_komp" value="{{old('kode_komp')}}">
                         @error('kode_komp') <span class="text-danger">{{$message}}</span> @enderror
                     </div>
                     <div class="form-group">
-                        <label for="exampleInputnama_komp">Nama Komponen</label>
-                        <input type="text" class="form-control @error('nama_komp') is-invalid @enderror" id="exampleInputnama_komp" placeholder="Nama Komponen..." name="nama_komp" value="{{old('name')}}">
+                        <label for="nama_komp">Nama Komponen</label>
+                        <input type="text" class="form-control @error('nama_komp') is-invalid @enderror" id="nama_komp" placeholder="Nama Komponen..." name="nama_komp" value="{{old('name')}}">
                         @error('nama_komp') <span class="text-danger">{{$message}}</span> @enderror
                     </div>
                     <div class="form-group">
                         <label for="exampleInputspesifikasi">Spesifikasi</label>
-                        <input type="text" class="form-control @error('name') is-invalid @enderror" id="exampleInputspesifikasi" placeholder="Spesifikasi Komponen..." name="spesifikasi" value="{{old('spesifikasi')}}">
+                        <input type="text" class="form-control @error('name') is-invalid @enderror" id="spesifikasi" placeholder="Spesifikasi Komponen..." name="spesifikasi" value="{{old('spesifikasi')}}">
                         @error('spesifikasi') <span class="text-danger">{{$message}}</span> @enderror
                     </div>
                     <div class="form-group">
-                        <label for="exampleInputkodeSatuanHarga">Satuan Harga</label>
+                        <label for="satuan_id">Satuan Harga</label>
                         <br>
-                        <select class=" form-control @error('Rekening Belanja') is-invalid @enderror" aria-label="default select example" id="exampleInputSatuanHarga" name="satuan">
+                        <select class="form-control @error('Satuan Harga') is-invalid @enderror" aria-label="default select example" id="satuan_id" name="satuan_id">
                                 <option value="">Pilih Satuan Harga</option>
                                 @foreach ($satuan as $item)
                                 <option value="{{$item->id}}">{{$item->satuan}}</option>
@@ -58,7 +58,7 @@
                         <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
                         <script>
                             $(document).ready(function() {
-                            $('#exampleInputSatuanHarga').select2();
+                            $('#satuan_id').select2();
                             });
                         </script>
                         @error('Satuan Harga')
@@ -67,14 +67,14 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="exampleInputName">Harga Satuan</label>
+                        <label for="harga_satuan">Harga Satuan</label>
                         <input type="text" class="form-control
-                        @error('name') is-invalid @enderror" id="exampleInputName" placeholder="Harga Per Satuan..." name="harga_satuan" value="{{old('harga_satuan')}}">
+                        @error('name') is-invalid @enderror" id="harga_satuan" placeholder="Harga Per Satuan..." name="harga_satuan" value="{{old('harga_satuan')}}">
                         @error('harga_satuan') <span class="text-danger">{{$message}}</span> @enderror
                     </div>
                     <div class="form-group">
-                        <label for="exampleInputName">Pajak PPn</label>
-                        <select class="form-control @error('pajak') is-invalid @enderror" aria-label="default select example" id="exampleInputPajak" name="pajak">
+                        <label for="pajak">Pajak PPn</label>
+                        <select class="form-control @error('pajak') is-invalid @enderror" aria-label="default select example" id="pajak" name="pajak">
                                 <option selected>Pilih Besaran PPn</option>
                                 <option value="11%">11%</option>
                                 <option value="0%">0%</option>
@@ -91,9 +91,9 @@
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label for="exampleInputkodeRekeningBelanja">Rekening Belanja</label>
+                        <label for="kodefikasi_rekening_belanja_id">Rekening Belanja</label>
                         <br>
-                        <select class=" form-control @error('Rekening Belanja') is-invalid @enderror" aria-label="default select example" id="exampleInputRekeningBelanja" name="kodefikasi_rekening_belanja">
+                        <select class=" form-control @error('Rekening Belanja') is-invalid @enderror" aria-label="default select example" id="kodefikasi_rekening_belanja_id" name="kodefikasi_rekening_belanja_id">
                                 <option value="">Pilih Rekening Belanja</option>
                                 @foreach ($kodefikasi_rekening_belanja as $item)
                                 <option value="{{$item->id}}">{{$item->kode_rekening_belanja}}|{{$item->nama_rekening_belanja}}</option>
@@ -103,7 +103,7 @@
                         <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
                         <script>
                             $(document).ready(function() {
-                            $('#exampleInputRekeningBelanja').select2();
+                            $('#kodefikasi_rekening_belanja_id').select2();
                             });
                         </script>
                         @error('Kode Rekening Belanja')

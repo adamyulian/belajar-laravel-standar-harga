@@ -55,7 +55,7 @@ class ShsController extends Controller
             'satuan_id',
             'harga_satuan',
             'pajak',
-            'kodefikasi_rekening_belanja_id'
+            'kodefikasi_rekening_belanja_id',
         ]);
         standar_harga::create($array);
         return redirect()->route('shs.index')

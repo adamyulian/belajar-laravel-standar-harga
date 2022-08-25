@@ -47,7 +47,7 @@
                         @error('spesifikasi') <span class="text-danger">{{$message}}</span> @enderror
                     </div>
                     <div class="form-group">
-                        <label for="exampleInputkodeSatuanHarga">Satuan Harga</label>
+                        <label for="satuan_harga">Satuan Harga</label>
                         <br>
                         <select class=" form-control @error('Satuan Harga') is-invalid @enderror" aria-label="default select example" id="exampleInputSatuanHarga" name="satuan">
                                 <option selected="">{{$standar_harga->satuan->satuan}}</option>
