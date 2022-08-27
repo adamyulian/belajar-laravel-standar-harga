@@ -30,6 +30,11 @@
                                         @error('nama_hspk') <span class="text-danger">{{$message}}</span> @enderror
                                     </div>
                                     <div class="form-group">
+                                        <label for="nomor_sptjm">Nama Harga Satuan Pokok Kegiatan (HSPK)</label>
+                                        <input type="text" class="form-control @error('Nomor SPTJM') is-invalid @enderror" id="nomor_sptjm" placeholder="Nomor SPTJM" name="nomor_sptjm" value="{{old('nama_hspk')}}">
+                                        @error('nama_hspk') <span class="text-danger">{{$message}}</span> @enderror
+                                    </div>
+                                    <div class="form-group">
                                         <label for="satuanharga">Satuan Harga</label>
                                         <br>
                                         <select class=" form-control @error('Satuan Harga') is-invalid @enderror" id="satuanharga" name="satuanharga">
