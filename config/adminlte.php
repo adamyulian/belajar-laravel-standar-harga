@@ -269,7 +269,7 @@ return [
                 ],
                 [
                     'text' => 'Harga Satuan Pokok Kegiatan (HSPK)',
-                    'url'  => '/usulan_hspk',
+                    'url'  => '/hspk',
                     'icon'  => 'fa fa-dollar-sign',
                 ],
                 [
@@ -291,8 +291,19 @@ return [
             'submenu' => [
                 [
                     'text' => 'Tambah Usulan',
-                    'url'  => '/tambah_usulan',
                     'icon'  => 'fa fa-regular fa-file',
+                    'submenu' => [
+                        [
+                        'text' => 'Usulan SHS',
+                        'url'  => '/tambah_usulan',
+                        'icon'  => 'fa fa-regular fa-envelope',
+                        ],
+                        [
+                        'text' => 'Usulan HSPK',
+                        'url'  => '/usulan_hspk',
+                        'icon'  => 'fa fa-regular fa-envelope'
+                        ]
+                    ]
                 ],
                 [
                     'text' => 'Konfirmasi Usulan',
