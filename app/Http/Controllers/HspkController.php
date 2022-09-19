@@ -46,7 +46,34 @@ class HspkController extends Controller
      */
     public function store(StorehspkRequest $request)
     {
-        //
+        $request->validate([
+            'kode_komp'=> 'required',
+            'nama_komp'=> 'required',
+            'spesifikasi'=> 'required',
+            'harga_satuan'=> 'required',
+            'pajak'=> 'required',
+            $table->string('kode_komp');
+            $table->string('nama_komp');
+            $table->text('spesifikasi');
+            $table->string('nilai_hspk');
+            $table->string('pajak');
+            $table->foreignId('satuan_id');
+            $table->foreignId('kodefikasi_rekening_belanja_id');
+            $table->foreignId('kodefikasi_aset');
+        ]);
+        $array = $request->only([
+            'kodefikasi_aset_id',
+            'kode_komp',
+            'nama_komp',
+            'spesifikasi',
+            'satuan_id',
+            'harga_satuan',
+            'pajak',
+            'kodefikasi_rekening_belanja_id',
+        ]);
+        standar_harga::create($array);
+        return redirect()->route('shs.index')
+            ->with('success_message', 'Berhasil menambah SHS baru');
     }
 
     /**
