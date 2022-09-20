@@ -1,20 +1,20 @@
 @extends('adminlte::page')
-@section('title', 'Tambah Standar Harga Satuan (SHS)')
+@section('title', 'Tambah Harga Satuan Pokok Kegiatan (HSPK)')
 @section('content_header')
-    <h1 class="m-0 text-dark">Tambah Standar Harga Satuan (SHS)</h1>
+    <h1 class="m-0 text-dark">Tambah Harga Satuan Pokok Kegiatan (HSPK)</h1>
 @stop
 @section('content')
-    <form action="{{route('shs.store')}}" method="post">
+    <form action="{{route('hspk.store')}}" method="post">
         @csrf
     <div class="row">
         <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
                     <div class="form-group">
-                        <label for="kodefikasi_aset_id">Kode Aset</label>
+                        <label for="kodefikasi_aset_id">Kode Kelompok Barang</label>
                         <br>
                         <select class=" form-control @error('kode aset') is-invalid @enderror" aria-label="default select example" id="exampleInputKodeAset" name="kodefikasi_aset_id">
-                                <option value="">Pilih Kode Aset</option>
+                                <option value="">Pilih Kode Kelompok Barang</option>
                                 @foreach ($kodefikasiaset as $item)
                                 <option value="{{$item->id}}">{{$item->kode_aset}}|{{$item->nama_kelompok_aset}}</option>
                                 @endforeach
@@ -31,19 +31,14 @@
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label for="kode_komp">Kode Komponen</label>
-                        <input type="text" class="form-control @error('kode_komp') is-invalid @enderror" id="kode_komp"  placeholder="Kode Komponen"name="kode_komp" value="{{old('kode_komp')}}">
+                        <label for="kode_komp">Kode Komponen HSPK</label>
+                        <input type="text" class="form-control @error('kode_komp') is-invalid @enderror" id="kode_komp"  placeholder="Kode Komponen..."name="kode_komp" value="{{old('kode_komp')}}">
                         @error('kode_komp') <span class="text-danger">{{$message}}</span> @enderror
                     </div>
                     <div class="form-group">
-                        <label for="nama_komp">Nama Komponen</label>
-                        <input type="text" class="form-control @error('nama_komp') is-invalid @enderror" id="nama_komp" placeholder="Nama Komponen..." name="nama_komp" value="{{old('name')}}">
-                        @error('nama_komp') <span class="text-danger">{{$message}}</span> @enderror
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputspesifikasi">Spesifikasi</label>
-                        <input type="text" class="form-control @error('name') is-invalid @enderror" id="spesifikasi" placeholder="Spesifikasi Komponen..." name="spesifikasi" value="{{old('spesifikasi')}}">
-                        @error('spesifikasi') <span class="text-danger">{{$message}}</span> @enderror
+                        <label for="nama_hspk">Nama HSPK</label>
+                        <input type="text" class="form-control @error('nama_hspk') is-invalid @enderror" id="nama_hspk" placeholder="Nama HSPK..." name="nama_hspk" value="{{old('nama_hspk')}}">
+                        @error('nama_hspk') <span class="text-danger">{{$message}}</span> @enderror
                     </div>
                     <div class="form-group">
                         <label for="satuan_id">Satuan Harga</label>
@@ -65,12 +60,11 @@
                         <span class="text-danger">{{$message}}</span>
                         @enderror
                     </div>
-
                     <div class="form-group">
-                        <label for="harga_satuan">Harga Satuan</label>
+                        <label for="nilai_hspk">Nilai HSPK</label>
                         <input type="text" class="form-control
-                        @error('name') is-invalid @enderror" id="harga_satuan" placeholder="Harga Per Satuan..." name="harga_satuan" value="{{old('harga_satuan')}}">
-                        @error('harga_satuan') <span class="text-danger">{{$message}}</span> @enderror
+                        @error('name') is-invalid @enderror" id="nilai_hspk" placeholder="Atur Rincian Harga" name="nilai_hspk" value="{{old('nilai_hspk')}}">
+                        @error('nilai_hspk') <span class="text-danger">{{$message}}</span> @enderror
                     </div>
                     <div class="form-group">
                         <label for="pajak">Pajak PPn</label>
@@ -110,10 +104,15 @@
                         <span class="text-danger">{{$message}}</span>
                         @enderror
                     </div>
+                    <div class="form-group">
+                        <label for="">Penjelasan HSPK</label>
+                        <input type="text" class="form-control @error('name') is-invalid @enderror" id="penjelasan_komponen" placeholder="Penjelasan Komponen..." name="spesifikasi" value="{{old('penjelasan_komponen')}}">
+                        @error('penjelasan_komponen') <span class="text-danger">{{$message}}</span> @enderror
+                    </div>
                 </div>
                 <div class="card-footer">
                     <button type="submit" class="btn btn-primary">Simpan</button>
-                    <a href="{{route('shs.index')}}" class="btn btn-default">
+                    <a href="{{route('hspk.index')}}" class="btn btn-default">
                         Batal
                     </a>
                 </div>

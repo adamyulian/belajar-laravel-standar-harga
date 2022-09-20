@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\hspk;
+use Illuminate\Http\Request;
 use App\Http\Requests\StorehspkRequest;
 use App\Http\Requests\UpdatehspkRequest;
 use App\Models\User;
@@ -44,36 +45,24 @@ class HspkController extends Controller
      * @param  \App\Http\Requests\StorehspkRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StorehspkRequest $request)
+    public function store(Request $request)
     {
         $request->validate([
-            'kode_komp'=> 'required',
-            'nama_komp'=> 'required',
-            'spesifikasi'=> 'required',
-            'harga_satuan'=> 'required',
-            'pajak'=> 'required',
-            $table->string('kode_komp');
-            $table->string('nama_komp');
-            $table->text('spesifikasi');
-            $table->string('nilai_hspk');
-            $table->string('pajak');
-            $table->foreignId('satuan_id');
-            $table->foreignId('kodefikasi_rekening_belanja_id');
-            $table->foreignId('kodefikasi_aset');
+
         ]);
         $array = $request->only([
             'kodefikasi_aset_id',
             'kode_komp',
-            'nama_komp',
-            'spesifikasi',
+            'nama_hspk',
+            'penjelasan_hspk',
             'satuan_id',
-            'harga_satuan',
+            'nilai_hspk',
             'pajak',
             'kodefikasi_rekening_belanja_id',
         ]);
-        standar_harga::create($array);
-        return redirect()->route('shs.index')
-            ->with('success_message', 'Berhasil menambah SHS baru');
+        hspk::create($array);
+        return redirect()->route('hspk.index')
+            ->with('success_message', 'Berhasil menambah HSPK baru');
     }
 
     /**
@@ -93,9 +82,17 @@ class HspkController extends Controller
      * @param  \App\Models\hspk  $hspk
      * @return \Illuminate\Http\Response
      */
-    public function edit(hspk $hspk)
+    public function edit(hspk $id)
     {
-        //
+        $hspks = hspk::find($id);
+        $kodefikasiaset = kodefikasi_aset::all();
+        $kodefikasi_rekening_belanja = KodefikasiRekeningBelanja::all();
+        $satuan = satuan::all();
+        if (!$hspks) return redirect()->route('hspk.index')
+            ->with('error_message', 'HSPK dengan id'.$id.' tidak ditemukan');
+        return view('shs.edit', compact('kodefikasiaset','kodefikasi_rekening_belanja','satuan'),[
+            'standar_harga' => $id
+        ]);
     }
 
     /**
@@ -105,9 +102,24 @@ class HspkController extends Controller
      * @param  \App\Models\hspk  $hspk
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdatehspkRequest $request, hspk $hspk)
+    public function update(UpdatehspkRequest $request, hspk $hspk, $id)
     {
-        //
+        $request->validate([
+            'kode_komp'=> 'required',
+            'nama_hspk'=> 'required' .$id,
+            'penjelasan_hspk'=> 'required',
+            'satuan_id'=> 'required',
+            'nilai_hspk'=> 'required',
+            'pajak'=> 'required',
+        ]);
+        $hspks = hspk::find($id);
+        $kodefikasiaset = kodefikasi_aset::all();
+        $satuan = satuan::all();
+        $hspks->kode_komp = $request->kode_komp;
+        $hspks->nama_komp = $request->nama_komp;
+        $hspks->save();
+        return redirect()->route('hspk.index')
+            ->with('success_message', 'Berhasil mengubah HSPK');
     }
 
     /**
@@ -116,8 +128,11 @@ class HspkController extends Controller
      * @param  \App\Models\hspk  $hspk
      * @return \Illuminate\Http\Response
      */
-    public function destroy(hspk $hspk)
+    public function destroy(hspk $id)
     {
-        //
+        $hspks = hspk::find($id);
+        if ($hspks) $hspks->delete();
+        return redirect()->route('shs.index')
+            ->with('success_message', 'Berhasil menghapus HSPK');
     }
 }

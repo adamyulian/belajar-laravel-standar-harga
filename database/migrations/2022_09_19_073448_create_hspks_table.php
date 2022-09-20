@@ -16,13 +16,13 @@ return new class extends Migration
         Schema::create('hspks', function (Blueprint $table) {
             $table->id();
             $table->string('kode_komp');
-            $table->string('nama_komp');
-            $table->text('spesifikasi');
+            $table->string('nama_hspk');
+            $table->text('penjelasan_hspk');
             $table->string('nilai_hspk');
             $table->string('pajak');
             $table->foreignId('satuan_id');
             $table->foreignId('kodefikasi_rekening_belanja_id');
-            $table->foreignId('kodefikasi_aset');
+            $table->foreignId('kodefikasi_aset_id');
             $table->timestamps();
         });
     }

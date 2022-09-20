@@ -35,6 +35,7 @@ Route::resource('kodefikasi_rekening_belanja', \App\Http\Controllers\KodefikasiR
 Route::resource('satuan', \App\Http\Controllers\SatuanController::class)->middleware('auth');
 
 Route::resource('shs', \App\Http\Controllers\ShsController::class)->middleware('auth');
+Route::resource('hspk', \App\Http\Controllers\HspkController::class)->middleware('auth');
 
 Route::resource('tambah_usulan', \App\Http\Controllers\TambahUsulanController::class)->middleware('auth');
 
