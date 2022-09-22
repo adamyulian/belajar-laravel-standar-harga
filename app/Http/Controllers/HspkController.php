@@ -54,7 +54,6 @@ class HspkController extends Controller
             'kodefikasi_aset_id',
             'kode_komp',
             'nama_hspk',
-            'nama_hspk',
             'penjelasan_hspk',
             'satuan_id',
             'nilai_hspk',
