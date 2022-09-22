@@ -11,6 +11,11 @@
             <div class="card">
                 <div class="card-body">
                     <div class="form-group">
+                        <label for="nama_hspk">Nama HSPK</label>
+                        <input type="text" class="form-control @error('nama_hspk') is-invalid @enderror" id="nama_hspk"  placeholder="Kode Komponen..."name="nama_hspk" value="{{old('nama_hspk')}}">
+                        @error('nama_hspk') <span class="text-danger">{{$message}}</span> @enderror
+                    </div>
+                    <div class="form-group">
                         <label for="kodefikasi_aset_id">Kode Kelompok Barang</label>
                         <br>
                         <select class=" form-control @error('kode aset') is-invalid @enderror" aria-label="default select example" id="exampleInputKodeAset" name="kodefikasi_aset_id">
@@ -36,11 +41,6 @@
                         @error('kode_komp') <span class="text-danger">{{$message}}</span> @enderror
                     </div>
                     <div class="form-group">
-                        <label for="nama_hspk">Nama HSPK</label>
-                        <input type="text" class="form-control @error('nama_hspk') is-invalid @enderror" id="nama_hspk" placeholder="Nama HSPK..." name="nama_hspk" value="{{old('nama_hspk')}}">
-                        @error('nama_hspk') <span class="text-danger">{{$message}}</span> @enderror
-                    </div>
-                    <div class="form-group">
                         <label for="satuan_id">Satuan Harga</label>
                         <br>
                         <select class="form-control @error('Satuan Harga') is-invalid @enderror" aria-label="default select example" id="satuan_id" name="satuan_id">
@@ -62,8 +62,7 @@
                     </div>
                     <div class="form-group">
                         <label for="nilai_hspk">Nilai HSPK</label>
-                        <input type="text" class="form-control
-                        @error('name') is-invalid @enderror" id="nilai_hspk" placeholder="Atur Rincian Harga" name="nilai_hspk" value="{{old('nilai_hspk')}}">
+                        <input type="text" class="form-control @error('nilai_hspk') is-invalid @enderror" id="nilai_hspk"  placeholder="Kode Komponen..."name="nilai_hspk" value="{{old('nilai_hspk')}}">
                         @error('nilai_hspk') <span class="text-danger">{{$message}}</span> @enderror
                     </div>
                     <div class="form-group">

@@ -54,6 +54,7 @@ class HspkController extends Controller
             'kodefikasi_aset_id',
             'kode_komp',
             'nama_hspk',
+            'nama_hspk',
             'penjelasan_hspk',
             'satuan_id',
             'nilai_hspk',
@@ -90,7 +91,7 @@ class HspkController extends Controller
         $satuan = satuan::all();
         if (!$hspks) return redirect()->route('hspk.index')
             ->with('error_message', 'HSPK dengan id'.$id.' tidak ditemukan');
-        return view('shs.edit', compact('kodefikasiaset','kodefikasi_rekening_belanja','satuan'),[
+        return view('hspk.edit', compact('kodefikasiaset','kodefikasi_rekening_belanja','satuan'),[
             'standar_harga' => $id
         ]);
     }

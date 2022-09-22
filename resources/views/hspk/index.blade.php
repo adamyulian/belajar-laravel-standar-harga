@@ -30,10 +30,10 @@
                                 <td>{{$key+1}}</td>
                                 <td>{{$hspks->kodefikasi_aset->kode_aset}}</td>
                                 <td>{{$hspks->kode_komp}}</td>
-                                <td>{{$hspks->nama_komp}}</td>
-                                <td>{{$hspks->spesifikasi}}</td>
+                                <td>{{$hspks->nama_hspk}}</td>
+                                <td>{{$hspks->penjelasan_hspk}}</td>
                                 <td>{{$hspks->satuan->satuan}}</td>
-                                <td>@currency($hspks->harga_satuan)</td>
+                                <td>@currency($hspks->nilai_hspk)</td>
                                 <td>{{$hspks->pajak}}</td>
                                 <td>{{$hspks->kodefikasi_rekening_belanja->kode_rekening_belanja}}
                                     <br>
