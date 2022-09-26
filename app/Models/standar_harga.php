@@ -32,5 +32,9 @@ class standar_harga extends Model
     {
         return $this->belongsTo(satuan::class);
     }
+    public function hspk_rincian()
+    {
+        return $this->hasMany(hspk_rincian::class);
+    }
 
 }

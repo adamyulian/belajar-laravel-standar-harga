@@ -128,11 +128,11 @@ class HspkController extends Controller
      * @param  \App\Models\hspk  $hspk
      * @return \Illuminate\Http\Response
      */
-    public function destroy(hspk $id)
+    public function destroy($id)
     {
         $hspks = hspk::find($id);
         if ($hspks) $hspks->delete();
-        return redirect()->route('shs.index')
+        return redirect()->route('hspk.index')
             ->with('success_message', 'Berhasil menghapus HSPK');
     }
 }

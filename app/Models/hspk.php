@@ -12,8 +12,8 @@ class hspk extends Model
     protected $fillable = [
         'kodefikasi_aset_id',
         'kode_komp',
-        'nama_komp',
-        'spesifikasi',
+        'nama_hspk',
+        'penjelasan_hspk',
         'satuan_id',
         'nilai_hspk',
         'kodefikasi_rekening_belanja_id',
@@ -36,5 +36,9 @@ class hspk extends Model
     public function standar_harga()
     {
         return $this->belongsTo(standar_harga::class);
+    }
+    public function hspk_rincian()
+    {
+        return $this->belongsTo(hspk_rincian::class);
     }
 }

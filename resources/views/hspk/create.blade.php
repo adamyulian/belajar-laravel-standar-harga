@@ -105,8 +105,8 @@
                     </div>
                     <div class="form-group">
                         <label for="">Penjelasan HSPK</label>
-                        <input type="text" class="form-control @error('name') is-invalid @enderror" id="penjelasan_komponen" placeholder="Penjelasan Komponen..." name="spesifikasi" value="{{old('penjelasan_komponen')}}">
-                        @error('penjelasan_komponen') <span class="text-danger">{{$message}}</span> @enderror
+                        <input type="text" class="form-control @error('penjelasan_hspk') is-invalid @enderror" id="penjelasan_hspk" placeholder="Penjelasan HSPK..." name="penjelasan_hspk" value="{{old('penjelasan_hspk')}}">
+                        @error('penjelasan_hspk') <span class="text-danger">{{$message}}</span> @enderror
                     </div>
                 </div>
                 <div class="card-footer">
