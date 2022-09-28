@@ -81,12 +81,12 @@ class HspkRincianController extends Controller
      * @param  \App\Models\hspk_rincian  $hspk_rincian
      * @return \Illuminate\Http\Response
      */
-    public function edit(hspk_rincian $hspk_rincian)
+    public function edit($id)
     {
         $standar_hargas = standar_harga::all();
-        $hspks = hspk::findOrfail();
+        $hspks = hspk::findOrfail($id);
         $hspk_rincians = hspk_rincian::all();
-        return view('hspk_rincian.update', compact('standar_hargas', 'hspks', 'hspk_rincians'));
+        return view('hspk_rincian.edit', compact('standar_hargas', 'hspks', 'hspk_rincians'));
     }
 
     /**
