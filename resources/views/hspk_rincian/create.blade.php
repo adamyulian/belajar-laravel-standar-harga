@@ -45,7 +45,7 @@
                         </div>
                         <div class = "col-6">
 
-                            : {{$hspks->kode_komp}}
+                            : {{auth()->hspk()->id}}
                             <br>
                             : {{$hspks->kodefikasi_aset->kode_aset}}
                             <br>
@@ -64,9 +64,8 @@
                     </div>
                     <br>
                     <div class = "row">
-
                         <div class = "col-4">
-                            <form action="{{route('hspk_rincian.store',)}}" method="post">
+                            <form action="{{route('hspk_rincian.store')}}" method="post">
                                 @csrf
                                 <input name= "hspk_id" value="{{$hspks->id}}" hidden>
                                 <div class="form-group">
@@ -99,15 +98,11 @@
                                     <input type="float" class="form-control @error('koefisien_hspk') is-invalid @enderror" id="koefisien_hspk"  placeholder="Nilai Koefisien..."name="koefisien_hspk" value="{{old('koefisien_hspk')}}">
                                     @error('koefisien_hspk') <span class="text-danger">{{$message}}</span> @enderror
                                 </div>
-                                <input name= "hspk_id" value="{{$hspks->id}}" hidden>
                                 <div class="col-4">
-                                    <button type="submit" class="btn btn-warning">
-                                        Detail
-                                    </button>
+                                    <button type="submit" class="btn btn-primary">Tambahkan</button>
                                 </div>
-                            </form>
                         </div>
-                        <div class = "col-8 table-responsive">
+                        {{-- <div class = "col-8 table-responsive">
                             <table class ="table table-stripped">
                                 <thead>
                                     <tr>
@@ -129,7 +124,7 @@
                                     @endforeach
                                     </tbody>
                             </table>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </div>

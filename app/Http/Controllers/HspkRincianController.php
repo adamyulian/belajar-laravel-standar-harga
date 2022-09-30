@@ -35,10 +35,7 @@ class HspkRincianController extends Controller
      */
     public function create()
     {
-        $standar_hargas = standar_harga::all();
-        $hspks = hspk::findOrfail();
-        $hspk_rincians = hspk_rincian::all();
-        return view('hspk_rincian.create', compact('standar_hargas', 'hspks', 'hspk_rincians'));
+
     }
 
     /**
@@ -47,11 +44,12 @@ class HspkRincianController extends Controller
      * @param  \App\Http\Requests\Storehspk_rincianRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Storehspk_rincianRequest $request)
+    public function store(Request $request)
     {
         $request->validate([
 
         ]);
+
         $array = $request->only([
             'subkode_hspk',
             'koefisien_hspk',
@@ -60,7 +58,8 @@ class HspkRincianController extends Controller
             'standar_harga_id',
         ]);
         hspk_rincian::create($array);
-        return redirect()->route('hspk.index')
+        $hspks = hspk::findOrfail($request->hspk_id);
+        return redirect()->route('hspk_rincian.edit', $hspks)
             ->with('success_message', 'Berhasil menambah HSPK baru');
     }
 
@@ -83,8 +82,8 @@ class HspkRincianController extends Controller
      */
     public function edit($id)
     {
-        $standar_hargas = standar_harga::all();
         $hspks = hspk::findOrfail($id);
+        $standar_hargas = standar_harga::all();
         $hspk_rincians = hspk_rincian::all();
         return view('hspk_rincian.edit', compact('standar_hargas', 'hspks', 'hspk_rincians'));
     }
