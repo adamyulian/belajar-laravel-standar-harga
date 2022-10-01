@@ -110,7 +110,7 @@
                         <div class = "col-8 table-responsive">
                             <table class ="table table-stripped">
                                 <thead>
-                                    <tr>
+                                    <tr class="text-center">
                                         <th>Sub Kode</th>
                                         <th>Komponen SHS</th>
                                         <th>Koefisien</th>
@@ -123,7 +123,10 @@
                                     @foreach($hspk_rincians as $key => $rincian)
                                         <tr class="text-center">
                                             <td>{{$rincian->subkode_hspk}}</td>
+                                            <td>{{$rincian->standar_harga->nama_komp}}</td>
                                             <td>{{$rincian->koefisien_hspk}}</td>
+                                            <td>{{$rincian->standar_harga->satuan->satuan}}</td>
+                                            <td>@currency($rincian->standar_harga->harga_satuan)</td>
                                             <td>{{$rincian->subnilai_hspk}}</td>
                                         </tr>
                                     @endforeach
