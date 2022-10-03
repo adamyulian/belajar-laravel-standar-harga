@@ -84,7 +84,10 @@ class HspkRincianController extends Controller
     {
         $hspks = hspk::findOrfail($id);
         $standar_hargas = standar_harga::all();
-        $hspk_rincians = hspk_rincian::all();
+        $hspk_rincians = hspk_rincian::select('*')->where('hspk_id', $hspks->id)->get();
+        // $koefisien_hspk = hspk_rincian::select('koefisien_hspk')->where('hspk_id', $hspks->id)->get();
+        // $harga_satuan = standar_harga::select('harga_satuan')->get();
+        // $subnilai_hspk = $koefisien_hspk * $harga_satuan ;
         return view('hspk_rincian.edit', compact('standar_hargas', 'hspks', 'hspk_rincians'));
     }
 
@@ -97,7 +100,42 @@ class HspkRincianController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->validate([
 
+        ]);
+
+        $array = $request->only([
+            'subkode_hspk',
+            'koefisien_hspk',
+            'subnilai_hspk',
+            'hspk_id',
+            'standar_harga_id',
+        ]);
+        hspk_rincian::create($array);
+        $hspks = hspk::findOrfail($request->hspk_id);
+        return redirect()->route('hspk_rincian.edit', $hspks)
+            ->with('success_message', 'Berhasil menambah HSPK baru');
+
+        // $request->validate([
+
+        // ]);
+
+        // $array = $request->only([
+        //     'subkode_hspk',
+        //     'koefisien_hspk',
+        //     'subnilai_hspk',
+        //     'hspk_id',
+        //     'standar_harga_id',
+        // ]);
+        // $hspks = hspk::findOrfail($id);
+        // $hspk_rincians = hspk_rincian::all();
+        // // $kodefikasiaset = kodefikasi_aset::all();
+        // // $satuan = satuan::all();
+        // // $standar_hargas->kode_komp = $request->kode_komp;
+        // // $standar_hargas->nama_komp = $request->nama_komp;
+        // $hspk_rincians->save();
+        // return redirect()->route('hspk_rincian.edit', $hspks)
+        //     ->with('success_message', 'Berhasil menyimpan Rincian HSPK');
     }
 
     /**
@@ -106,8 +144,12 @@ class HspkRincianController extends Controller
      * @param  \App\Models\hspk_rincian  $hspk_rincian
      * @return \Illuminate\Http\Response
      */
-    public function destroy(hspk_rincian $hspk_rincian)
+    public function destroy($request, $id)
     {
-        //
+
+        $hspk_rincians = hspk_rincian::find($id);
+    if ($hspk_rincians) $hspk_rincians->delete();
+    return redirect()->route('hspk_rincian.edit', $id)
+        ->with('success_message', 'Berhasil menghapus SHS');
     }
 }

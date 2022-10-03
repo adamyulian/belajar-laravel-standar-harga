@@ -1,5 +1,5 @@
 @extends('adminlte::page')
-@section('title', 'Tambah Harga Satuan Pokok Kegiatan (HSPK)')
+@section('title', 'Rincian HSPK')
 @section('content_header')
     <h1 class="m-0 text-dark">Rincian Harga Satuan Pokok Kegiatan (HSPK)</h1>
 @stop
@@ -100,9 +100,10 @@
                                     @error('koefisien_hspk') <span class="text-danger">{{$message}}</span> @enderror
                                 </div>
                                 <input name= "hspk_id" value="{{$hspks->id}}" hidden>
-                                <div class="col-4">
-                                    <button type="submit" class="btn btn-warning">
-                                        Detail
+                                {{-- <input name= "subnilai_hspk" value="{{$hspk_rincian1->koefisien_hspk * $hspk_rincian1->standar_harga->harga_satuan}}" hidden> --}}
+                                <div class="text-right">
+                                    <button type="submit" class="btn btn-primary">
+                                        Tambahkan
                                     </button>
                                 </div>
                             </form>
@@ -117,21 +118,41 @@
                                         <th>Satuan</th>
                                         <th>Harga Satuan</th>
                                         <th>Sub Nilai</th>
+                                        <th>Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach($hspk_rincians as $key => $rincian)
+                                    @forelse($hspk_rincians as $key => $rincian)
                                         <tr class="text-center">
                                             <td>{{$rincian->subkode_hspk}}</td>
                                             <td>{{$rincian->standar_harga->nama_komp}}</td>
                                             <td>{{$rincian->koefisien_hspk}}</td>
                                             <td>{{$rincian->standar_harga->satuan->satuan}}</td>
                                             <td>@currency($rincian->standar_harga->harga_satuan)</td>
-                                            <td>{{$rincian->subnilai_hspk}}</td>
+                                            <td>@currency($rincian->koefisien_hspk * $rincian->standar_harga->harga_satuan)</td>
+                                            <td>
+                                                <a href="{{route('hspk_rincian.destroy', $hspk_rincians)}}" onclick="notificationBeforeDelete(event, this)" class="btn btn-danger btn-xs">
+                                                    Delete
+                                                </a>
+                                            </td>
                                         </tr>
-                                    @endforeach
-                                    </tbody>
+                                    @empty
+                                        <div class="alert alert-danger">
+                                        Data Post belum Tersedia.
+                                        </div>
+                                    @endforelse
+                                </tbody>
                             </table>
+                            <form action="{{route('hspk_rincian.edit', $hspks)}}" method="post">
+                                @csrf
+                                <input name= "subnilai_hspk" value="{{$rincian->koefisien_hspk * $rincian->standar_harga->harga_satuan}}" hidden>
+                                {{-- <input name= "subnilai_hspk" value="{{$hspk_rincian1->koefisien_hspk * $hspk_rincian1->standar_harga->harga_satuan}}" hidden> --}}
+                                <div class="text-right">
+                                    <button type="submit" class="btn btn-warning">
+                                        Simpan Rincian
+                                    </button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
