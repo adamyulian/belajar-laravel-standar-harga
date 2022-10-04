@@ -143,10 +143,12 @@
                                     @endforelse
                                 </tbody>
                             </table>
-                            <form action="{{route('hspk_rincian.edit', $hspks)}}" method="post">
+                            <form action="{{route('hspk_rincian.edit', $hspk_rincians)}}" method="post">
                                 @csrf
+                                @foreach($hspk_rincians as $key => $rincian)
                                 <input name= "subnilai_hspk" value="{{$rincian->koefisien_hspk * $rincian->standar_harga->harga_satuan}}" hidden>
                                 {{-- <input name= "subnilai_hspk" value="{{$hspk_rincian1->koefisien_hspk * $hspk_rincian1->standar_harga->harga_satuan}}" hidden> --}}
+                                @endforeach
                                 <div class="text-right">
                                     <button type="submit" class="btn btn-warning">
                                         Simpan Rincian

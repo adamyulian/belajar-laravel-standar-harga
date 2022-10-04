@@ -147,9 +147,10 @@ class HspkRincianController extends Controller
     public function destroy($request, $id)
     {
 
-        $hspk_rincians = hspk_rincian::find($id);
-    if ($hspk_rincians) $hspk_rincians->delete();
-    return redirect()->route('hspk_rincian.edit', $id)
-        ->with('success_message', 'Berhasil menghapus SHS');
+        $hspk_rincians = hspk_rincian::findOrfail($id);
+        if ($hspk_rincians) $hspk_rincians->delete();
+        return redirect()->route('hspk_rincian.edit', $hspk_rincians)
+            ->with('success_message', 'Berhasil menghapus SHS');
+
     }
 }
