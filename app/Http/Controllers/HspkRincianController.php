@@ -20,12 +20,13 @@ class HspkRincianController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
         $hspk_rincians = hspk_rincian::all();
-        return view('hspk_rincian.index', [
-            'hspk_rincian' => $hspk_rincians
-        ]);
+        $hspks = hspk::findOrfail($id);
+        $standar_hargas = standar_harga::all();
+        $hspk_rincians = hspk_rincian::select('*')->where('hspk_id', $hspks->id)->get();
+        return view('hspk.hspk_rincian.index', $hspks, compact('standar_hargas', 'hspks', 'hspk_rincians'));
     }
 
     /**
@@ -59,8 +60,8 @@ class HspkRincianController extends Controller
         ]);
         hspk_rincian::create($array);
         $hspks = hspk::findOrfail($request->hspk_id);
-        return redirect()->route('hspk_rincian.edit', $hspks)
-            ->with('success_message', 'Berhasil menambah HSPK baru');
+        return redirect()->route('hspk.hspk_rincian.index', $hspks)
+            ->with('success_message', 'Berhasil menambah Komponen HSPK baru');
     }
 
     /**
@@ -146,10 +147,10 @@ class HspkRincianController extends Controller
      */
     public function destroy($request, $id)
     {
-
-        $hspk_rincians = hspk_rincian::findOrfail($id);
-        if ($hspk_rincians) $hspk_rincians->delete();
-        return redirect()->route('hspk_rincian.edit', $hspk_rincians)
+        $hspks = hspk::findOrfail($request->hspk_id);
+        $hspk_rincians = hspk_rincian::find($id);
+        $hspk_rincians->delete();
+        return redirect()->route('hspk.hspk_rincian.index', $hspks)
             ->with('success_message', 'Berhasil menghapus SHS');
 
     }

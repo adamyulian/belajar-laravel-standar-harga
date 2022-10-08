@@ -39,6 +39,6 @@ class hspk extends Model
     }
     public function hspk_rincian()
     {
-        return $this->belongsTo(hspk_rincian::class);
+        return $this->hasMany(hspk_rincian::class);
     }
 }

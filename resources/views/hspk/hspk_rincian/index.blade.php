@@ -66,7 +66,7 @@
                     <div class = "row">
 
                         <div class = "col-4">
-                            <form action="{{route('hspk_rincian.store',)}}" method="post">
+                            <form action="{{route('hspk.hspk_rincian.store', $hspks)}}" method="post">
                                 @csrf
                                 <input name= "hspk_id" value="{{$hspks->id}}" hidden>
                                 <div class="form-group">
@@ -131,9 +131,9 @@
                                             <td>@currency($rincian->standar_harga->harga_satuan)</td>
                                             <td>@currency($rincian->koefisien_hspk * $rincian->standar_harga->harga_satuan)</td>
                                             <td>
-                                                <a href="{{route('hspk_rincian.destroy', $hspk_rincians)}}" onclick="notificationBeforeDelete(event, this)" class="btn btn-danger btn-xs">
+                                                {{-- <a href="{{route('hspk.hspk_rincian.destroy', $hspks, $rincian)}}" onclick="notificationBeforeDelete(event, this)" class="btn btn-danger btn-xs">
                                                     Delete
-                                                </a>
+                                                </a> --}}
                                             </td>
                                         </tr>
                                     @empty
@@ -143,7 +143,7 @@
                                     @endforelse
                                 </tbody>
                             </table>
-                            <form action="{{route('hspk_rincian.edit', $hspk_rincians)}}" method="post">
+                            <form action="{{route('hspk.hspk_rincian.index', $hspks)}}" method="post">
                                 @csrf
                                 @foreach($hspk_rincians as $key => $rincian)
                                 <input name= "subnilai_hspk" value="{{$rincian->koefisien_hspk * $rincian->standar_harga->harga_satuan}}" hidden>

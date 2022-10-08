@@ -45,7 +45,7 @@
                                     <a href="{{route('hspk.destroy', $hspks)}}" onclick="notificationBeforeDelete(event, this)" class="btn btn-danger btn-xs">
                                         Delete
                                     </a>
-                                    <a href="{{route('hspk_rincian.edit', $hspks)}}" class="btn btn-warning btn-xs">
+                                    <a href="{{route('hspk.hspk_rincian.index', $hspks)}}" class="btn btn-warning btn-xs">
                                         Detail
                                     </a>
                                 </td>
