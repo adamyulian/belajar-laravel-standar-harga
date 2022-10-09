@@ -122,7 +122,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @forelse($hspk_rincians as $key => $rincian)
+                                    {{-- @forelse($hspk_rincians as $key => $rincian)
                                         <tr class="text-center">
                                             <td>{{$rincian->subkode_hspk}}</td>
                                             <td>{{$rincian->standar_harga->nama_komp}}</td>
@@ -131,19 +131,34 @@
                                             <td>@currency($rincian->standar_harga->harga_satuan)</td>
                                             <td>@currency($rincian->koefisien_hspk * $rincian->standar_harga->harga_satuan)</td>
                                             <td>
-                                                {{-- <a href="{{route('hspk.hspk_rincian.destroy', $hspks, $rincian)}}" onclick="notificationBeforeDelete(event, this)" class="btn btn-danger btn-xs">
+                                                <a href="{{route('hspk_rincian.destroy', $hspks)}}" onclick="notificationBeforeDelete(event, this)" class="btn btn-danger btn-xs">
                                                     Delete
-                                                </a> --}}
+                                                </a>
                                             </td>
                                         </tr>
                                     @empty
                                         <div class="alert alert-danger">
                                         Data Post belum Tersedia.
                                         </div>
-                                    @endforelse
+                                    @endforelse --}}
+                                    @foreach($hspk_rincians as $key => $rincian)
+                                        <tr class="text-center">
+                                            <td>{{$rincian->subkode_hspk}}</td>
+                                            <td>{{$rincian->standar_harga->nama_komp}}</td>
+                                            <td>{{$rincian->koefisien_hspk}}</td>
+                                            <td>{{$rincian->standar_harga->satuan->satuan}}</td>
+                                            <td>@currency($rincian->standar_harga->harga_satuan)</td>
+                                            <td>@currency($rincian->koefisien_hspk * $rincian->standar_harga->harga_satuan)</td>
+                                            <td>
+                                                <a href="{{route('hspk_rincian.destroy', [$rincian])}}" onclick="notificationBeforeDelete(event, this)" class="btn btn-danger btn-xs">
+                                                    Delete
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
-                            <form action="{{route('hspk.hspk_rincian.index', $hspks)}}" method="post">
+                            <form action="{{route('hspk.hspk_rincian.store', $hspks)}}" method="post">
                                 @csrf
                                 @foreach($hspk_rincians as $key => $rincian)
                                 <input name= "subnilai_hspk" value="{{$rincian->koefisien_hspk * $rincian->standar_harga->harga_satuan}}" hidden>
@@ -161,5 +176,22 @@
             </div>
         </div>
     </div>
-
 @stop
+@push('js')
+    <form action="" id="delete-form" method="post">
+        @method('delete')
+        @csrf
+    </form>
+    <script>
+        $('#example2').DataTable({
+            "responsive": true,
+        });
+        function notificationBeforeDelete(event, el) {
+            event.preventDefault();
+            if (confirm('Apakah anda yakin akan menghapus data ? ')) {
+                $("#delete-form").attr('action', $(el).attr('href'));
+                $("#delete-form").submit();
+            }
+        }
+    </script>
+@endpush
