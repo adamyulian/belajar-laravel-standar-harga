@@ -48,7 +48,9 @@ class HspkRincianController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-
+            'subkode_hspk' => 'required',
+            'koefisien_hspk' => 'required|numeric',
+            'standar_harga_id' => 'required',
         ]);
 
         $array = $request->only([

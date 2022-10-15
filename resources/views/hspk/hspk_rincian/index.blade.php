@@ -42,6 +42,8 @@
                             <b>Nama Rekening</b>
                             <br>
                             <b>PPN</b>
+                            <br>
+                            <b>Nilai HSPK</b>
                         </div>
                         <div class = "col-6">
 
@@ -60,6 +62,8 @@
                             : {{$hspks->kodefikasi_rekening_belanja->nama_rekening_belanja}}
                             <br>
                             : {{$hspks->pajak}}
+                            <br>
+                            : {{$hspks->nilai_hspk}}
                         </div>
                     </div>
                     <br>
@@ -100,7 +104,7 @@
                                     @error('koefisien_hspk') <span class="text-danger">{{$message}}</span> @enderror
                                 </div>
                                 <input name= "hspk_id" value="{{$hspks->id}}" hidden>
-                                {{-- <input name= "subnilai_hspk" value="{{$hspk_rincian1->koefisien_hspk * $hspk_rincian1->standar_harga->harga_satuan}}" hidden> --}}
+                                <input name= "subnilai_hspk" value="{{$hspk_rincians->koefisien_hspk * $hspk_rincians->standar_harga->harga_satuan}}" hidden>
                                 <div class="text-right">
                                     <button type="submit" class="btn btn-primary">
                                         Tambahkan
@@ -122,25 +126,6 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {{-- @forelse($hspk_rincians as $key => $rincian)
-                                        <tr class="text-center">
-                                            <td>{{$rincian->subkode_hspk}}</td>
-                                            <td>{{$rincian->standar_harga->nama_komp}}</td>
-                                            <td>{{$rincian->koefisien_hspk}}</td>
-                                            <td>{{$rincian->standar_harga->satuan->satuan}}</td>
-                                            <td>@currency($rincian->standar_harga->harga_satuan)</td>
-                                            <td>@currency($rincian->koefisien_hspk * $rincian->standar_harga->harga_satuan)</td>
-                                            <td>
-                                                <a href="{{route('hspk_rincian.destroy', $hspks)}}" onclick="notificationBeforeDelete(event, this)" class="btn btn-danger btn-xs">
-                                                    Delete
-                                                </a>
-                                            </td>
-                                        </tr>
-                                    @empty
-                                        <div class="alert alert-danger">
-                                        Data Post belum Tersedia.
-                                        </div>
-                                    @endforelse --}}
                                     @foreach($hspk_rincians as $key => $rincian)
                                         <tr class="text-center">
                                             <td>{{$rincian->subkode_hspk}}</td>
