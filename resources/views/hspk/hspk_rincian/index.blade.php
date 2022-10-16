@@ -68,7 +68,6 @@
                     </div>
                     <br>
                     <div class = "row">
-
                         <div class = "col-4">
                             <form action="{{route('hspk.hspk_rincian.store', $hspks)}}" method="post">
                                 @csrf
