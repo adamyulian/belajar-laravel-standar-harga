@@ -50,16 +50,18 @@ class HspkRincianController extends Controller
         $request->validate([
 
         ]);
-
+        $standar_harga = standar_harga::findOrFail($request->standar_harga_id);
+        $harga_satuan = $standar_harga->harga_satuan;
+        $koefisien_hspk = $request->koefisien_hspk;
+        $subnilai_hspk = $harga_satuan*$koefisien_hspk;
         $array = $request->only([
             'subkode_hspk',
             'koefisien_hspk',
-            'subnilai_hspk',
             'hspk_id',
             'standar_harga_id',
+            'subnilai_hspk'=>$subnilai_hspk,
         ]);
-        hspk_rincian::create($array);
-        $hspks = hspk::findOrfail($request->hspk_id);
+        $hspk_rincian = hspk_rincian::create($array);
         return redirect()->back()->with('success_message', 'Berhasil menambah Komponen HSPK baru');
     }
 
@@ -106,49 +108,36 @@ class HspkRincianController extends Controller
     public function update(Request $request, $id)
     {
 
-        // $hspk_rincians = hspk_rincian::find($id);
-        // $hspks = hspk::findOrfail($request->id);
-        // if ($hspk_rincians) $hspk_rincians->delete();
-        // // $hspk_id = hspk_rincian::select('*')->where('hspk_id', $hspks->id)->get();
-        // return redirect()->route('hspk.hspk_rincian.index', $hspks)
-        //     ->with('success_message', 'Berhasil menghapus SHS');
-
-        // $request->validate([
-
-        // ]);
-
+        // $hspk_rincian = standar_harga::find($request->standar_harga_id);
+        // $harga_satuan = $standar_harga->harga_satuan;
+        // $koefisien_hspk = $request->koefisien_hspk;
+        // $subnilai_hspk = $harga_satuan*$koefisien_hspk;
         // $array = $request->only([
         //     'subkode_hspk',
         //     'koefisien_hspk',
-        //     'subnilai_hspk',
         //     'hspk_id',
         //     'standar_harga_id',
+        //     'subnilai_hspk'=>$subnilai_hspk,
         // ]);
-        // hspk_rincian::create($array);
-        // $hspks = hspk::findOrfail($request->hspk_id);
-        // return redirect()->route('hspk_rincian.edit', $hspks)
-        //     ->with('success_message', 'Berhasil menambah HSPK baru');
+        // $hspk_rincian = hspk_rincian::create($array);
+        // return redirect()->back()->with('success_message', 'Berhasil menambah Komponen HSPK baru');
 
         // $request->validate([
-
+        //     'kode_komp'=> 'required',
+        //     'nama_komp'=> 'required' .$id,
+        //     'spesifikasi'=> 'required',
+        //     'satuan'=> 'required',
+        //     'harga_satuan'=> 'required',
+        //     'pajak'=> 'required',
         // ]);
-
-        // $array = $request->only([
-        //     'subkode_hspk',
-        //     'koefisien_hspk',
-        //     'subnilai_hspk',
-        //     'hspk_id',
-        //     'standar_harga_id',
-        // ]);
-        // $hspks = hspk::findOrfail($id);
-        // $hspk_rincians = hspk_rincian::all();
-        // // $kodefikasiaset = kodefikasi_aset::all();
-        // // $satuan = satuan::all();
-        // // $standar_hargas->kode_komp = $request->kode_komp;
-        // // $standar_hargas->nama_komp = $request->nama_komp;
-        // $hspk_rincians->save();
-        // return redirect()->route('hspk_rincian.edit', $hspks)
-        //     ->with('success_message', 'Berhasil menyimpan Rincian HSPK');
+        // $standar_hargas = standar_harga::find($id);
+        // $kodefikasiaset = kodefikasi_aset::all();
+        // $satuan = satuan::all();
+        // $standar_hargas->kode_komp = $request->kode_komp;
+        // $standar_hargas->nama_komp = $request->nama_komp;
+        // $standar_hargas->save();
+        // return redirect()->route('shs.index')
+        //     ->with('success_message', 'Berhasil mengubah SHS');
     }
 
     /**

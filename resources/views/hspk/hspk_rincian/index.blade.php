@@ -100,7 +100,7 @@
                                     @error('koefisien_hspk') <span class="text-danger">{{$message}}</span> @enderror
                                 </div>
                                 <input name= "hspk_id" value="{{$hspks->id}}" hidden>
-                                {{-- <input name= "subnilai_hspk" value="{{$hspk_rincian1->koefisien_hspk * $hspk_rincian1->standar_harga->harga_satuan}}" hidden> --}}
+                                {{-- <input name= "subnilai_hspk" value= hidden> --}}
                                 <div class="text-right">
                                     <button type="submit" class="btn btn-primary">
                                         Tambahkan
