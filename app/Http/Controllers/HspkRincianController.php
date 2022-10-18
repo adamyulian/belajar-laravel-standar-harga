@@ -48,7 +48,9 @@ class HspkRincianController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-
+            'subkode_hspk' => 'required',
+            'koefisien_hspk' => 'required|numeric',
+            'standar_harga_id' => 'required',
         ]);
         $standar_harga = standar_harga::findOrFail($request->standar_harga_id);
         $harga_satuan = $standar_harga->harga_satuan;
