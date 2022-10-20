@@ -40,8 +40,6 @@ Route::resource('hspk', \App\Http\Controllers\HspkController::class)->middleware
 
 Route::resource('hspk.hspk_rincian', \App\Http\Controllers\HspkRincianController::class)->shallow()->middleware('auth');
 
-Route::resource('hspk_rincian.subnilaihspk', \App\Http\Controllers\SubnilaihspkController::class)->only('store')->middleware('auth');
-
 // Route::resource('hspk.hspk_rincian', \App\Http\Controllers\HspkRincianController::class)->middleware('auth');
 
 // Route::resource('hspk_rincian', \App\Http\Controllers\HspkRincianController::class)->middleware('auth');
