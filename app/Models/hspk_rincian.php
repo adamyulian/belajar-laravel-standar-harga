@@ -24,4 +24,8 @@ class hspk_rincian extends Model
     {
         return $this->belongsTo(standar_harga::class);
     }
+    public function subnilaihspk()
+    {
+        return $this->hasOne(subnilaihspk::class);
+    }
 }
