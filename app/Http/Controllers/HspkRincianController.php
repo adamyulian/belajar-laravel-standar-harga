@@ -52,16 +52,11 @@ class HspkRincianController extends Controller
             'koefisien_hspk' => 'required|numeric',
             'standar_harga_id' => 'required',
         ]);
-        $standar_harga = standar_harga::findOrFail($request->standar_harga_id);
-        $harga_satuan = $standar_harga->harga_satuan;
-        $koefisien_hspk = $request->koefisien_hspk;
-        $subnilai_hspk = $harga_satuan*$koefisien_hspk;
         $array = $request->only([
             'subkode_hspk',
             'koefisien_hspk',
             'hspk_id',
             'standar_harga_id',
-            'subnilai_hspk'=>$subnilai_hspk,
         ]);
         $hspk_rincian = hspk_rincian::create($array);
         return redirect()->back()->with('success_message', 'Berhasil menambah Komponen HSPK baru');

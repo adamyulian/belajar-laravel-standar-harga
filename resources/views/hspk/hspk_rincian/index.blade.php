@@ -137,6 +137,13 @@
                                                 <a href="{{route('hspk_rincian.destroy', [$rincian])}}" onclick="notificationBeforeDelete(event, this)" class="btn btn-danger btn-xs">
                                                     Delete
                                                 </a>
+                                                <form action="{{route('hspk.hspk_rincian.subnilai_hspk.store', [$hspks, $rincian])}}" method="post">
+                                                    @csrf
+                                                    <input name= "subnilai_hspk" value="{{$rincian->koefisien_hspk * $rincian->standar_harga->harga_satuan}}" hidden>
+                                                    <button class="btn btn-primary btn-xs" type= "submit">
+                                                    Simpan
+                                                    </button>
+                                                </form>
                                             </td>
                                         </tr>
                                     @endforeach
