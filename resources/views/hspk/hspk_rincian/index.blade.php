@@ -62,17 +62,12 @@
                             : {{$hspks->kodefikasi_rekening_belanja->nama_rekening_belanja}}
                             <br>
                             : {{$hspks->pajak}}
-                            <br>
-                            @php
-                                $nilai_hspk=0;
-                            @endphp
-                            : {{$hspks->nilai_hspk}}
                         </div>
                     </div>
                     <br>
                     <div class = "row">
                         <div class = "col-4">
-                            {{-- <form action="{{route('hspk.hspk_rincian.store', $hspks)}}" method="post">
+                            <form action="{{route('hspk.hspk_rincian.store', $hspks)}}" method="post">
                                 @csrf
                                 <input name= "hspk_id" value="{{$hspks->id}}" hidden>
                                 <div class="form-group">
@@ -107,15 +102,16 @@
                                 </div>
                                 <input name= "hspk_id" value="{{$hspks->id}}" hidden>
                                 {{-- <input name= "subnilai_hspk" value="{{$hspk_rincian1->koefisien_hspk * $hspk_rincian1->standar_harga->harga_satuan}}" hidden> --}}
-                                {{-- <div class="text-right">
+                                <div class="text-right">
                                     <button type="submit" class="btn btn-primary">
                                         Tambahkan
                                     </button>
-                                </div> --}}
+                                </div>
                             </form>
                         </div>
-
                         <div class = "col-8 table-responsive">
+                            <form action="{{route('hspk.hspk_rincian.subnilaihspk.store', [$hspks, $hspk_rincian->id])}}" method="post">
+                                @cs
                             <table class ="table table-stripped">
                                 <thead>
                                     <tr class="text-center">
@@ -129,25 +125,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {{-- @forelse($hspk_rincians as $key => $rincian)
-                                        <tr class="text-center">
-                                            <td>{{$rincian->subkode_hspk}}</td>
-                                            <td>{{$rincian->standar_harga->nama_komp}}</td>
-                                            <td>{{$rincian->koefisien_hspk}}</td>
-                                            <td>{{$rincian->standar_harga->satuan->satuan}}</td>
-                                            <td>@currency($rincian->standar_harga->harga_satuan)</td>
-                                            <td>@currency($rincian->koefisien_hspk * $rincian->standar_harga->harga_satuan)</td>
-                                            <td>
-                                                <a href="{{route('hspk_rincian.destroy', $hspks)}}" onclick="notificationBeforeDelete(event, this)" class="btn btn-danger btn-xs">
-                                                    Delete
-                                                </a>
-                                            </td>
-                                        </tr>
-                                    @empty
-                                        <div class="alert alert-danger">
-                                        Data Post belum Tersedia.
-                                        </div>
-                                    @endforelse --}}
+                                    
                                     @foreach($hspk_rincians as $key => $rincian)
                                         <tr class="text-center">
                                             <td>{{$rincian->subkode_hspk}}</td>
@@ -165,12 +143,6 @@
                                     @endforeach
                                 </tbody>
                             </table>
-                            <form action="{{route('hspk.hspk_rincian.store', $hspks)}}" method="post">
-                                @csrf
-                                @foreach($hspk_rincians as $key => $rincian)
-                                <input name= "subnilai_hspk" value="{{$rincian->koefisien_hspk * $rincian->standar_harga->harga_satuan}}" hidden>
-                                {{-- <input name= "subnilai_hspk" value="{{$hspk_rincian1->koefisien_hspk * $hspk_rincian1->standar_harga->harga_satuan}}" hidden> --}}
-                                @endforeach
                                 <div class="text-right">
                                     <button type="submit" class="btn btn-warning">
                                         Simpan Rincian
