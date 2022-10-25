@@ -63,13 +63,16 @@
                             <br>
                             : {{$hspks->pajak}}
                             <br>
+                            @php
+                                $nilai_hspk=0;
+                            @endphp
                             : {{$hspks->nilai_hspk}}
                         </div>
                     </div>
                     <br>
                     <div class = "row">
                         <div class = "col-4">
-                            <form action="{{route('hspk.hspk_rincian.store', $hspks)}}" method="post">
+                            {{-- <form action="{{route('hspk.hspk_rincian.store', $hspks)}}" method="post">
                                 @csrf
                                 <input name= "hspk_id" value="{{$hspks->id}}" hidden>
                                 <div class="form-group">
@@ -104,18 +107,20 @@
                                 </div>
                                 <input name= "hspk_id" value="{{$hspks->id}}" hidden>
                                 {{-- <input name= "subnilai_hspk" value="{{$hspk_rincian1->koefisien_hspk * $hspk_rincian1->standar_harga->harga_satuan}}" hidden> --}}
-                                <div class="text-right">
+                                {{-- <div class="text-right">
                                     <button type="submit" class="btn btn-primary">
                                         Tambahkan
                                     </button>
-                                </div>
+                                </div> --}}
                             </form>
                         </div>
+
                         <div class = "col-8 table-responsive">
                             @foreach ($hspk_rincians as $key => $rincian)
-                            <form action="{{route('hspk_rincian.subnilaihspk.store', [$rincian->id])}}" method="post">
                             @endforeach
-                                @csrf
+                            <a href="{{route('hspk.hspk_rincian.create', [$hspks->id])}}" class="btn btn-primary mb-2">
+                                Tambah
+                            </a>
                                 <table class ="table table-stripped">
                                     <thead>
                                         <tr class="text-center">
@@ -132,30 +137,32 @@
                                         @php
                                             $subnilais=0;
                                         @endphp
-                                        @foreach($hspk_rincians as $key => $rincian)
-                                            <tr class="text-center">
-                                                <td>{{$rincian->subkode_hspk}}</td>
-                                                <td>{{$rincian->standar_harga->nama_komp}}</td>
-                                                <td>{{$rincian->koefisien_hspk}}</td>
-                                                <td>{{$rincian->standar_harga->satuan->satuan}}</td>
-                                                <td>@currency($rincian->standar_harga->harga_satuan)</td>
-                                                @php
-                                                    $subnilaik = $rincian->koefisien_hspk * $rincian->standar_harga->harga_satuan;
-                                                    $subnilai = $subnilais + $subnilaik;
-                                                @endphp
-                                                <td>@currency($subnilai)</td>
-                                                <td>
-                                                    <a href="{{route('hspk_rincian.destroy', [$rincian])}}" onclick="notificationBeforeDelete(event, this)" class="btn btn-danger btn-xs">
-                                                        Delete
-                                                    </a>
-                                                    <input name="subnilai" value="{{$subnilai}}" hidden>
-                                                    <input name="hspk_rincian_id" value="{{$rincian->id}}" hidden>
-                                                    <button type = "submit" class="btn btn-warning btn-xs" method="post">
-                                                        Simpan
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                        @endforeach
+                                        @forelse ($hspk_rincians as $key => $rincian )
+                                        <tr class="text-center">
+                                            <td>{{$rincian->subkode_hspk}}</td>
+                                            <td>{{$rincian->standar_harga->nama_komp}}</td>
+                                            <td>{{$rincian->koefisien_hspk}}</td>
+                                            <td>{{$rincian->standar_harga->satuan->satuan}}</td>
+                                            <td>@currency($rincian->standar_harga->harga_satuan)</td>
+                                            @php
+                                                $subnilaik = $rincian->koefisien_hspk * $rincian->standar_harga->harga_satuan;
+                                                $subnilai = $subnilais + $subnilaik;
+                                            @endphp
+                                            <td>@currency($subnilai)</td>
+                                            <td>
+                                                <a href="{{route('hspk_rincian.destroy', [$rincian])}}" onclick="notificationBeforeDelete(event, this)" class="btn btn-danger btn-xs">
+                                                    Delete
+                                                </a>
+                                                <input name="subnilai" value="{{$subnilai}}" hidden>
+                                                <input name="hspk_rincian_id" value="{{$rincian->id}}" hidden>
+                                                <button type = "submit" class="btn btn-warning btn-xs" method="post">
+                                                    Simpan
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        @empty
+                                            "Tidak Ada Rincian"
+                                        @endforelse
                                     </tbody>
                                 </table>
                                 {{-- <div class="text-right form-group">

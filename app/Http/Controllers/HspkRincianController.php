@@ -36,7 +36,10 @@ class HspkRincianController extends Controller
      */
     public function create()
     {
-
+        $hspks = hspk::all();
+        $standar_hargas = standar_harga::all();
+        $satuan = satuan::all();
+        return view('hspk.hspk_rincian.create', compact('hspks','standar_hargas', 'satuan'));
     }
 
     /**
