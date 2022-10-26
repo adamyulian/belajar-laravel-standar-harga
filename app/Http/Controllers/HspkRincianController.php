@@ -25,7 +25,7 @@ class HspkRincianController extends Controller
         $hspk_rincians = hspk_rincian::all();
         $hspks = hspk::findOrfail($id);
         $standar_hargas = standar_harga::all();
-        $hspk_rincians = hspk_rincian::select('*')->where('hspk_id', $hspks->id)->get();
+        $hspk_rincians1 = hspk_rincian::select('*')->where('hspk_id', $hspks->id)->get();
         return view('hspk.hspk_rincian.index', $hspks, compact('standar_hargas', 'hspks', 'hspk_rincians'));
     }
 
@@ -108,36 +108,13 @@ class HspkRincianController extends Controller
     public function update(Request $request, $id)
     {
 
-        // $hspk_rincian = standar_harga::find($request->standar_harga_id);
-        // $harga_satuan = $standar_harga->harga_satuan;
-        // $koefisien_hspk = $request->koefisien_hspk;
-        // $subnilai_hspk = $harga_satuan*$koefisien_hspk;
-        // $array = $request->only([
-        //     'subkode_hspk',
-        //     'koefisien_hspk',
-        //     'hspk_id',
-        //     'standar_harga_id',
-        //     'subnilai_hspk'=>$subnilai_hspk,
-        // ]);
-        // $hspk_rincian = hspk_rincian::create($array);
-        // return redirect()->back()->with('success_message', 'Berhasil menambah Komponen HSPK baru');
+        $request->validate([
 
-        // $request->validate([
-        //     'kode_komp'=> 'required',
-        //     'nama_komp'=> 'required' .$id,
-        //     'spesifikasi'=> 'required',
-        //     'satuan'=> 'required',
-        //     'harga_satuan'=> 'required',
-        //     'pajak'=> 'required',
-        // ]);
-        // $standar_hargas = standar_harga::find($id);
-        // $kodefikasiaset = kodefikasi_aset::all();
-        // $satuan = satuan::all();
-        // $standar_hargas->kode_komp = $request->kode_komp;
-        // $standar_hargas->nama_komp = $request->nama_komp;
-        // $standar_hargas->save();
-        // return redirect()->route('shs.index')
-        //     ->with('success_message', 'Berhasil mengubah SHS');
+        ]);
+        $hspk_rincians = hspk_rincian::find($id);
+        $hspk_rincians->save();
+        return redirect()->back()
+            ->with('success_message', 'Berhasil mengubah Usulan');
     }
 
     /**

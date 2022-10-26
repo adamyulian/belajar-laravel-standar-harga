@@ -62,56 +62,74 @@
                             : {{$hspks->kodefikasi_rekening_belanja->nama_rekening_belanja}}
                             <br>
                             : {{$hspks->pajak}}
+                            <br>
+                            :
                         </div>
                     </div>
                     <br>
                     <div class = "row">
                         <div class = "col-4">
-                            <form action="{{route('hspk.hspk_rincian.store', $hspks)}}" method="post">
-                                @csrf
-                                <input name= "hspk_id" value="{{$hspks->id}}" hidden>
-                                <div class="form-group">
-                                    <label for="subkode_hspk">Sub Kode</label>
-                                    <input type="text" class="form-control @error('subkode_hspk') is-invalid @enderror" id="subkode_hspk"  placeholder="Sub Kode..."name="subkode_hspk" value="{{old('subkode_hspk')}}">
-                                    @error('subkode_hspk') <span class="text-danger">{{$message}}</span> @enderror
-                                </div>
-                                <div class="form-group">
-                                    <label for="standar_harga_id">Tambah Komponen</label>
-                                    <br>
-                                    <select class=" form-control @error('tambah_komponen') is-invalid @enderror" aria-label="default select example" id="standar_harga_id" name="standar_harga_id">
-                                            <option value="">Pilih Komponen</option>
-                                            @foreach ($standar_hargas as $item)
-                                            <option value="{{$item->id}}">{{$item->kode_komp}}|{{$item->nama_komp}}|@currency($item->harga_satuan)</option>
-                                            @endforeach
-                                    </select>
-                                    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
-                                    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-                                    <script>
-                                        $(document).ready(function() {
-                                        $('#standar_harga_id').select2();
-                                        });
-                                    </script>
-                                    @error('standar harga')
-                                    <span class="text-danger">{{$message}}</span>
-                                    @enderror
-                                </div>
-                                <div class="form-group">
-                                    <label for="koefisien_hspk">Koefisien</label>
-                                    <input type="float" class="form-control @error('koefisien_hspk') is-invalid @enderror" id="koefisien_hspk"  placeholder="Nilai Koefisien..."name="koefisien_hspk" value="{{old('koefisien_hspk')}}">
-                                    @error('koefisien_hspk') <span class="text-danger">{{$message}}</span> @enderror
-                                </div>
-                                <input name= "hspk_id" value="{{$hspks->id}}" hidden>
-                                {{-- <input name= "subnilai_hspk" value="{{$hspk_rincian1->koefisien_hspk * $hspk_rincian1->standar_harga->harga_satuan}}" hidden> --}}
-                                <div class="text-right">
-                                    <button type="submit" class="btn btn-primary">
-                                        Tambahkan
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop">
+                                Tambahkan Komponen HSPK
+                            </button>
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                <div class="modal-content">
+                                <form action="{{route('hspk.hspk_rincian.store', $hspks)}}" method="post">
+                                    @csrf
+                                    <div class="modal-header">
+                                    <h5 class="modal-title" id="staticBackdropLabel">Tambah Komponen HSPK</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
                                     </button>
+                                    </div>
+                                    <div class="modal-body">
+                                            <input name= "hspk_id" value="{{$hspks->id}}" hidden>
+                                            <div class="form-group">
+                                                <label for="subkode_hspk">Sub Kode</label>
+                                                <input type="text" class="form-control @error('subkode_hspk') is-invalid @enderror" id="subkode_hspk"  placeholder="Sub Kode..."name="subkode_hspk" value="{{old('subkode_hspk')}}">
+                                                @error('subkode_hspk') <span class="text-danger">{{$message}}</span> @enderror
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="standar_harga_id">Tambah Komponen</label>
+                                                <br>
+                                                <select class="form-control @error('tambah_komponen') is-invalid @enderror" aria-label="default select example" id="standar_harga_id" name="standar_harga_id">
+                                                        <option value="">Pilih Komponen</option>
+                                                        @foreach ($standar_hargas as $item)
+                                                        <option value="{{$item->id}}">{{$item->kode_komp}}|{{$item->nama_komp}}|@currency($item->harga_satuan)|{{$item->satuan->satuan}}</option>
+                                                        @endforeach
+                                                </select>
+                                                <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+                                                <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+                                                <script>
+                                                    $(document).ready(function() {
+                                                    $('#standar_harga_id').select2({width: '100%'});
+                                                    });
+                                                </script>
+                                                @error('standar harga')
+                                                <span class="text-danger">{{$message}}</span>
+                                                @enderror
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="koefisien_hspk">Koefisien</label>
+                                                <input type="float" class="form-control @error('koefisien_hspk') is-invalid @enderror" id="koefisien_hspk"  placeholder="Nilai Koefisien..."name="koefisien_hspk" value="{{old('koefisien_hspk')}}">
+                                                @error('koefisien_hspk') <span class="text-danger">{{$message}}</span> @enderror
+                                            </div>
+                                            <input name= "hspk_id" value="{{$hspks->id}}" hidden>
+                                    </div>
+                                    <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                                    <button type="submit" class="btn btn-primary">Tambahkan</button>
+                                    </div>
+                                </form>
                                 </div>
-                            </form>
+                                </div>
+                            </div>
                         </div>
                         <div class = "col-8 table-responsive">
-                            <form action="{{route('hspk.hspk_rincian.subnilaihspk.store', [$hspks, $hspk_rincian->id])}}" method="post">
-                                @cs
                             <table class ="table table-stripped">
                                 <thead>
                                     <tr class="text-center">
@@ -125,8 +143,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    
-                                    @foreach($hspk_rincians as $key => $rincian)
+                                    @foreach($hspk_rincians1 as $key => $rincian)
                                         <tr class="text-center">
                                             <td>{{$rincian->subkode_hspk}}</td>
                                             <td>{{$rincian->standar_harga->nama_komp}}</td>
@@ -138,17 +155,71 @@
                                                 <a href="{{route('hspk_rincian.destroy', [$rincian])}}" onclick="notificationBeforeDelete(event, this)" class="btn btn-danger btn-xs">
                                                     Delete
                                                 </a>
+                                                                    <!-- Button trigger modal -->
+                                                <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#staticBackdrop1">
+                                                    Edit
+                                                </button>
+
+                                                <!-- Modal -->
+                                                <div class="modal fade" id="staticBackdrop1" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                                    <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                    <form action="{{route('hspk_rincian.update', $rincian)}}" method="post">
+                                                        @method('PUT')
+                                                        @csrf
+                                                        <div class="modal-header">
+                                                        <h5 class="modal-title" id="staticBackdropLabel">Tambah Komponen HSPK</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                        </div>
+                                                        <div class="modal-body">
+
+                                                                <div class="form-group">
+                                                                    <label for="subkode_hspk">Sub Kode</label>
+                                                                    <input type="text" class="form-control @error('subkode_hspk') is-invalid @enderror" id="subkode_hspk"  placeholder="Sub Kode..."name="subkode_hspk" value="{{$hspk_rincians->subkode_hspk ?? old('subkode_hspk')}}">
+                                                                    @error('subkode_hspk') <span class="text-danger">{{$message}}</span> @enderror
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label for="standar_harga_id">Tambah Komponen</label>
+                                                                    <br>
+                                                                    <select class="form-control @error('tambah_komponen') is-invalid @enderror" aria-label="default select example" id="standar_harga_id" name="standar_harga_id">
+                                                                            <option value="">Pilih Komponen</option>
+                                                                            @foreach ($standar_hargas as $item)
+                                                                            <option value="{{$item->id}}">{{$item->kode_komp}}|{{$item->nama_komp}}|@currency($item->harga_satuan)|{{$item->satuan->satuan}}</option>
+                                                                            @endforeach
+                                                                    </select>
+                                                                    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+                                                                    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+                                                                    <script>
+                                                                        $(document).ready(function() {
+                                                                        $('#standar_harga_id').select2({width: '100%'});
+                                                                        });
+                                                                    </script>
+                                                                    @error('standar harga')
+                                                                    <span class="text-danger">{{$message}}</span>
+                                                                    @enderror
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label for="koefisien_hspk">Koefisien</label>
+                                                                    <input type="float" class="form-control @error('koefisien_hspk') is-invalid @enderror" id="koefisien_hspk"  placeholder="Nilai Koefisien..."name="koefisien_hspk" value="{{old('koefisien_hspk')}}">
+                                                                    @error('koefisien_hspk') <span class="text-danger">{{$message}}</span> @enderror
+                                                                </div>
+                                                                <input name= "hspk_id" value="{{$hspks->id}}" hidden>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                                                        <button type="submit" class="btn btn-primary">Tambahkan</button>
+                                                        </div>
+                                                    </form>
+                                                    </div>
+                                                    </div>
+                                                </div>
                                             </td>
                                         </tr>
                                     @endforeach
                                 </tbody>
                             </table>
-                                <div class="text-right">
-                                    <button type="submit" class="btn btn-warning">
-                                        Simpan Rincian
-                                    </button>
-                                </div> --}}
-                            </form>
                         </div>
                     </div>
                 </div>
