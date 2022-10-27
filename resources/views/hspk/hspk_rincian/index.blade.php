@@ -63,7 +63,7 @@
                             <br>
                             : {{$hspks->pajak}}
                             <br>
-                            :
+                            : 
                         </div>
                     </div>
                     <br>
@@ -143,15 +143,22 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach($hspk_rincians1 as $key => $rincian)
-                                        <tr class="text-center">
-                                            <td>{{$rincian->subkode_hspk}}</td>
-                                            <td>{{$rincian->standar_harga->nama_komp}}</td>
-                                            <td>{{$rincian->koefisien_hspk}}</td>
-                                            <td>{{$rincian->standar_harga->satuan->satuan}}</td>
-                                            <td>@currency($rincian->standar_harga->harga_satuan)</td>
-                                            <td>@currency($rincian->koefisien_hspk * $rincian->standar_harga->harga_satuan)</td>
-                                            <td>
+                                    @php
+                                        $subtotal = 0;
+                                    @endphp
+                                    @foreach($hspk_rincians as $key => $rincian)
+                                        <tr>
+                                            <td class="text-center">{{$rincian->subkode_hspk}}</td>
+                                            <td class="text-center">{{$rincian->standar_harga->nama_komp}}</td>
+                                            <td class="text-center">{{$rincian->koefisien_hspk}}</td>
+                                            <td class="text-center">{{$rincian->standar_harga->satuan->satuan}}</td>
+                                            <td class="text-center">@currency($rincian->standar_harga->harga_satuan)</td>
+                                            @php
+                                                $subtotal1= ($rincian->koefisien_hspk)*($rincian->standar_harga->harga_satuan);
+                                                $subtotal2= $subtotal+$subtotal1
+                                            @endphp
+                                            <td class="text-center">@currency($subtotal2)</td>
+                                            <td class="text-center">
                                                 <a href="{{route('hspk_rincian.destroy', [$rincian])}}" onclick="notificationBeforeDelete(event, this)" class="btn btn-danger btn-xs">
                                                     Delete
                                                 </a>
@@ -163,28 +170,27 @@
                                                 <!-- Modal -->
                                                 <div class="modal fade" id="staticBackdrop1" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                                                     <div class="modal-dialog">
-                                                    <div class="modal-content">
+                                                    <div class="modal-content text-left">
                                                     <form action="{{route('hspk_rincian.update', $rincian)}}" method="post">
                                                         @method('PUT')
                                                         @csrf
                                                         <div class="modal-header">
-                                                        <h5 class="modal-title" id="staticBackdropLabel">Tambah Komponen HSPK</h5>
+                                                        <h5 class="modal-title" id="staticBackdropLabel">Edit Komponen HSPK</h5>
                                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                             <span aria-hidden="true">&times;</span>
                                                         </button>
                                                         </div>
                                                         <div class="modal-body">
-
                                                                 <div class="form-group">
-                                                                    <label for="subkode_hspk">Sub Kode</label>
-                                                                    <input type="text" class="form-control @error('subkode_hspk') is-invalid @enderror" id="subkode_hspk"  placeholder="Sub Kode..."name="subkode_hspk" value="{{$hspk_rincians->subkode_hspk ?? old('subkode_hspk')}}">
+                                                                    <label for="subkode_hspk" class="text-right">Sub Kode</label>
+                                                                    <input type="text" class="form-control @error('subkode_hspk') is-invalid @enderror" id="subkode_hspk"  placeholder="Sub Kode..." name="subkode_hspk" value="{{$rincian->subkode_hspk ?? old('subkode_hspk')}}">
                                                                     @error('subkode_hspk') <span class="text-danger">{{$message}}</span> @enderror
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label for="standar_harga_id">Tambah Komponen</label>
                                                                     <br>
                                                                     <select class="form-control @error('tambah_komponen') is-invalid @enderror" aria-label="default select example" id="standar_harga_id" name="standar_harga_id">
-                                                                            <option value="">Pilih Komponen</option>
+                                                                            <option value= "{{$rincian->standar_harga->id}}" selected>{{$rincian->standar_harga->kode_komp}}|{{$rincian->standar_harga->nama_komp}}|{{$rincian->standar_harga->satuan->satuan}}</option>
                                                                             @foreach ($standar_hargas as $item)
                                                                             <option value="{{$item->id}}">{{$item->kode_komp}}|{{$item->nama_komp}}|@currency($item->harga_satuan)|{{$item->satuan->satuan}}</option>
                                                                             @endforeach
@@ -202,14 +208,14 @@
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label for="koefisien_hspk">Koefisien</label>
-                                                                    <input type="float" class="form-control @error('koefisien_hspk') is-invalid @enderror" id="koefisien_hspk"  placeholder="Nilai Koefisien..."name="koefisien_hspk" value="{{old('koefisien_hspk')}}">
+                                                                    <input type="float" class="form-control @error('koefisien_hspk') is-invalid @enderror" id="koefisien_hspk"  placeholder="Nilai Koefisien..."name="koefisien_hspk" value="{{$rincian->koefisien_hspk ?? old('koefisien_hspk')}}">
                                                                     @error('koefisien_hspk') <span class="text-danger">{{$message}}</span> @enderror
                                                                 </div>
                                                                 <input name= "hspk_id" value="{{$hspks->id}}" hidden>
                                                         </div>
                                                         <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                                                        <button type="submit" class="btn btn-primary">Tambahkan</button>
+                                                        <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
                                                         </div>
                                                     </form>
                                                     </div>

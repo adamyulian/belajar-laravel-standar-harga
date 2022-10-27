@@ -25,7 +25,7 @@ class HspkRincianController extends Controller
         $hspk_rincians = hspk_rincian::all();
         $hspks = hspk::findOrfail($id);
         $standar_hargas = standar_harga::all();
-        $hspk_rincians1 = hspk_rincian::select('*')->where('hspk_id', $hspks->id)->get();
+        $hspk_rincians = hspk_rincian::select('*')->where('hspk_id', $hspks->id)->get();
         return view('hspk.hspk_rincian.index', $hspks, compact('standar_hargas', 'hspks', 'hspk_rincians'));
     }
 
@@ -112,6 +112,9 @@ class HspkRincianController extends Controller
 
         ]);
         $hspk_rincians = hspk_rincian::find($id);
+        $hspk_rincians->subkode_hspk = $request->subkode_hspk;
+        $hspk_rincians->koefisien_hspk = $request->koefisien_hspk;
+        $hspk_rincians->standar_harga_id = $request->standar_harga_id;
         $hspk_rincians->save();
         return redirect()->back()
             ->with('success_message', 'Berhasil mengubah Usulan');
