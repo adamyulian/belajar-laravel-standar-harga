@@ -111,7 +111,7 @@ class HspkRincianController extends Controller
         $request->validate([
 
         ]);
-        $hspk_rincians = hspk_rincian::find($id);
+        $hspk_rincians = hspk_rincian::findOrfail($id);
         $hspk_rincians->subkode_hspk = $request->subkode_hspk;
         $hspk_rincians->koefisien_hspk = $request->koefisien_hspk;
         $hspk_rincians->standar_harga_id = $request->standar_harga_id;
