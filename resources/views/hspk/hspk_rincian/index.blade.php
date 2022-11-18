@@ -63,7 +63,7 @@
                             <br>
                             : {{$hspks->pajak}}
                             <br>
-                            : 
+                            :
                         </div>
                     </div>
                     <br>
@@ -155,25 +155,24 @@
                                             <td class="text-center">@currency($rincian->standar_harga->harga_satuan)</td>
                                             @php
                                                 $subtotal1= ($rincian->koefisien_hspk)*($rincian->standar_harga->harga_satuan);
-                                                $subtotal2= $subtotal+$subtotal1
+                                                $subtotal+=$subtotal1;
                                             @endphp
-                                            <td class="text-center">@currency($subtotal2)</td>
+                                            <td class="text-right">@currency($subtotal1)</td>
                                             <td class="text-center">
-                                                <a href="{{route('hspk_rincian.destroy', [$rincian])}}" onclick="notificationBeforeDelete(event, this)" class="btn btn-danger btn-xs">
+                                                <a href="{{route('hspk_rincian.destroy', $rincian)}}" onclick="notificationBeforeDelete(event, this)" class="btn btn-danger btn-xs">
                                                     Delete
-                                                </a>
-                                                                    <!-- Button trigger modal -->
-                                                <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#staticBackdrop1">
+                                                </a>             <!-- Button trigger modal -->
+                                                <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#staticBackdrop{{$rincian->id}}">
                                                     Edit
                                                 </button>
 
                                                 <!-- Modal -->
-                                                <div class="modal fade" id="staticBackdrop1" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                                                    <div class="modal-dialog">
-                                                    <div class="modal-content text-left">
+                                                <div class="modal fade" id="staticBackdrop{{$rincian->id}}" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                                                     <form action="{{route('hspk_rincian.update', $rincian)}}" method="post">
                                                         @method('PUT')
                                                         @csrf
+                                                    <div class="modal-dialog">
+                                                    <div class="modal-content text-left">
                                                         <div class="modal-header">
                                                         <h5 class="modal-title" id="staticBackdropLabel">Edit Komponen HSPK</h5>
                                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -225,6 +224,15 @@
                                         </tr>
                                     @endforeach
                                 </tbody>
+                                <tfoot>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th class=text-center>Total</th>
+                                        <th class=text-right>@currency($subtotal)</th>
+                                        <th></th>
+                                </tfoot>
                             </table>
                         </div>
                     </div>
