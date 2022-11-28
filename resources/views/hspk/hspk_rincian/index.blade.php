@@ -75,7 +75,7 @@
                             </button>
 
                             <!-- Modal -->
-                            <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                            <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                                 <div class="modal-dialog">
                                 <div class="modal-content">
                                 <form action="{{route('hspk.hspk_rincian.store', $hspks)}}" method="post">
@@ -94,21 +94,45 @@
                                                 @error('subkode_hspk') <span class="text-danger">{{$message}}</span> @enderror
                                             </div>
                                             <div class="form-group">
-                                                <label for="standar_harga_id">Tambah Komponen</label>
+                                                <label for="js-data-example-ajax">Tambah Komponen</label>
                                                 <br>
-                                                <select class="form-control @error('tambah_komponen') is-invalid @enderror" aria-label="default select example" id="standar_harga_id" name="standar_harga_id">
-                                                        <option value="">Pilih Komponen</option>
-                                                        @foreach ($standar_hargas as $item)
-                                                        <option value="{{$item->id}}">{{$item->kode_komp}}|{{$item->nama_komp}}|@currency($item->harga_satuan)|{{$item->satuan->satuan}}</option>
-                                                        @endforeach
+                                                <select name="standar_harga_id" id="standar_harga_id" class="js-data-example-ajax">
+                                                    <option value='0'>--Pilih SHS--</option>
                                                 </select>
-                                                <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+                                                <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+                                                <meta charset="utf-8">
+                                                <meta name="csrf-token" content="{{ csrf_token() }}">
+
+                                                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
                                                 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
                                                 <script>
-                                                    $(document).ready(function() {
-                                                    $('#standar_harga_id').select2({width: '100%'});
+                                                    // CSRF Token
+                                                    var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+                                                    $(document).ready(function(){
+                                                      $( ".js-data-example-ajax" ).select2({width:'100%',
+                                                         ajax: {
+                                                           url: "/getShs",
+                                                           type: "post",
+                                                           dataType: 'json',
+                                                           delay: 250,
+                                                           data: function (params) {
+                                                             return {
+                                                                _token: CSRF_TOKEN,
+                                                                search: params.term // search term
+                                                             };
+                                                           },
+                                                           processResults: function (response) {
+                                                             return {
+                                                               results: response
+                                                             };
+                                                           },
+                                                           cache: true
+                                                         }
+
+                                                      });
+
                                                     });
-                                                </script>
+                                                    </script>
                                                 @error('standar harga')
                                                 <span class="text-danger">{{$message}}</span>
                                                 @enderror
@@ -167,7 +191,7 @@
                                                 </button>
 
                                                 <!-- Modal -->
-                                                <div class="modal fade" id="staticBackdrop{{$rincian->id}}" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                                <div class="modal fade" id="staticBackdrop{{$rincian->id}}" data-backdrop="static" data-keyboard="false" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                                                     <form action="{{route('hspk_rincian.update', $rincian)}}" method="post">
                                                         @method('PUT')
                                                         @csrf
@@ -188,17 +212,48 @@
                                                                 <div class="form-group">
                                                                     <label for="standar_harga_id">Tambah Komponen</label>
                                                                     <br>
-                                                                    <select class="form-control @error('tambah_komponen') is-invalid @enderror" aria-label="default select example" id="standar_harga_id" name="standar_harga_id">
-                                                                            <option value= "{{$rincian->standar_harga->id}}" selected>{{$rincian->standar_harga->kode_komp}}|{{$rincian->standar_harga->nama_komp}}|{{$rincian->standar_harga->satuan->satuan}}</option>
+                                                                    <select class="js-data-example-ajax form-control @error('tambah_komponen') is-invalid @enderror" aria-label="default select example" id="standar_harga_id" name="standar_harga_id">
+                                                                            <option value= "{{$rincian->standar_harga->id}}" selected>{{$rincian->standar_harga->nama_komp}}</option>
                                                                             @foreach ($standar_hargas as $item)
-                                                                            <option value="{{$item->id}}">{{$item->kode_komp}}|{{$item->nama_komp}}|@currency($item->harga_satuan)|{{$item->satuan->satuan}}</option>
+                                                                            <option value="{{$item->id}}">{{$item->nama_komp}}</option>
                                                                             @endforeach
                                                                     </select>
-                                                                    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+                                                                    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+                                                                    <meta charset="utf-8">
+                                                                    <meta name="csrf-token" content="{{ csrf_token() }}">
+
+                                                                    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
                                                                     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
                                                                     <script>
-                                                                        $(document).ready(function() {
-                                                                        $('#standar_harga_id').select2({width: '100%'});
+                                                                        // CSRF Token
+                                                                        var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+                                                                        $(document).ready(function(){
+                                                                        $( ".js-data-example-ajax" ).select2({width:'100%',
+                                                                            ajax: {
+                                                                            url: "/getShs",
+                                                                            type: "post",
+                                                                            dataType: 'json',
+                                                                            delay: 250,
+                                                                            data: function (params) {
+                                                                                return {
+                                                                                    _token: CSRF_TOKEN,
+                                                                                    search: params.term // search term
+                                                                                };
+                                                                            },
+                                                                            processResults: function (response) {
+                                                                                return {
+                                                                                results: response
+                                                                                };
+                                                                            },
+                                                                            studentSelect.trigger({
+                                                                                type: 'select2:select',
+                                                                                params: {
+                                                                                    data: data,
+                                                                            cache: true
+                                                                            }
+
+                                                                        });
+
                                                                         });
                                                                     </script>
                                                                     @error('standar harga')

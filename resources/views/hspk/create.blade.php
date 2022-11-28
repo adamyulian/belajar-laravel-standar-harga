@@ -31,10 +31,54 @@
                             $('#exampleInputKodeAset').select2();
                             });
                         </script>
+
                         @error('Kode Aset')
                         <span class="text-danger">{{$message}}</span>
                         @enderror
                     </div>
+                    {{-- <div class="form-group">
+                        <label for="js-data-example-ajax">Tambah Komponen</label>
+                        <br>
+                        <select name="js-data-example-ajax" id="js-data-example-ajax" class="js-data-example-ajax">
+                            <option value='0'>-- Pilih SHS --</option>
+                        </select>
+                        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+                        <meta charset="utf-8">
+                        <meta name="csrf-token" content="{{ csrf_token() }}">
+                        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+                        <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+                        <script>
+                            // CSRF Token
+                            var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+                            $(document).ready(function(){
+                              $( ".js-data-example-ajax" ).select2({width:'100%',
+                                 ajax: {
+                                   url: "/getShs",
+                                   type: "post",
+                                   dataType: 'json',
+                                   delay: 250,
+                                   data: function (params) {
+                                     return {
+                                        _token: CSRF_TOKEN,
+                                        search: params.term // search term
+                                     };
+                                   },
+                                   processResults: function (response) {
+                                     return {
+                                       results: response
+                                     };
+                                   },
+                                   cache: true
+                                 }
+
+                              });
+
+                            });
+                            </script>
+                        @error('standar harga')
+                        <span class="text-danger">{{$message}}</span>
+                        @enderror
+                    </div> --}}
                     <div class="form-group">
                         <label for="kode_komp">Kode Komponen HSPK</label>
                         <input type="text" class="form-control @error('kode_komp') is-invalid @enderror" id="kode_komp"  placeholder="Kode Komponen..."name="kode_komp" value="{{old('kode_komp')}}">

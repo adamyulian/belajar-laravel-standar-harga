@@ -123,4 +123,24 @@ class ShsController extends Controller
     return redirect()->route('shs.index')
         ->with('success_message', 'Berhasil menghapus SHS');
 }
+
+    public function getShs(Request $request){
+    $search = $request->search;
+
+    if($search == ''){
+       $standar_hargas = standar_harga::orderby('nama_komp','asc')->select('id','nama_komp')->limit(5)->get();
+    }else{
+       $standar_hargas = standar_harga::orderby('nama_komp','asc')->select('id','nama_komp')->where('nama_komp', 'like', '%' .$search . '%')->get();
+    }
+
+    $response = array();
+    foreach($standar_hargas as $standar_harga){
+       $response[] = array(
+            "id"=>$standar_harga->id,
+            "text"=>$standar_harga->nama_komp
+       );
+    }
+    return response()->json($response);
+    }
+
 }

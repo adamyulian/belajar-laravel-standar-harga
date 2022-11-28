@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ShsController;
 use App\Models\User;
 
 use Illuminate\Support\Facades\Route;
@@ -54,3 +55,4 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+Route::post('/getShs', [ShsController::class, 'getShs'])->name('getShs');
